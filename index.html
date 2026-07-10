@@ -873,6 +873,27 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
   max-width: 34ch;
 }
 
+/* <address> is italic by default in every browser, which reads as emphasis —
+   the opposite of what this is. Quiet, small, and plainly a legal detail. */
+.footer-address {
+  margin-top: var(--space-3);
+  font-style: normal;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+}
+.footer-address-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  /* 0.48 is the lowest opacity that still clears the 4.5:1 contrast minimum
+     for small text on this footer. Anything dimmer looks better and fails. */
+  color: rgba(255, 255, 255, 0.48);
+  margin-bottom: 0.35em;
+}
+
 .footer-heading {
   font-size: 0.78rem;
   font-weight: 700;
@@ -1624,6 +1645,17 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
           <use href="#cgc-logo"></use>
         </svg>
         <p class="footer-tagline">Eco-friendly janitorial service for commercial spaces.</p>
+
+        <!-- Billing address only — deliberately quiet, and deliberately
+             labeled. Without the label, someone will eventually drive to a
+             mail suite expecting to find an office. Calls and quotes go
+             through the phone number and email above. -->
+        <address class="footer-address">
+          <span class="footer-address-label">Billing address</span>
+          Commercial Green Cleaning, Inc.<br>
+          11901 Santa Monica Blvd., Ste 457<br>
+          Los Angeles, CA 90025
+        </address>
       </div>
 
       <nav class="footer-nav" aria-label="Footer">
@@ -1667,7 +1699,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
     <div class="container footer-bottom">
       <!-- EDIT the year each January, or leave it — a static year is honest
            and search engines don't care. -->
-      <p>&copy; 2026 Commercial Green Cleaning. All rights reserved.</p>
+      <p>&copy; 2026 Commercial Green Cleaning, Inc. All rights reserved.</p>
     </div>
   </footer>
 
@@ -1683,8 +1715,17 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Commercial Green Cleaning",
+    "legalName": "Commercial Green Cleaning, Inc.",
     "description": "Eco-friendly commercial cleaning and janitorial services for offices, medical suites, and retail spaces.",
     "url": "https://commercialgreencleaning.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "11901 Santa Monica Blvd., Ste 457",
+      "addressLocality": "Los Angeles",
+      "addressRegion": "CA",
+      "postalCode": "90025",
+      "addressCountry": "US"
+    },
     "telephone": "+1-310-997-7135",
     "email": "info@commercialgreencleaning.com",
     "priceRange": "$$",
