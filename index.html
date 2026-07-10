@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===================================================================
+       PAGE TITLE & SEARCH ENGINE DESCRIPTION
+       The title shows in the browser tab and as the blue link in Google.
+       The description shows as the gray text under that link.
+       Keep the title under ~60 characters and the description under ~155.
+       =================================================================== -->
+  <title>Commercial Green Cleaning | Eco-Friendly Janitorial Services</title>
+  <meta name="description" content="Eco-friendly commercial cleaning and janitorial services for offices, medical suites, and retail spaces. Insured, bonded, and green-certified.">
+
+  <!-- ===================================================================
+       LINK PREVIEW CARD
+       Controls how the site looks when someone shares it in a text
+       message, on Facebook, or on LinkedIn. Replace the og:url value with
+       your real domain once the site is live.
+
+       og:image is the only file this page loads from anywhere else, and
+       it is optional — link previews just fall back to plain text without
+       it. Everything else lives inside this one file.
+       =================================================================== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Commercial Green Cleaning">
+  <meta property="og:description" content="Eco-friendly commercial cleaning and janitorial services. Insured, bonded, and green-certified.">
+  <meta property="og:image" content="assets/og-image.jpg">
+  <meta property="og:url" content="https://commercialgreencleaning.com">
+  <meta name="theme-color" content="#286734">
+
+  <!-- ===================================================================
+       FAVICON (the little icon in the browser tab)
+
+       This is the "G" mark from the logo, written directly into the page
+       as a data URI rather than loaded as a separate file. It looks like
+       gibberish because it is the logo's outline coordinates, URL-encoded.
+       You never need to touch this line. If you ever change your logo,
+       delete the whole line and drop in a favicon.png instead.
+       =================================================================== -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-25 -25 600 600'%3E%3Cpath fill='%23286734' d='M249.7 1c-66.6 7 -125 35.3 -171.3 83.2 -41 42.4 -66.2 94.3 -75.1 154.3 -2.7 18.3 -2.4 57.2 0.5 76 8.8 56.9 31.2 103.8 70.1 147.4 22.1 24.7 57.5 50.2 89.1 64.1 34.4 15.2 67.1 22.6 105.5 23.7 49 1.4 92 -6.5 126 -23.2 26.2 -12.8 52.7 -34 71.5 -57 6.9 -8.4 6.6 -8.6 -2 -1.6 -24.8 20.2 -59.4 35.8 -94 42.4 -9.9 1.9 -14.9 2.2 -36.5 2.2 -28.1 0 -38 -1.3 -59.7 -7.9 -78.8 -23.9 -139.2 -92 -156.7 -176.6 -5.3 -25.2 -6.7 -58.8 -3.6 -84 6.6 -53.6 30.6 -103.2 68 -140.5 35.3 -35.2 77.7 -56.6 127 -64.1 13.5 -2 40.4 -2.3 53.5 -0.5 35.1 4.7 69.1 16.6 94 32.8 12.6 8.2 12.3 7.6 -3.1 -5.8 -37.4 -32.6 -86.8 -55.2 -137.5 -62.9 -15.9 -2.4 -51.2 -3.5 -65.7 -2z'/%3E%3Cpath fill='%23029346' d='M325 65c-48.1 4.7 -92.2 25.3 -126.1 59 -9.7 9.7 -26.4 29.9 -25.4 30.8 0.2 0.3 2.8 -1.6 5.7 -4.1 29.1 -24.7 73 -38.4 111.7 -34.8 29.7 2.7 55.8 12.3 79.1 28.8 11.1 8 26.4 22.8 33.9 33 3 4 5.9 7.3 6.6 7.3 1.2 0 98.6 -33.8 99.3 -34.4 0.6 -0.7 -9.7 -13.5 -17.8 -21.9 -31.9 -33.7 -73.7 -55.5 -119 -62.1 -13.5 -2 -35.9 -2.7 -48 -1.6zM284 302.5l0 56.5 63.5 0 63.6 0 -3.2 4.6c-22.5 32.8 -58.7 56.7 -97.9 64.8 -40.1 8.2 -84.3 -0.3 -117.8 -22.7 -10.5 -7 -9.2 -4.8 5.6 10.1 49.3 49.4 118.2 70.4 186 56.6 38.1 -7.6 72.7 -25.8 101 -52.8 33.8 -32.3 54.5 -72.7 61.8 -120.1 1.7 -11.5 2.4 -44 1 -50.3l-0.8 -3.2 -131.4 0 -131.4 0 0 56.5z'/%3E%3C/svg%3E">
+
+
+<style>
+/* ==========================================================================
+   COMMERCIAL GREEN CLEANING — STYLESHEET
+
+   The entire site is this one file. The styles live here in the <head> and
+   the page content starts below, at <body>.
+
+   Organized top to bottom in the same order the sections appear on the
+   page, so you can find things by scrolling rather than searching.
+
+     1. Design tokens (colors, spacing, type)
+     2. Base & resets
+     3. Reusable pieces (container, button, eyebrow, section heading)
+     4. Header & logo
+     5. Hero
+     6. Trust strip
+     7. About
+     8. Services
+     9. Testimonials
+    10. FAQ
+    11. Contact
+    12. Footer
+    13. Responsive adjustments
+
+   To change a color anywhere on the site, change it once in section 1 and
+   it updates everywhere.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+  /* --- Colors, taken directly from the logo file ------------------------
+     --forest is the dark green of the outer "G" and the word COMMERCIAL.
+     --emerald is the brighter green of the inner "G" and GREEN CLEANING.
+     Everything else is neutral. Keeping the palette this small is what
+     makes a site look designed rather than assembled. */
+  --forest:        #286734;
+  --forest-dark:   #1D4E27;   /* hover state for green buttons */
+  --emerald:       #029346;
+
+  /* --emerald is too light to sit on white as small text — it fails the
+     accessibility contrast minimum. So it's used for graphics only, and
+     these two variants cover text instead: -deep on white, -light on the
+     dark footer. */
+  --emerald-deep:  #06753B;
+  --emerald-light: #35B86C;
+
+  /* Text sitting on the forest-green menu panel. The greens above are all too
+     dark against it: --emerald-light manages only 2.67:1, where small text
+     needs 4.5:1. This pale mint reaches 5.08:1. */
+  --mint: #A5EEC6;
+  --emerald-soft:  #E9F5EC;   /* pale green wash for hovers and tints */
+
+  --ink:          #16211B;   /* headings */
+  --body:         #4C5A53;   /* paragraph text */
+  --muted:        #7A867F;   /* captions, labels */
+  --line:         #E2E8E4;   /* borders and rules */
+  --surface:      #FFFFFF;
+  --surface-alt:  #F6FAF7;   /* tinted section background */
+
+  /* --- Spacing scale ----------------------------------------------------
+     A consistent rhythm. Use these instead of arbitrary pixel values. */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+
+  /* --- Type -------------------------------------------------------------
+     The system font stack uses whatever font the visitor's device already
+     has. It loads instantly (zero network requests) and looks native
+     everywhere. */
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+
+  --radius:    10px;
+  --radius-lg: 16px;
+  --shadow:    0 1px 2px rgba(22, 33, 27, 0.04),
+               0 8px 24px rgba(22, 33, 27, 0.06);
+
+  --header-h: 84px;   /* used to offset anchor links so headings aren't
+                         hidden behind the sticky header */
+}
+
+
+/* ==========================================================================
+   2. BASE & RESETS
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body, h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+ul { list-style: none; }
+
+html {
+  scroll-behavior: smooth;
+  /* Stops a section heading from hiding under the sticky header when you
+     click a nav link. */
+  scroll-padding-top: calc(var(--header-h) + var(--space-3));
+}
+
+/* Respect the operating system's "reduce motion" accessibility setting. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+body {
+  font-family: var(--font);
+  font-size: 1.0625rem;      /* 17px — comfortable for long-form reading */
+  line-height: 1.65;
+  color: var(--body);
+  background: var(--surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.02em;   /* large text needs slightly tighter tracking */
+  font-weight: 700;
+}
+
+h2 { font-size: clamp(1.75rem, 3.2vw, 2.35rem); }
+h3 { font-size: 1.15rem; letter-spacing: -0.01em; }
+
+p + p { margin-top: var(--space-2); }
+
+a { color: var(--forest); }
+
+img, svg { max-width: 100%; display: block; }
+
+/* A visible outline whenever someone navigates by keyboard. Never remove
+   this — it's the only way keyboard users can tell where they are. */
+:focus-visible {
+  outline: 3px solid var(--emerald);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hidden until a keyboard user presses Tab on page load. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: var(--space-2);
+  top: var(--space-2);
+  z-index: 100;
+  background: var(--surface);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+
+/* ==========================================================================
+   3. REUSABLE PIECES
+   ========================================================================== */
+
+/* Centers content and keeps line lengths readable on wide monitors. */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+.container-narrow { max-width: 760px; }
+
+.section { padding-block: var(--space-7); }
+
+.section-tint {
+  background: var(--surface-alt);
+  border-block: 1px solid var(--line);
+}
+
+/* The small green label above a heading, e.g. "About us". */
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--emerald-deep);
+  margin-bottom: var(--space-2);
+}
+
+/* Borrows the short rules that flank the word COMMERCIAL in the logo. Only
+   used on centered eyebrows — it needs symmetry to read as intentional. */
+.eyebrow-ruled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85em;
+}
+.eyebrow-ruled::before,
+.eyebrow-ruled::after {
+  content: "";
+  width: 30px;
+  height: 2px;
+  background: var(--emerald);
+  flex-shrink: 0;
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: var(--space-5);
+}
+.section-sub {
+  margin-top: var(--space-2);
+  font-size: 1.0625rem;
+  color: var(--body);
+}
+
+/* --- Buttons -------------------------------------------------------------
+   .btn is the shared shape. Pair it with .btn-primary (solid green) or
+   .btn-ghost (outlined). Add .btn-lg for the larger hero size. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.7em 1.25em;
+  border-radius: var(--radius);
+  border: 1.5px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+              transform 0.15s ease;
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-lg { padding: 0.9em 1.75em; font-size: 1.0625rem; }
+
+.btn-primary {
+  background: var(--forest);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--forest-dark); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--forest);
+  border-color: var(--line);
+}
+.btn-ghost:hover {
+  border-color: var(--forest);
+  background: var(--emerald-soft);
+}
+
+/* Inline SVG icons inherit the text color and size around them. */
+.icon {
+  width: 1.1em;
+  height: 1.1em;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: var(--space-3);
+  font-weight: 600;
+  text-decoration: none;
+}
+.link-arrow:hover { text-decoration: underline; }
+.link-arrow .icon { transition: transform 0.15s ease; }
+.link-arrow:hover .icon { transform: translateX(3px); }
+
+
+/* ==========================================================================
+   4. HEADER & LOGO
+   --------------------------------------------------------------------------
+   The logo is drawn from the <symbol> at the top of <body>. Because it's
+   real SVG rather than an image file, we can color its two halves from CSS
+   — which is how the footer version turns white and mint on the dark
+   background without needing a second logo file.
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);      /* frosted glass over scrolling content */
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--header-h);
+}
+
+/* The logo's two halves are colored through the --logo-ink and --logo-accent
+   variables set below. They must be variables rather than plain fill rules,
+   because <use> copies the logo into a sealed "shadow tree" that ordinary
+   style rules cannot reach into. Variables pass through it. */
+.logo-svg {
+  --logo-ink:    var(--forest);    /* "COMMERCIAL" + the outer ring of the G */
+  --logo-accent: var(--emerald);   /* "GREEN CLEANING" + the inner shapes */
+}
+
+/* The link wrapping the logo is the flex item, so it is the thing that must
+   refuse to shrink. Without this, any header that runs short of room squeezes
+   the logo narrower than its true proportions and the letters distort. */
+.logo, .header-cta { flex-shrink: 0; }
+
+/* 56px rather than a smaller, tidier-looking number, because the logo's
+   height is set by the G — the type only fills the middle 60% of it. At
+   44px the thin rules beside "COMMERCIAL" fell below one screen pixel and
+   turned to mush on non-Retina monitors. */
+.logo-full { height: 56px; width: auto; aspect-ratio: 2560 / 550; }
+.logo-mark { height: 46px; width: auto; aspect-ratio: 1; display: none; }
+
+.nav {
+  display: flex;
+  gap: var(--space-3);
+  margin-inline: auto;    /* pushes nav to center, CTA to the right edge */
+}
+.nav a {
+  color: var(--body);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding-block: 0.35em;
+  border-bottom: 2px solid transparent;
+}
+.nav a:hover {
+  color: var(--forest);
+  border-bottom-color: var(--emerald);
+}
+
+.header-cta { font-size: 0.9375rem; }
+
+
+/* --- The hamburger button ------------------------------------------------
+   Hidden above 720px, where the nav links are still on screen. 44x44 is the
+   minimum comfortable tap target on a touchscreen; the bars inside are much
+   smaller than the button they live in, which is intentional. */
+.menu-toggle {
+  display: none;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  place-items: center;
+}
+.menu-toggle:hover { background: var(--emerald-soft); }
+
+.menu-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 22px;
+}
+.menu-bars i {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--forest);
+  transition: transform 0.22s ease, opacity 0.15s ease;
+}
+
+/* Open: the outer bars swing into an X, the middle one disappears. The 7px
+   is half the bar spacing (2px bar + 5px gap), so they meet in the middle. */
+.menu-toggle[aria-expanded="true"] i:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] i:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] i:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* --- The panel -----------------------------------------------------------
+   Covers everything below the header. The header stays put, so the hamburger
+   (now an X) is always there to close it again — no separate close button. */
+.menu-panel {
+  position: fixed;
+  inset: var(--header-h) 0 0 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-3) var(--space-5);
+  background: var(--forest);
+  overflow-y: auto;      /* short phones in landscape can still reach the end */
+  overscroll-behavior: contain;   /* scrolling the panel never drags the page */
+}
+.menu-panel[hidden] { display: none; }
+
+/* Locks the page behind the panel. The class is put on <html> by the script.
+
+   The second rule is not optional. `overflow: hidden` on <html> takes away the
+   scrollport that `position: sticky` measures itself against, so the header
+   would silently fall back to the top of the *document* — hundreds of pixels
+   above the screen — taking the close button with it. Pinning it explicitly
+   keeps it where the sticky positioning had it. */
+.menu-open, .menu-open body { overflow: hidden; }
+.menu-open .site-header { position: fixed; top: 0; left: 0; right: 0; }
+
+.menu-nav ul { display: flex; flex-direction: column; }
+.menu-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 56px;               /* generous, thumb-sized rows */
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+.menu-nav li:last-child a { border-bottom: 0; }
+.menu-nav a:hover { color: var(--mint); }
+
+.menu-contact { display: flex; flex-direction: column; gap: var(--space-1); }
+.menu-phone {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+.menu-email {
+  font-size: 0.95rem;
+  color: var(--mint);
+  text-decoration: none;
+}
+.menu-panel .social { margin-top: var(--space-2); }
+
+/* The panel's own focus ring has to be visible against dark green. */
+.menu-panel :focus-visible { outline-color: #fff; }
+
+
+/* ==========================================================================
+   5. HERO
+   --------------------------------------------------------------------------
+   Built from color and type rather than a photograph.
+
+   TO ADD A BACKGROUND PHOTO LATER: uncomment the `background-image` line
+   below and drop a wide image (about 2000px across, under 300KB) into an
+   assets/ folder. Then darken the overlay until the headline is
+   comfortably readable on top of it.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  padding-block: clamp(var(--space-6), 9vw, 7.5rem);
+  text-align: center;
+  overflow: hidden;
+
+  /* A soft green gradient standing in for a photograph. */
+  background:
+    radial-gradient(1000px 500px at 50% -10%, var(--emerald-soft), transparent 70%),
+    linear-gradient(180deg, #FBFDFC 0%, var(--surface) 100%);
+
+  /* background-image: url("assets/hero.jpg"); */
+  background-size: cover;
+  background-position: center;
+}
+
+/* The oversized G behind the headline. It has to be genuinely large and
+   genuinely faint — at any middling size or opacity it stops reading as a
+   texture and starts reading as a mistake. It bleeds off the left edge, and
+   the hero's `overflow: hidden` does the cropping. */
+.hero-mark {
+  position: absolute;
+  left: -18%;          /* far enough that the G's crossbar clears the text
+                          column — centered, it reads as a stray rectangle
+                          rather than as part of the letter */
+  top: 50%;
+  translate: 0 -50%;
+  width: min(66vw, 660px);
+  aspect-ratio: 1;
+  opacity: 0.05;
+  pointer-events: none;
+  --logo-ink:    var(--forest);
+  --logo-accent: var(--emerald);
+}
+
+/* The stacked lockup at the top of the hero. Hidden here and switched on in
+   the phone media query — on wider screens the header already shows the full
+   horizontal logo, and repeating it 100px lower reads as a mistake.
+
+   220px wide puts its cap height at 14.1px and its thin rules at 1.59px, both
+   comfortably above the sub-pixel threshold. */
+.hero-lockup {
+  display: none;
+  width: 220px;
+  height: auto;
+  aspect-ratio: 2630 / 1433;
+  margin: 0 auto var(--space-4);
+  --logo-ink:    var(--forest);
+  --logo-accent: var(--emerald);
+}
+
+/* Sits above the watermark. */
+.hero-inner {
+  position: relative;
+  max-width: 780px;
+}
+
+.hero-title {
+  font-size: clamp(2.1rem, 5.4vw, 3.6rem);
+  margin-bottom: var(--space-3);
+}
+
+.hero-sub {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--body);
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin-top: var(--space-5);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+/* Small green checkmark before each badge, drawn in CSS — no image needed. */
+.hero-badges li::before {
+  content: "✓";
+  color: var(--emerald);
+  font-weight: 700;
+  margin-right: 0.45em;
+}
+
+
+/* ==========================================================================
+   6. TRUST STRIP
+   ========================================================================== */
+
+.trust {
+  background: var(--forest);
+  color: #fff;
+  padding-block: var(--space-4);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.stat { display: flex; flex-direction: column; gap: 0.15em; }
+
+.stat-num {
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+
+/* ==========================================================================
+   7. ABOUT
+   ========================================================================== */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(var(--space-4), 5vw, var(--space-7));
+  align-items: start;
+}
+
+.about-text h2 { margin-bottom: var(--space-3); }
+
+.benefits { display: grid; gap: var(--space-3); }
+
+.benefits li {
+  padding: var(--space-3);
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  /* The green edge ties the block back to the brand without adding color. */
+  border-left: 3px solid var(--emerald);
+}
+.benefits h3 { margin-bottom: 0.35em; }
+.benefits p { font-size: 0.95rem; }
+
+
+/* ==========================================================================
+   8. SERVICES
+   --------------------------------------------------------------------------
+   `auto-fit` + `minmax` means the cards re-flow on their own: four across
+   on a desktop, two on a tablet, one on a phone. No breakpoints needed.
+   ========================================================================== */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-3);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.card-icon {
+  width: 34px;
+  height: 34px;
+  color: var(--emerald);
+  margin-bottom: var(--space-2);
+}
+
+.card h3 { margin-bottom: 0.4em; }
+.card p { font-size: 0.95rem; }
+
+
+/* ==========================================================================
+   9. TESTIMONIALS
+   ========================================================================== */
+
+.quote {
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-3) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+}
+
+/* Oversized decorative quotation mark. Screen readers ignore CSS content. */
+.quote::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.15em;
+  left: 0.35em;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--emerald);
+  opacity: 0.18;
+}
+
+.quote blockquote p {
+  position: relative;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.quote figcaption {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;           /* pins the name to the bottom so cards align */
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
+}
+
+.quote-name { font-weight: 600; color: var(--ink); font-size: 0.95rem; }
+.quote-role { font-size: 0.85rem; color: var(--muted); }
+
+
+/* ==========================================================================
+   10. FAQ
+   --------------------------------------------------------------------------
+   Styling the browser's native <details> element. The +/- indicator is
+   drawn with CSS so there is no JavaScript and no icon file.
+   ========================================================================== */
+
+.faq {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.faq details + details { border-top: 1px solid var(--line); }
+
+.faq summary {
+  cursor: pointer;
+  list-style: none;           /* hides the default disclosure triangle */
+  padding: var(--space-3);
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.faq summary::-webkit-details-marker { display: none; }  /* Safari */
+.faq summary:hover { background: var(--emerald-soft); }
+
+/* A "+" built from two crossed bars: one horizontal, one vertical. */
+.faq summary::after {
+  content: "";
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  background:
+    linear-gradient(var(--emerald), var(--emerald)) center / 100% 2px no-repeat,
+    linear-gradient(var(--emerald), var(--emerald)) center / 2px 100% no-repeat;
+  transition: transform 0.2s ease;
+}
+/* Open: the vertical bar collapses to nothing, leaving a "−". The half turn
+   is purely so the change animates rather than snapping. */
+.faq details[open] summary::after {
+  background-size: 100% 2px, 0 0;
+  transform: rotate(180deg);
+}
+
+.faq-body {
+  padding: 0 var(--space-3) var(--space-3);
+  max-width: 62ch;            /* keeps answers at a readable line length */
+}
+.faq-body p { font-size: 0.975rem; }
+
+
+/* ==========================================================================
+   11. CONTACT
+   ========================================================================== */
+
+.contact-panel {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(var(--space-4), 5vw, var(--space-6));
+  align-items: start;
+  padding: clamp(var(--space-4), 4vw, var(--space-6));
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.contact-intro h2 { margin-bottom: var(--space-3); }
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.contact-details { display: grid; gap: var(--space-3); }
+
+.contact-details dt {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.25em;
+}
+.contact-details dd { color: var(--ink); font-weight: 500; }
+
+/* An email address is one long word with no spaces, so on a narrow phone it
+   refuses to wrap and pushes the whole page sideways. This lets it break. */
+a[href^="mailto:"] { overflow-wrap: anywhere; }
+.contact-details a { color: var(--forest); text-decoration: none; }
+.contact-details a:hover { text-decoration: underline; }
+
+
+/* ==========================================================================
+   12. FOOTER
+   ========================================================================== */
+
+.site-footer {
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.72);
+  padding-top: var(--space-6);
+  margin-top: var(--space-5);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-5);
+  padding-bottom: var(--space-5);
+}
+
+/* The same logo, recolored for a dark background: the forest half turns
+   white, the emerald half lightens enough to stay legible. This is only
+   possible because the logo is inline SVG rather than an image file. */
+/* In the logo, "GREEN CLEANING" is the loud line and "COMMERCIAL" is the
+   quiet one. On a dark background pure white is the loudest color there is,
+   so painting the top line #fff would invert that relationship. The top line
+   is held back instead, and the accent green is brightened to lead. */
+.footer-logo {
+  height: 50px;
+  width: auto;
+  aspect-ratio: 2560 / 550;
+  --logo-ink:    rgba(255, 255, 255, 0.78);
+  --logo-accent: #52D389;
+}
+
+.footer-tagline {
+  margin-top: var(--space-2);
+  font-size: 0.9rem;
+  max-width: 34ch;
+}
+
+.footer-heading {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: var(--space-2);
+}
+
+.site-footer ul { display: grid; gap: 0.55em; }
+
+.site-footer a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+.site-footer a:hover { color: #fff; }
+
+/* --- Social icons --- */
+.social {
+  display: flex !important;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+.social a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.15s ease;
+}
+.social a:hover { background: var(--emerald); }
+.social svg {
+  width: 19px;
+  height: 19px;
+  fill: #fff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-block: var(--space-3);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* ==========================================================================
+   13. RESPONSIVE
+   --------------------------------------------------------------------------
+   Most of the layout re-flows on its own. These are the few places that
+   need an explicit instruction.
+   ========================================================================== */
+
+/* --- The header specifically ---------------------------------------------
+   The logo (261px), the five nav links (371px), the phone button (177px) and
+   two 32px gaps need 921px of viewport to sit side by side. Below that they
+   collide, so the nav has to go. This is its own breakpoint rather than being
+   folded into the 860px one below, because it is set by the width of the
+   header's contents and nothing else.
+
+   The nav was also the spacer holding the phone button against the right
+   edge, so with it gone the button has to push itself over. */
+/* 721–920px: the links still fit, but only just. Tighten the type and the
+   gaps, and drop the phone number from the button so only its icon remains.
+   That buys enough room to keep the navigation visible on every tablet. */
+@media (max-width: 920px) {
+  .nav { gap: 0.75rem; }
+  .nav a { font-size: 0.875rem; }
+  .header-cta span { display: none; }
+  .header-cta { padding: 0.7em; }
+}
+
+/* Below 720px even the compact nav collides with the logo. Hand over to the
+   hamburger. The phone button stays — it is the primary action on the page,
+   and burying it in a menu would cost calls. */
+@media (max-width: 720px) {
+  .nav { display: none; }
+  .header-cta { margin-left: auto; }
+  .menu-toggle { display: grid; }
+}
+
+/* --- Tablet and below --- */
+@media (max-width: 860px) {
+
+  .about-grid,
+  .contact-panel { grid-template-columns: 1fr; }
+
+  .trust-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+/* --- Phone --- */
+@media (max-width: 560px) {
+
+  .section { padding-block: var(--space-6); }
+
+  /* Swap the full lockup for the "G" alone, and let the header shrink to
+     suit it. --header-h also sets the anchor-link scroll offset, so it has
+     to change with the real height rather than being hard-coded. */
+  :root { --header-h: 68px; }
+  .logo-full { display: none; }
+  .logo-mark { display: block; }
+
+  /* Show the stacked lockup, and drop the watermark. Both are the same "G";
+     stacking one faintly behind the other looks like a printing error rather
+     than a design. The lockup's mark is the hero's G at this width. */
+  .hero-lockup { display: block; }
+  .hero-mark { display: none; }
+
+  /* The lockup adds ~140px above the headline. Trimming the hero's top
+     padding buys back some of it, keeping the "Request a Quote" button
+     above the fold on a standard phone. */
+  .hero { padding-top: var(--space-4); }
+
+  /* Full-width, easy-to-tap buttons. */
+  .hero-actions .btn,
+  .contact-actions .btn { width: 100%; }
+
+  /* The panel's own padding plus the page's leaves too little room for the
+     "Call" button (which must not wrap) on a 320px phone. */
+  .contact-panel { padding: var(--space-3); }
+
+  /* Hide the hero's eyebrow entirely on phones. The stacked lockup directly
+     above it already ends in the tracked uppercase line "GREEN CLEANING", so
+     "COMMERCIAL & OFFICE CLEANING" underneath repeats the word COMMERCIAL and
+     makes a third stacked line of tracked caps. Delete this rule if you want
+     the line back; it still appears on tablets and desktops. */
+  .hero .eyebrow { display: none; }
+
+  /* Elsewhere, a ruled eyebrow would wrap to two lines here, stranding its
+     rules at the far edges. The device only reads as a lockup on one line. */
+  .eyebrow-ruled::before,
+  .eyebrow-ruled::after { display: none; }
+
+  .hero-badges { flex-direction: column; align-items: center; gap: var(--space-1); }
+
+  .footer-inner { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+
+
+/* ==========================================================================
+   PRINT
+   Someone will print this page to hand to a boss. Make it not look broken.
+   ========================================================================== */
+
+@media print {
+  .site-header, .hero-actions, .contact-actions, .social { display: none; }
+  .faq details { break-inside: avoid; }
+  .faq-body { display: block !important; }
+  body { color: #000; font-size: 11pt; }
+}
+</style>
+
+<noscript>
+  <!-- With JavaScript off the hamburger cannot open anything, so hide it and
+       let the nav links wrap onto a second line instead. Rare, but it costs
+       four lines to not strand someone with no way to navigate. -->
+  <style>
+    .menu-toggle { display: none !important; }
+    @media (max-width: 720px) {
+      .nav { display: flex; flex-wrap: wrap; justify-content: center; margin: 0; }
+      .header-inner { flex-wrap: wrap; padding-block: 0.75rem; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body>
+
+  <!-- Lets keyboard users jump straight to the content. Invisible until focused. -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+
+  <!-- ===================================================================
+       THE LOGOS, STORED ONCE EACH
+
+       This invisible block holds three versions of the logo. Nothing here is
+       drawn on the page directly — each place that shows a logo refers back
+       to one of these with a single line, e.g. <use href="#cgc-logo">.
+
+         #cgc-logo     the wide lockup   — header (tablet & desktop), footer
+         #cgc-mark     the "G" alone     — header (phones), hero watermark
+         #cgc-stacked  mark over wordmark — top of the hero (phones)
+
+       Every one of them is built from exactly two <path> elements, one per
+       brand color. Rather than hard-coding those colors, each path reads a
+       variable (--logo-ink and --logo-accent) that the stylesheet sets to
+       different values in each location. That is what lets the footer logo
+       come out white and mint from the same stored copy the header uses.
+
+       The colors written after the commas are fallbacks, used only if the
+       stylesheet fails to load.
+
+       You should never need to edit the coordinates. If your logo changes,
+       replace the "d=" values with the ones from the new SVG file — noting
+       that #cgc-mark holds a cropped copy of the same shapes, and so does
+       the favicon up in the <head>.
+       =================================================================== -->
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+       style="position:absolute; width:0; height:0; overflow:hidden">
+    <symbol id="cgc-logo" viewBox="0 0 2560 550">
+      <path fill="var(--logo-ink, #286734)" d="M249.7 1c-66.6 7 -125 35.3 -171.3 83.2 -41 42.4 -66.2 94.3 -75.1 154.3 -2.7 18.3 -2.4 57.2 0.5 76 8.8 56.9 31.2 103.8 70.1 147.4 22.1 24.7 57.5 50.2 89.1 64.1 34.4 15.2 67.1 22.6 105.5 23.7 49 1.4 92 -6.5 126 -23.2 26.2 -12.8 52.7 -34 71.5 -57 6.9 -8.4 6.6 -8.6 -2 -1.6 -24.8 20.2 -59.4 35.8 -94 42.4 -9.9 1.9 -14.9 2.2 -36.5 2.2 -28.1 0 -38 -1.3 -59.7 -7.9 -78.8 -23.9 -139.2 -92 -156.7 -176.6 -5.3 -25.2 -6.7 -58.8 -3.6 -84 6.6 -53.6 30.6 -103.2 68 -140.5 35.3 -35.2 77.7 -56.6 127 -64.1 13.5 -2 40.4 -2.3 53.5 -0.5 35.1 4.7 69.1 16.6 94 32.8 12.6 8.2 12.3 7.6 -3.1 -5.8 -37.4 -32.6 -86.8 -55.2 -137.5 -62.9 -15.9 -2.4 -51.2 -3.5 -65.7 -2zM961.3 123.1c-13.9 1.3 -26 6.8 -36.2 16.4 -28 26.5 -22.7 77.6 10.1 97.3 15.2 9 35.9 11.4 52.3 6 9.3 -3.1 19.1 -9.7 23.4 -15.7l2.1 -2.9 -6.6 -4.3 -6.6 -4.2 -2.4 3c-5.5 7.1 -17.9 12.3 -28.8 12.3 -26.8 -0.1 -44.9 -20.9 -43.3 -50 0.7 -15.1 6.7 -27.2 17.2 -35.2 8.1 -6.2 14.4 -8.2 26 -8.2 9 -0.1 10.6 0.2 16.1 2.7 3.4 1.6 7.7 4.4 9.5 6.3 1.8 1.9 3.7 3.4 4.2 3.4 0.5 0 3.6 -2.1 6.9 -4.6l6 -4.6 -4.4 -4.5c-9.6 -9.8 -27.1 -14.9 -45.5 -13.2zM1108.3 123.1c-25.9 2.5 -46.3 20.4 -51.9 45.5 -2.4 11.1 -1.6 27.4 1.9 37.4 5.3 15 16.2 27.1 30.2 33.5 9.9 4.6 16.5 5.9 28.5 5.9 26.9 0 47.7 -13.9 57.3 -38.2 2.7 -6.8 3.1 -9.2 3.5 -20.2 0.3 -9.5 0 -14.2 -1.2 -19 -7.7 -30.6 -34.5 -48.2 -68.3 -44.9zm26.1 17.7c14.9 7 24.2 20.7 26.1 38.3 3.3 32.2 -23.2 57.2 -53.7 50.8 -20.5 -4.4 -34.1 -22.7 -34.1 -45.9 0 -19 9 -34.7 24.2 -42.4 7.4 -3.8 11.5 -4.6 21.7 -4.2 7.8 0.3 10.2 0.8 15.8 3.4zM1912 123.2c-26 2.4 -47.2 21.3 -52.6 46.8 -2 9.5 -1.3 24.8 1.5 34 5.6 18.1 20.1 32.7 38.5 38.6 6.7 2.2 10 2.7 19.6 2.7 13.9 0.1 22.5 -2.1 31.8 -8.3 6.7 -4.5 13.8 -11.8 12.5 -12.9 -1.3 -1.2 -11.3 -8.1 -11.6 -8.1 -0.1 0 -2.6 2.2 -5.5 5 -7.8 7.2 -14.1 9.4 -27.2 9.5 -9.8 0 -11 -0.2 -17.2 -3.2 -13 -6.1 -22.3 -18.3 -24.9 -32.8 -1.4 -7.6 -0.6 -20.4 1.7 -27.5 2.5 -7.5 9 -16.7 15 -21.3 8 -6.1 14.3 -8.1 25.9 -8.1 9.2 -0.1 10.5 0.1 16.5 3 3.6 1.7 7.9 4.5 9.5 6.2 1.7 1.7 3.4 3.2 3.8 3.2 0.5 0 3.5 -2.1 6.8 -4.6 5.9 -4.5 6 -4.6 4.2 -6.7 -3.8 -4.4 -7 -6.8 -12.8 -9.7 -10.6 -5.3 -22 -7.1 -35.5 -5.8zM1234 184l0 59.1 7.8 -0.3 7.7 -0.3 0.5 -48 0.5 -48.1 19 48.3 19 48.3 5.1 0 5.2 0 12.7 -32.3c7 -17.7 15.8 -39.9 19.6 -49.2l6.8 -17 0.1 49.2 0 49.3 8 0 8 0 0 -59 0 -59.1 -12.6 0.3 -12.6 0.3 -17.1 44.7c-9.4 24.7 -17.4 44.5 -17.8 44 -0.4 -0.4 -8.3 -20.5 -17.7 -44.7l-17 -44 -12.6 -0.3 -12.6 -0.3 0 59.1zM1416 184l0 59.1 7.8 -0.3 7.7 -0.3 0.5 -48 0.5 -47.9 19 48.2 19 48.2 5.1 0 5.1 0 9.8 -24.8c5.4 -13.6 14.2 -35.7 19.6 -49.2l9.8 -24.5 0.1 49.2 0 49.3 8 0 8 0 0 -59 0 -59.1 -12.6 0.3 -12.6 0.3 -17.1 44.7c-9.5 24.6 -17.5 44.4 -17.8 44 -0.4 -0.4 -7.3 -17.8 -15.4 -38.7 -8.1 -20.9 -15.8 -40.8 -17.2 -44.3l-2.5 -6.2 -12.4 0 -12.4 0 0 59zM1598 184l0 59 38.5 0 38.5 0 0 -7.5 0 -7.5 -30.5 0 -30.5 0 0 -19.5 0 -19.5 27.5 0 27.5 0 0 -7 0 -7 -27.5 0 -27.5 0 0 -17.5 0 -17.5 29.3 -0.2 29.2 -0.3 0 -7 0 -7 -37.2 -0.3 -37.3 -0.2 0 59zM1730 183.9l0 59.1 8 0 8 0 0 -26 0 -26 8.9 0 8.9 0 14.7 26 14.8 26 9.9 0c5.5 0 9.7 -0.3 9.5 -0.8 -0.2 -0.4 -7.5 -12.3 -16.1 -26.5 -8.6 -14.2 -15.6 -25.9 -15.6 -26.2 0 -0.2 1.7 -0.9 3.8 -1.6 16 -5.1 23.6 -14.9 23.6 -30.4 0.1 -12.7 -4.9 -21.1 -15.8 -26.7 -8.2 -4.2 -13.2 -4.9 -38.3 -5.5l-24.3 -0.6 0 59.2zm49 -42.8c9.2 3.1 13.5 9.5 12.8 18.7 -0.6 6.8 -2.9 10 -10.3 13.7 -5.5 2.7 -6.6 2.9 -20.7 3.3l-14.8 0.4 0 -19.2 0 -19.3 14.8 0.6c8.1 0.3 16.3 1.1 18.2 1.8zM2014 184l0 59 8 0 8 0 0 -59 0 -59 -8 0 -8 0 0 59zM2127.1 129.2c-1 2.4 -11.9 27.5 -24.1 55.8 -12.3 28.3 -22.9 53 -23.7 54.8l-1.4 3.3 9.2 -0.3 9.2 -0.3 5.7 -14 5.7 -14 27.9 -0.3 27.9 -0.2 5.9 14.5 5.9 14.5 8.8 0c6.5 0 8.9 -0.3 8.9 -1.3 0 -0.6 -11.2 -27.1 -24.8 -58.7l-24.7 -57.5 -7.3 -0.3 -7.2 -0.3 -1.9 4.3zm19.4 42.9c5.7 14.5 10.3 26.5 10.1 26.6 -0.2 0.2 -9.8 0.2 -21.3 0.1l-21.1 -0.3 10.7 -26.7c5.8 -14.6 10.7 -26.5 10.9 -26.3 0.2 0.1 5 12.1 10.7 26.6zM2242 184l0 59 34 0 34 0 0 -7.5 0 -7.5 -26 0 -26 0 0 -51.5 0 -51.5 -8 0 -8 0 0 59z"/>
+      <path fill="var(--logo-accent, #029346)" d="M325 65c-48.1 4.7 -92.2 25.3 -126.1 59 -9.7 9.7 -26.4 29.9 -25.4 30.8 0.2 0.3 2.8 -1.6 5.7 -4.1 29.1 -24.7 73 -38.4 111.7 -34.8 29.7 2.7 55.8 12.3 79.1 28.8 11.1 8 26.4 22.8 33.9 33 3 4 5.9 7.3 6.6 7.3 1.2 0 98.6 -33.8 99.3 -34.4 0.6 -0.7 -9.7 -13.5 -17.8 -21.9 -31.9 -33.7 -73.7 -55.5 -119 -62.1 -13.5 -2 -35.9 -2.7 -48 -1.6zM649 192l0 7 93.3 -0.2 93.2 -0.3 0.3 -6.8 0.3 -6.7 -93.6 0 -93.5 0 0 7zM2364 192l0 7 93.3 -0.2 93.2 -0.3 0.3 -6.8 0.3 -6.7 -93.6 0 -93.5 0 0 7zM284 302.5l0 56.5 63.5 0 63.6 0 -3.2 4.6c-22.5 32.8 -58.7 56.7 -97.9 64.8 -40.1 8.2 -84.3 -0.3 -117.8 -22.7 -10.5 -7 -9.2 -4.8 5.6 10.1 49.3 49.4 118.2 70.4 186 56.6 38.1 -7.6 72.7 -25.8 101 -52.8 33.8 -32.3 54.5 -72.7 61.8 -120.1 1.7 -11.5 2.4 -44 1 -50.3l-0.8 -3.2 -131.4 0 -131.4 0 0 56.5zM696 331.7c-1.4 0.2 -5.4 1.3 -9 2.4 -19.2 6 -33.2 20.9 -38.6 40.9 -2.6 9.7 -2.3 27.4 0.6 36.5 5.9 18.9 18.8 32.5 36.3 38.4 18.4 6.3 44.8 4.7 65.6 -3.9l6.6 -2.7 0.3 -31.1 0.2 -31.2 -22.5 0 -22.5 0 0 12 0 12 10.5 0 10.5 0 0 9.5 0 9.6 -4.4 1.9c-10.9 4.6 -26.1 5.1 -35.2 1 -18.1 -7.9 -26 -30.1 -18.2 -50.8 2.9 -7.8 11.2 -16.1 19.1 -19 12.1 -4.6 29.2 -2.4 38.3 4.9 2 1.6 4.1 2.8 4.6 2.7 0.4 -0.2 4.6 -4.6 9.3 -9.8l8.5 -9.4 -2.7 -2.3c-4.9 -4.1 -16.6 -9.2 -24.5 -10.8 -7.1 -1.4 -26.4 -1.9 -32.8 -0.8zM1515.2 333c-14.9 3.9 -29 14 -35.7 25.4 -5.8 9.9 -7.7 17.1 -8.2 30.6 -0.8 21.4 3.7 34.1 16.7 47 11.3 11.3 23.2 16.4 41 17.6 17.7 1.2 36.9 -6.3 44.9 -17.5l2 -2.8 -10.5 -7.7 -10.4 -7.8 -5.1 4.6c-6.4 5.7 -13.6 8.1 -22.1 7.3 -15.6 -1.4 -27.2 -13.6 -29.7 -31 -3.4 -23.7 11.5 -43.7 32.4 -43.7 9 0 13.4 1.3 18.9 5.4l4.4 3.4 9.7 -8 9.7 -8 -3.7 -3.8c-4.7 -4.8 -13.1 -9.3 -21.1 -11.4 -8.5 -2.2 -23.9 -2 -33.2 0.4zM2491.2 333c-10.1 2.7 -18.5 7.4 -26.5 14.9 -23.4 22.1 -23.7 65.1 -0.6 88.3 7.1 7.1 18.4 13.4 28.2 15.7 17.1 4.1 43.4 1.2 61 -6.6l5.7 -2.6 0 -30.8 0 -30.9 -23 0 -23 0 0 12 0 12 10.5 0 10.5 0 0 9.8 0 9.8 -6.7 2.5c-5.5 1.9 -8.7 2.4 -16.8 2.4 -8.7 0 -10.7 -0.4 -15.6 -2.6 -7.9 -3.7 -13.3 -9 -17.1 -16.6 -6.1 -12.4 -4.9 -29.6 2.7 -40.9 6.6 -9.6 14.3 -13.6 27.6 -14.2 11.8 -0.5 18.7 1.2 25.6 6.5l4.7 3.6 8.8 -9.4c4.9 -5.1 8.8 -9.7 8.8 -10.1 0 -1.5 -9.6 -7.8 -15 -9.9 -13.6 -5.2 -36.1 -6.5 -49.8 -2.9zM814 392.5l0 58.5 13 0 13 0 0 -23.5 0 -23.5 6.3 0 6.2 0 12.1 23.3 12 23.2 15.2 0.3c8.4 0.1 15.2 -0.1 15.2 -0.5 0 -0.5 -6.5 -11.6 -14.4 -24.7l-14.3 -24 4.7 -1.6c13.7 -4.6 20.8 -16.8 19.8 -33.8 -0.8 -13.5 -6.7 -22.6 -17.8 -27.6 -9 -4 -14.3 -4.6 -43.6 -4.6l-27.4 0 0 58.5zm54.4 -35.1c5.2 2.2 7.6 6 7.6 12.1 0 4.3 -0.5 5.7 -2.6 7.9 -3.7 3.6 -8.2 4.6 -21.6 4.6l-11.8 0 0 -13 0 -13 12.5 0c8.4 0 13.7 0.5 15.9 1.4zM955 392.5l0 58.5 41 0 41 0 0 -12 0 -12 -28 0 -28 0 0 -12 0 -12 25 0 25 0 0 -12 0 -12 -25 0 -25 0 0 -10.5 0 -10.5 26.5 0 26.5 0 0 -12 0 -12 -39.5 0 -39.5 0 0 58.5zM1092 392.5l0 58.5 41 0 41 0 0 -12 0 -12 -28 0 -28 0 0 -12 0 -12 25 0 25 0 0 -12 0 -12 -25 0 -25 0 0 -10.5 0 -10.5 26.5 0 26.5 0 0 -12 0 -12 -39.5 0 -39.5 0 0 58.5zM1228 392.5l0 58.5 12.5 0 12.5 0 0 -41.6c0 -22.8 0.4 -41.3 0.8 -41 0.5 0.3 12 18.9 25.8 41.5l24.9 41 16.8 0.1 16.7 0 0 -58.5 0 -58.5 -12.5 0 -12.5 0 -0.2 40.7 -0.3 40.7 -24.7 -40.5 -24.6 -40.4 -17.6 -0.3 -17.6 -0.2 0 58.5zM1624 392.5l0 58.5 36.5 0 36.5 0 0 -12 0 -12 -23.5 0 -23.5 0 0 -46.5 0 -46.5 -13 0 -13 0 0 58.5zM1745.2 392.2l0.3 58.3 41.3 0.3 41.2 0.2 0 -12 0 -12 -28.5 0 -28.5 0 0 -12 0 -12 25.5 0 25.5 0 0 -12 0 -12 -25.5 0 -25.5 0 0 -10.5 0 -10.5 26.8 -0.2 26.7 -0.3 0.3 -11.8 0.3 -11.7 -40.1 0 -40 0 0.2 58.2zM1895 391c-13.5 31.3 -24.6 57.7 -24.8 58.5 -0.3 1.3 1.7 1.5 13.6 1.5l13.9 0 4.9 -12.5 4.9 -12.5 22.6 0 22.7 0 4.9 12.2 4.9 12.3 14.7 0.3 14.6 0.3 -2.7 -6.4c-1.5 -3.5 -12.8 -29.8 -25.2 -58.5l-22.5 -52.1 -11 -0.1 -11 0 -24.5 57zm42.3 -4l6.4 16.5 -13.5 0.3c-7.4 0.1 -13.7 0.1 -13.9 -0.1 -0.2 -0.2 2.7 -8.2 6.3 -17.6 3.7 -9.4 7.1 -16.8 7.5 -16.4 0.4 0.4 3.6 8.2 7.2 17.3zM2037 392.5l0 58.5 12.5 0 12.5 0 0 -41.8c0.1 -37.5 0.2 -41.5 1.6 -39.7 0.8 1.1 12.4 19.9 25.7 41.7l24.2 39.7 16.8 0.1 16.7 0 0 -58.5 0 -58.5 -13 0 -13 0 -0.2 39.9 -0.3 40 -24.3 -40 -24.4 -39.9 -17.4 0 -17.4 0 0 58.5zM2204 392.5l0 58.5 12.5 0 12.5 0 0 -58.5 0 -58.5 -12.5 0 -12.5 0 0 58.5zM2286 392.5l0 58.5 13 0 13 0 0 -41.7 0 -41.7 25.3 41.4 25.3 41.5 17 0 16.9 0 0.3 -58.3 0.2 -58.2 -13 0 -13 0 -0.2 40.5 -0.3 40.6 -24.6 -40.3 -24.5 -40.3 -17.7 -0.3 -17.7 -0.2 0 58.5z"/>
+    </symbol>
+
+    <!-- The "G" mark on its own, cropped out of the lockup above. Used in the
+         phone-sized header (where the wordmark would be too small to read)
+         and as the oversized watermark behind the hero. -->
+    <symbol id="cgc-mark" viewBox="-25 -25 600 600">
+      <path fill="var(--logo-ink, #286734)" d="M249.7 1c-66.6 7 -125 35.3 -171.3 83.2 -41 42.4 -66.2 94.3 -75.1 154.3 -2.7 18.3 -2.4 57.2 0.5 76 8.8 56.9 31.2 103.8 70.1 147.4 22.1 24.7 57.5 50.2 89.1 64.1 34.4 15.2 67.1 22.6 105.5 23.7 49 1.4 92 -6.5 126 -23.2 26.2 -12.8 52.7 -34 71.5 -57 6.9 -8.4 6.6 -8.6 -2 -1.6 -24.8 20.2 -59.4 35.8 -94 42.4 -9.9 1.9 -14.9 2.2 -36.5 2.2 -28.1 0 -38 -1.3 -59.7 -7.9 -78.8 -23.9 -139.2 -92 -156.7 -176.6 -5.3 -25.2 -6.7 -58.8 -3.6 -84 6.6 -53.6 30.6 -103.2 68 -140.5 35.3 -35.2 77.7 -56.6 127 -64.1 13.5 -2 40.4 -2.3 53.5 -0.5 35.1 4.7 69.1 16.6 94 32.8 12.6 8.2 12.3 7.6 -3.1 -5.8 -37.4 -32.6 -86.8 -55.2 -137.5 -62.9 -15.9 -2.4 -51.2 -3.5 -65.7 -2z"/>
+      <path fill="var(--logo-accent, #029346)" d="M325 65c-48.1 4.7 -92.2 25.3 -126.1 59 -9.7 9.7 -26.4 29.9 -25.4 30.8 0.2 0.3 2.8 -1.6 5.7 -4.1 29.1 -24.7 73 -38.4 111.7 -34.8 29.7 2.7 55.8 12.3 79.1 28.8 11.1 8 26.4 22.8 33.9 33 3 4 5.9 7.3 6.6 7.3 1.2 0 98.6 -33.8 99.3 -34.4 0.6 -0.7 -9.7 -13.5 -17.8 -21.9 -31.9 -33.7 -73.7 -55.5 -119 -62.1 -13.5 -2 -35.9 -2.7 -48 -1.6zM284 302.5l0 56.5 63.5 0 63.6 0 -3.2 4.6c-22.5 32.8 -58.7 56.7 -97.9 64.8 -40.1 8.2 -84.3 -0.3 -117.8 -22.7 -10.5 -7 -9.2 -4.8 5.6 10.1 49.3 49.4 118.2 70.4 186 56.6 38.1 -7.6 72.7 -25.8 101 -52.8 33.8 -32.3 54.5 -72.7 61.8 -120.1 1.7 -11.5 2.4 -44 1 -50.3l-0.8 -3.2 -131.4 0 -131.4 0 0 56.5z"/>
+    </symbol>
+
+    <!-- The stacked lockup: mark above the wordmark. Used at the top of the
+         hero on phones, where the header only has room for the "G" and the
+         business name would otherwise not appear until halfway down the page.
+
+         This is separate artwork, not the horizontal logo rearranged — the
+         wordmark is re-typeset, and its thin rules are drawn roughly twice as
+         thick relative to the letters, so it survives small sizes better. -->
+    <symbol id="cgc-stacked" viewBox="0 0 2630 1433">
+      <path fill="var(--logo-ink, #286734)" d="M1294 1.7c-51.3 3 -105.7 17.7 -153.1 41.4 -43.1 21.5 -75.2 45 -109.9 80.5 -63.6 65 -101.9 145.7 -112.7 237.1 -2.4 20.9 -2.4 67.1 0.1 87.8 11.5 96.7 53 180.7 121.7 246.9 75.5 72.7 175.2 112.6 281.3 112.6 112.7 0 191.6 -29.2 258.2 -95.5 12.4 -12.3 33.2 -36.3 29.5 -34.1 -0.8 0.5 -5.2 4 -10 7.8 -46.5 37.4 -105.6 61.2 -166.4 66.9 -17.9 1.6 -54.3 0.7 -71.2 -1.9 -57 -8.8 -106.6 -30.6 -152.5 -67 -11.9 -9.5 -41.4 -38.9 -50.4 -50.2 -42.7 -54 -68.1 -114.2 -77.2 -183.2 -2.1 -16.4 -3 -57.5 -1.5 -75.3 5.3 -64 26.7 -124.6 61.8 -175.3 20.9 -30.1 50.3 -60.3 79.3 -81.4 49.4 -35.8 104.6 -56.5 165.3 -61.9 17.9 -1.6 50.4 -0.6 67.2 2 55 8.5 96.6 23.9 137.5 50.7 10.6 6.9 11.1 7.1 5.5 1.8 -61.5 -58.1 -140.5 -95.9 -223.5 -106.8 -23.9 -3.2 -55.1 -4.3 -79 -2.9zM426.8 980.6c-32.2 5.8 -56.5 28.1 -65 59.5 -1.8 6.8 -2.2 11.1 -2.2 22.4 -0.1 15.4 1 21.9 5.6 33.7 11.3 29.7 38 48.6 72.2 51.4 23.6 1.9 44.3 -5.4 60.5 -21.3l7.5 -7.3 -8.7 -6c-4.8 -3.3 -8.9 -6 -9.1 -6 -0.2 0 -3.1 2.6 -6.3 5.9 -10 9.9 -21.6 14.5 -37.3 14.5 -17.3 0.1 -30.7 -5.2 -42 -16.5 -12.7 -12.7 -18.6 -29.6 -17.8 -50.7 0.7 -18 6.3 -32.1 17.2 -43.5 10.9 -11.3 23.3 -16.7 40.1 -17.4 10 -0.5 11.7 -0.3 18.8 2.1 9 3 14.6 6.3 20.4 11.9l4.2 4 8.5 -6.4c4.7 -3.5 8.5 -6.7 8.6 -7.1 0 -0.4 -2.2 -2.9 -4.9 -5.5 -15.7 -15.5 -43.7 -22.5 -70.3 -17.7zM632.3 979.9c-31.5 5.1 -55.6 24.9 -65.3 53.9 -8.1 24.3 -5.3 53.3 7.2 74.7 5.4 9.1 18.3 22 27.4 27.3 30.8 17.9 72.8 15.3 100 -6.1 20 -15.8 30.4 -38.7 30.4 -66.8 0 -40.5 -22.8 -70.5 -61.5 -81.1 -7.9 -2.2 -29.7 -3.2 -38.2 -1.9zm29.6 20.6c9.6 2.3 18.4 7.1 25.9 14 7.8 7.3 13.2 15.8 16.9 27 2.4 7 2.7 9.6 2.7 21.5 0.1 12.3 -0.2 14.3 -2.8 22.4 -5.3 16.1 -14.9 27.8 -28.7 35.1 -9.2 4.8 -16.6 6.6 -28.6 6.6 -18.1 0 -29.9 -4.6 -42 -16.7 -8.4 -8.3 -14.2 -18.9 -16.9 -31.1 -2.4 -11 -1.6 -29.3 1.9 -39.1 7 -20.1 22.6 -35.1 41.3 -39.6 7.9 -1.9 22.4 -1.9 30.3 -0.1zM1739.5 979.6c-36.7 5.2 -63.7 29.5 -71 64 -2.6 12.2 -2.3 30.5 0.8 42.5 8.8 33.9 35.1 56.6 70.7 61 20.9 2.5 40.5 -1.8 55.9 -12.4 4.6 -3.2 16.1 -14.3 16.1 -15.6 0 -0.5 -3.9 -3.4 -8.6 -6.5l-8.6 -5.7 -6.1 5.8c-7.5 7.1 -11.2 9.4 -19.7 12.4 -8.6 2.9 -25.5 3.2 -34.5 0.5 -19.6 -5.9 -33.5 -19.7 -40.2 -40.1 -2.3 -7 -2.6 -9.7 -2.7 -21.5 -0.1 -15.1 1.7 -22.9 7.7 -34.5 4.4 -8.4 16.4 -20.2 24.8 -24.2 21.5 -10.6 47 -7.8 62.4 6.8 2.9 2.7 5.4 4.9 5.7 4.9 1 0 16.3 -12.1 16.7 -13.2 0.2 -0.5 -2.3 -3.5 -5.4 -6.4 -6.6 -6.3 -20.4 -13.4 -30.5 -15.9 -6.4 -1.6 -27.5 -2.8 -33.5 -1.9zM808 1063.5l0 80.5 11 0 11 0 0.2 -67.2 0.3 -67.3 24.9 63c13.6 34.7 25.6 64.9 26.7 67.2l1.8 4.3 6.9 0c4.7 0 7.1 -0.4 7.5 -1.3 13 -33.5 52.2 -131.5 52.8 -132.1 0.5 -0.6 0.9 27.8 0.9 66.2l0 67.2 11 0 11 0 0 -80.5 0 -80.5 -17.4 0c-15.6 0 -17.5 0.2 -18.1 1.7 -0.4 1 -10.8 28.1 -23.1 60.2 -12.4 32.1 -22.9 59.1 -23.3 59.9 -0.6 1.1 -2.7 -3.3 -7 -14.4 -3.4 -8.7 -14.2 -36.4 -24 -61.4l-17.7 -45.5 -17.7 -0.3 -17.7 -0.2 0 80.5zM1058.2 1063.2l0.3 80.3 10.8 0.3 10.7 0.3 0 -67.2c0 -37 0.3 -67 0.6 -66.7 0.3 0.3 12.3 30.4 26.7 66.9l26.2 66.4 7.2 0.3 7.1 0.3 22.7 -57.3c12.5 -31.5 24.4 -61.4 26.3 -66.3 1.9 -5 3.9 -9.4 4.3 -9.9 0.5 -0.6 0.9 29.1 0.9 66.2l0 67.2 11 0 11 0 0 -80.5 0 -80.5 -17.4 0 -17.4 0 -1.5 3.7c-0.8 2.1 -11.2 29.4 -23.2 60.8 -12 31.3 -22.1 57.4 -22.5 57.8 -0.4 0.5 -2.6 -4 -4.9 -10 -2.3 -5.9 -13.1 -33.5 -23.9 -61.3l-19.7 -50.5 -17.8 -0.3 -17.7 -0.2 0.2 80.2zM1308.2 1063.2l0.3 80.3 53.3 0.3 53.2 0.2 0 -10 0 -10 -42 0 -42 0 0 -27 0 -27 38 0 38 0 0 -9.5 0 -9.5 -38 0 -38 0 0 -24 0 -24 40 0 40 0 0 -10 0 -10 -51.5 0 -51.5 0 0.2 80.2zM1490 1063.4l0 80.7 11.3 -0.3 11.2 -0.3 0.3 -35.8 0.2 -35.7 11.8 0 11.7 0 20.5 36 20.5 36 13.4 0c10.6 0 13.2 -0.3 12.8 -1.3 -0.3 -0.7 -10 -17.1 -21.7 -36.3 -11.7 -19.2 -21.4 -35.2 -21.6 -35.6 -0.2 -0.3 2.2 -1.4 5.3 -2.3 13.9 -4 26.1 -14.1 30.1 -24.7 4.3 -11.5 3.7 -25.8 -1.6 -36.6 -3.2 -6.5 -11.2 -14.1 -18.6 -17.6 -11.2 -5.3 -15.5 -5.8 -51.8 -6.3l-33.8 -0.5 0 80.6zm60.9 -60.3c16.4 2.6 25.1 11.2 25.1 24.5 0 12.4 -8.3 21.2 -22.8 24.3 -2.9 0.6 -13.2 1.1 -22.7 1.1l-17.5 0 0 -25.5 0 -25.5 15.8 0c8.6 0 18.6 0.5 22.1 1.1zM1880.5 984.2c-0.3 0.7 -0.4 36.8 -0.3 80.3l0.3 79 11.3 0.3 11.2 0.3 0 -80.6 0 -80.5 -11 0c-7.9 0 -11.2 0.4 -11.5 1.2zM2004 1062.6c-19 43.8 -34.6 80 -34.8 80.5 -0.2 0.5 5.1 0.9 12.1 0.9l12.5 0 5.2 -12.8c2.9 -7 6.6 -16 8.2 -20l3 -7.2 38 0.2 38 0.3 7.9 18.9c4.3 10.4 8.2 19.3 8.7 19.8 0.5 0.5 6.3 0.7 13 0.6l12.1 -0.3 -34.3 -80 -34.4 -80 -10.3 -0.3 -10.4 -0.2 -34.5 79.6zm59.4 -14.8l14.4 36.2 -29.8 0 -29.8 0 13.5 -33.8c16.2 -40.5 16.4 -41 16.9 -39.6 0.3 0.5 6.9 17.3 14.8 37.2zM2194 1063.5l0 80.5 47 0 47 0 0 -10 0 -10 -35.7 -0.2 -35.8 -0.3 -0.3 -70.3 -0.2 -70.2 -11 0 -11 0 0 80.5z"/>
+      <path fill="var(--logo-accent, #029346)" d="M1404 95.7c-3.6 0.2 -12.6 1 -20 1.9 -78 9.1 -150.4 49.1 -199.1 109.9 -10.1 12.7 -17.4 22.5 -16.6 22.5 0.2 0 4 -3 8.3 -6.6 10.4 -8.7 28.9 -21 41.3 -27.3 81.7 -42 179.2 -32.4 251.1 24.7 13.1 10.3 30.2 27.9 40.1 41.1 4.5 6.1 8.7 11.1 9.3 11 3.1 -0.1 146.1 -50.8 146.1 -51.7 0 -2.4 -17.8 -23.4 -31 -36.7 -16.2 -16.2 -28.5 -26.4 -47.5 -39 -53.1 -35.4 -117 -52.9 -182 -49.8zM1332 445l0 83 93.5 0c93.5 0 93.6 0 92.5 2 -3.6 6.7 -18.3 24.4 -29.9 36.1 -36.6 36.5 -79.5 58 -132.1 66.1 -13.2 2 -54.9 1.7 -67.5 -0.6 -34.8 -6.1 -63.9 -17.6 -92.3 -36.2 -13.7 -9 -13.1 -7.7 4.9 11 37.1 38.6 81.3 65.9 131 80.9 43.3 13.1 93 16.3 137.9 8.7 110.1 -18.7 201 -96.5 236.5 -202.6 11.1 -33.2 16.4 -70.3 15.1 -105.4 -0.3 -9.6 -0.9 -19.4 -1.2 -21.8l-0.7 -4.2 -193.8 0 -193.9 0 0 83zM4.7 1064.7c-0.4 0.3 -0.7 4.6 -0.7 9.5l0 8.8 129 0 129.1 0 -0.3 -9.3 -0.3 -9.2 -128.1 -0.3c-70.4 -0.1 -128.4 0.1 -128.7 0.5zM2362 1073.5l0 9.5 128.5 0 128.5 0 0 -9.5 0 -9.5 -128.5 0 -128.5 0 0 9.5zM73.5 1265.1c-25 3.1 -46.7 16.2 -59.4 35.9 -16.2 25.1 -17.4 62.6 -2.8 90.5 5.1 9.7 18.1 23.4 27.2 28.7 16.3 9.4 27.8 12.2 50.5 12.2 23.9 0 40.4 -3.2 59.3 -11.7l6.7 -3 0 -41.8 0 -41.9 -31.5 0 -31.5 0 0 16 0 16 14.5 0 14.5 0 0 13.4 0 13.4 -8.7 3.2c-7.3 2.7 -10.7 3.3 -19.8 3.7 -18 0.9 -29.5 -2.9 -40.1 -13.2 -19.2 -18.8 -19.4 -56.3 -0.3 -75.4 9 -8.9 22 -14.1 35.4 -14.1 14.2 0 24.8 3.3 34.1 10.8l5.2 4.1 9.8 -10.7c5.4 -5.9 10.9 -12 12.3 -13.5l2.6 -2.9 -4 -3.4c-14.9 -12.9 -46.2 -19.7 -74 -16.3zM1206.5 1265.1c-35.2 4.6 -60.6 26.3 -69.7 59.4 -1.8 6.8 -2.2 10.6 -2.1 24.5 0 15.1 0.2 17.3 2.7 25.5 4.3 14.3 9.8 23.7 19.6 33.6 8.9 9 16 13.8 27.2 18.2 11.8 4.8 19.2 6 34.8 6.1 16.9 0.1 25 -1.7 38.3 -8.6 8.3 -4.3 21.1 -15.8 20.5 -18.4 -0.2 -0.7 -6.6 -6 -14.3 -11.7l-13.9 -10.4 -5.1 5.2c-7.3 7.5 -14.7 10.8 -25.5 11.3 -14.4 0.7 -24.7 -3.4 -34.5 -13.9 -18.1 -19.3 -18.1 -54.7 0.1 -74.8 15.1 -16.6 43.4 -18.9 59.1 -4.7l4 3.6 13.8 -11.2 13.8 -11.3 -6.4 -5.8c-7.2 -6.7 -18.9 -12.8 -28.9 -15.2 -8.3 -1.9 -24.5 -2.6 -33.5 -1.4zM2548.1 1265.2c-4.1 0.5 -11.5 2.2 -16.5 3.8 -36.1 11.6 -57.2 43.7 -55.3 84 1.6 32.4 16.7 57 43.1 70.1 12.9 6.3 23 8.8 38.1 9.6 22.8 1.1 46.5 -3.2 65.8 -11.9l6.7 -3.1 0 -41.8 0 -41.9 -31.5 0 -31.5 0 0 16 0 16 14.5 0 14.5 0 0 13.4 0 13.4 -8.7 3.2c-7.3 2.7 -10.7 3.3 -19.8 3.7 -12.9 0.6 -19.9 -0.6 -28.5 -4.9 -16.2 -8.1 -25.9 -25.3 -26 -46 0 -10.1 1.4 -16.7 5.5 -25.3 9.7 -20.5 33.1 -30.5 58.6 -25.1 7.9 1.7 12.7 4 19.7 9.5l5.1 4.1 12 -13.2c6.7 -7.3 12.1 -13.5 12.1 -14 0 -1.4 -10.5 -8.7 -17 -11.7 -15.9 -7.4 -39.9 -10.5 -60.9 -7.9zM231.8 1268.6c-0.5 0.4 -0.8 36.7 -0.8 80.6l0 79.8 18 0 18 0 0 -32 0 -32 8.8 0 8.7 0 16.4 31.6c9 17.4 16.9 31.8 17.5 32 0.6 0.2 10.3 0.3 21.4 0.2l20.2 -0.3 -19.6 -32.5c-10.8 -17.9 -19.9 -33 -20.1 -33.7 -0.3 -0.7 1.2 -1.6 3.9 -2.3 9.9 -2.7 19.3 -10.1 24.1 -18.8 5.5 -10.1 7.1 -25.1 4.1 -38.3 -2.9 -12.9 -12.9 -24.3 -25.4 -29 -12.4 -4.7 -16.6 -5.1 -56.5 -5.6 -20.9 -0.3 -38.3 -0.1 -38.7 0.3zm67.2 30.5c12.4 2 17.3 6.6 17.8 16.9 0.5 8.1 -2 12.3 -9.2 15.9 -4.4 2.2 -6.4 2.5 -22.7 2.9l-17.9 0.5 0 -18.7 0 -18.6 12.8 0c7 0 15.6 0.5 19.2 1.1zM425 1348.5l0 80.5 56.5 0 56.5 0 0 -16.5 0 -16.5 -39 0 -39 0 0 -16 0 -16 35 0 35 0 0 -16.5 0 -16.5 -35 0 -35 0 0 -15 0 -15 37 0 37 0 0 -16.5 0 -16.5 -54.5 0 -54.5 0 0 80.5zM613 1348.5l0 80.5 56.5 0 56.5 0 0 -16.5 0 -16.5 -38.5 0 -38.5 0 0 -16 0 -16 34.5 0 34.5 0 0 -16.5 0 -16.5 -34.5 0 -34.5 0 0 -15 0 -15 36.5 0 36.5 0 0 -16.5 0 -16.5 -54.5 0 -54.5 0 0 80.5zM800 1348.5l0 80.5 17.5 0 17.5 0 0 -57.2c0 -38.1 0.3 -56.9 1 -56.2 0.5 0.5 16.4 26.2 35.3 56.9l34.3 56 23.2 0.3 23.2 0.2 0 -80.5 0 -80.5 -17.5 0 -17.5 0 -0.2 56.1 -0.3 56 -34.1 -55.8 -34.2 -55.8 -24.1 -0.3 -24.1 -0.2 0 80.5zM1345 1348.5l0 80.5 50.5 0 50.5 0 -0.2 -16.3 -0.3 -16.2 -32.7 -0.3 -32.8 -0.2 0 -64 0 -64 -17.5 0 -17.5 0 0 80.5zM1512 1348.5l0 80.5 56.5 0 56.5 0 0 -16.5 0 -16.5 -39 0 -39 0 0 -16 0 -16 34.8 -0.2 34.7 -0.3 0.3 -16.3 0.2 -16.2 -35 0 -35 0 0 -15 0 -15 37 0 37 0 0 -16.5 0 -16.5 -54.5 0 -54.5 0 0 80.5zM1717.1 1347.8c-18.9 43.8 -34.6 80 -34.8 80.5 -0.3 0.4 8.4 0.6 19.3 0.5l19.7 -0.3 6.5 -16.8 6.5 -16.7 31.2 0 31.2 0 6.9 17 6.9 17 19.9 0c18.4 0 19.8 -0.1 19.2 -1.7 -0.4 -1 -16 -37.2 -34.8 -80.6l-34.2 -78.7 -14.6 0 -14.5 0 -34.4 79.8zm57.7 -8c5.1 13 9.2 24 9.2 24.4 0 0.5 -8.6 0.8 -19.1 0.8 -17.8 0 -19.1 -0.1 -18.5 -1.8 3.1 -8.9 18.2 -47.2 18.6 -47.1 0.3 0 4.7 10.6 9.8 23.7zM1912 1348.5l0 80.5 17.5 0 17.5 0 0.1 -57.3c0 -54.1 0.1 -57.1 1.7 -54.8 0.9 1.3 16.8 27 35.2 57l33.5 54.6 23.3 0.3 23.2 0.2 0 -80.5 0 -80.5 -17.5 0 -17.5 0 -0.2 56.1 -0.3 56.2 -34.3 -56.2 -34.4 -56.1 -23.9 0 -23.9 0 0 80.5zM2142 1348.5l0 80.5 17.5 0 17.5 0 0 -80.5 0 -80.5 -17.5 0 -17.5 0 0 80.5zM2254.5 1269.2c-0.3 0.7 -0.4 36.8 -0.3 80.3l0.3 79 17.7 0.3 17.8 0.2 0.2 -57 0.3 -57.1 34.9 57.1 35 57 23.3 0 23.3 0 -0.2 -80.3 -0.3 -80.2 -17.7 -0.3 -17.8 -0.2 -0.2 55.6 -0.3 55.7 -34 -55.7 -34 -55.6 -23.8 0c-18.1 0 -23.9 0.3 -24.2 1.2z"/>
+    </symbol>
+  </svg>
+
+
+  <!-- ===================================================================
+       HEADER
+       Sticks to the top of the screen as you scroll, so the phone
+       number is always one tap away.
+       =================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a href="#top" class="logo" aria-label="Commercial Green Cleaning, home">
+
+        <!-- The full lockup, shown on tablets and desktops. -->
+        <svg class="logo-svg logo-full" viewBox="0 0 2560 550" width="261" height="56" aria-hidden="true">
+          <use href="#cgc-logo"></use>
+        </svg>
+
+        <!-- Just the "G", shown on phones. At phone sizes the wordmark
+             would render around 8px tall, which nobody can read and which
+             wastes half the header. Only one of these two is ever visible. -->
+        <svg class="logo-svg logo-mark" viewBox="-25 -25 600 600" width="46" height="46" aria-hidden="true">
+          <use href="#cgc-mark"></use>
+        </svg>
+
+      </a>
+
+      <!-- Main navigation. Each link jumps to a section id further down. -->
+      <nav class="nav" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- EDIT: replace the phone number in BOTH places (the href and the text).
+           In the href, write it with no spaces or dashes: tel:+13109977135 -->
+      <a class="btn btn-primary header-cta" href="tel:+13109977135">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1z"/></svg>
+        <span>(310) 997-7135</span>
+      </a>
+
+      <!-- The hamburger. Only visible below 720px, where the nav links above
+           no longer fit. It is a real <button> (not a link or a checkbox) so
+           that screen readers announce it as a toggle and report whether the
+           menu is currently open, via aria-expanded. -->
+      <button class="menu-toggle" type="button"
+              aria-expanded="false" aria-controls="site-menu" aria-label="Menu">
+        <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       MOBILE MENU PANEL
+
+       This sits outside <header> on purpose. The header uses backdrop-filter
+       for its frosted-glass effect, and an element with a backdrop-filter
+       becomes the anchor for any position:fixed child inside it — which would
+       stop this panel from covering the screen.
+
+       It starts with the `hidden` attribute. The script at the bottom of the
+       page removes it when the hamburger is pressed.
+       =================================================================== -->
+  <div class="menu-panel" id="site-menu" hidden>
+    <nav class="menu-nav" aria-label="Mobile">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- The menu doubles as a contact card — for a service business, a phone
+         number in the menu is worth more than another link. -->
+    <div class="menu-contact">
+      <a class="menu-phone" href="tel:+13109977135">(310) 997-7135</a>
+      <a class="menu-email" href="mailto:info@commercialgreencleaning.com">info@commercialgreencleaning.com</a>
+      <ul class="social" aria-label="Social media">
+        <li>
+          <a href="https://facebook.com/yourpage" aria-label="Commercial Green Cleaning on Facebook" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/company/yourcompany" aria-label="Commercial Green Cleaning on LinkedIn" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05a4.2 4.2 0 0 1 3.77-2c4.03 0 4.78 2.6 4.78 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <main id="main">
+
+    <!-- ===================================================================
+         HERO
+         The first thing a visitor sees. One clear promise, one clear
+         next step. Keep the headline short — it should fit on two lines
+         on a phone.
+         =================================================================== -->
+    <section class="hero" id="top">
+
+      <!-- The G mark, blown up and bled off the left edge as a watermark.
+           Purely decorative — it reuses the shape already stored above, so it
+           adds no weight to the page. -->
+      <svg class="hero-mark" viewBox="-25 -25 600 600" aria-hidden="true">
+        <use href="#cgc-mark"></use>
+      </svg>
+
+      <div class="container hero-inner">
+
+        <!-- Phones only. The header shows just the "G" at this width, so this
+             is where the business name actually gets read. Hidden on wider
+             screens, where the header already carries the full lockup. -->
+        <svg class="hero-lockup" viewBox="0 0 2630 1433" width="220" height="120"
+             role="img" aria-label="Commercial Green Cleaning">
+          <use href="#cgc-stacked"></use>
+        </svg>
+
+        <p class="eyebrow eyebrow-ruled">Commercial &amp; Office Cleaning</p>
+
+        <h1 class="hero-title">
+          A cleaner workplace,<br>
+          without the harsh chemicals.
+        </h1>
+
+        <p class="hero-sub">
+          We provide dependable janitorial service for offices, medical suites, and
+          retail spaces &mdash; using certified green products that are safe for your
+          staff, your clients, and the building itself.
+        </p>
+
+        <div class="hero-actions">
+          <!-- This link opens the visitor's email app with the subject and a
+               short questionnaire already written for them. See the CONTACT
+               section below for the full explanation and the same link. -->
+          <a class="btn btn-primary btn-lg" href="mailto:info@commercialgreencleaning.com?subject=Request%20for%20a%20Cleaning%20Quote&amp;body=Hello%2C%0D%0A%0D%0AI%27d%20like%20a%20quote%20for%20commercial%20cleaning.%0D%0A%0D%0AType%20of%20space%3A%20%0D%0AApproximate%20square%20footage%3A%20%0D%0ACleaning%20frequency%20needed%3A%20%0D%0ABuilding%20address%3A%20%0D%0ABest%20time%20to%20reach%20me%3A%20%0D%0A%0D%0AThank%20you.">
+            Request a Quote
+          </a>
+          <a class="btn btn-ghost btn-lg" href="tel:+13109977135">Call (310) 997-7135</a>
+        </div>
+
+        <!-- Small credibility markers, directly under the buttons where
+             they answer the visitor's immediate "are these people real?" -->
+        <ul class="hero-badges">
+          <li>Licensed, insured &amp; bonded</li>
+          <li>Green Seal certified products</li>
+          <li>Free on-site walkthrough</li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         TRUST STRIP
+         Four numbers that establish legitimacy at a glance.
+         EDIT: replace every number and label with your real figures.
+         If a stat isn't true, delete the whole <div class="stat"> block
+         rather than inventing one — a false claim here is worse than
+         three stats instead of four.
+         =================================================================== -->
+    <section class="trust" aria-label="Company facts">
+      <div class="container trust-grid">
+
+        <div class="stat">
+          <span class="stat-num">15+</span>
+          <span class="stat-label">Years in business</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num">200+</span>
+          <span class="stat-label">Commercial clients</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Green-certified supplies</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num">24/7</span>
+          <span class="stat-label">After-hours scheduling</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         ABOUT
+         Two columns on desktop, stacked on mobile.
+         =================================================================== -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+
+        <div class="about-text">
+          <p class="eyebrow">About us</p>
+          <h2>Cleaning that doesn't cost you the air in the room.</h2>
+
+          <!-- EDIT: rewrite these two paragraphs in your own words.
+               Mention the city or region you serve — it helps you show up
+               in local search results. -->
+          <p>
+            Commercial Green Cleaning was founded on a straightforward idea: a
+            building can be spotless without filling it with fumes. Conventional
+            janitorial products leave behind residues and volatile compounds that
+            linger in carpet, upholstery, and recirculated air long after the crew
+            has gone home.
+          </p>
+          <p>
+            We use Green Seal and EPA Safer Choice certified products across every
+            account, paired with HEPA filtration and microfiber systems that capture
+            particulates instead of pushing them around. Our crews are background
+            checked, uniformed, and trained on your building&rsquo;s specific protocols
+            before their first shift.
+          </p>
+
+          <a class="link-arrow" href="#contact">
+            Schedule a walkthrough
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- Three short benefit blocks. Each is a reason a facilities
+             manager would choose green cleaning over the cheapest bid. -->
+        <ul class="benefits">
+
+          <li>
+            <h3>Healthier indoor air</h3>
+            <p>Fewer airborne irritants means fewer sick days and fewer complaints from staff with asthma or chemical sensitivities.</p>
+          </li>
+
+          <li>
+            <h3>One consistent crew</h3>
+            <p>You get the same team every visit. They learn your building, and you always know who is in it after hours.</p>
+          </li>
+
+          <li>
+            <h3>Documented, not assumed</h3>
+            <p>Every visit is logged against a checklist you approve. If something is missed, you'll know before we do.</p>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         SERVICES
+         Four cards. To add a fifth, copy one <article class="card">
+         block and paste it before the closing </div>.
+         =================================================================== -->
+    <section class="section section-tint" id="services">
+      <div class="container">
+
+        <div class="section-head">
+          <p class="eyebrow">Services</p>
+          <h2>What we handle</h2>
+          <p class="section-sub">Recurring contracts and one-time deep cleans, scheduled around your business hours.</p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Office &amp; corporate</h3>
+            <p>Nightly or weekly service for workstations, conference rooms, break rooms, and restrooms.</p>
+          </article>
+
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <h3>Medical &amp; dental</h3>
+            <p>Disinfection protocols for exam rooms and waiting areas, with compliant handling of regulated waste.</p>
+          </article>
+
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7zM8 9V6a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Retail &amp; showroom</h3>
+            <p>Entry glass, floors, and fitting rooms kept presentable through business hours or cleaned overnight.</p>
+          </article>
+
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-5 6 5v11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 20v-6h4v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <h3>Floor care &amp; deep cleans</h3>
+            <p>Carpet extraction, hard-surface stripping and refinishing, and post-construction cleanup.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         TESTIMONIALS
+         >>> PLACEHOLDER CONTENT — REPLACE BEFORE LAUNCH <<<
+         These three quotes are written examples, not real clients.
+         Get written permission before publishing a client's name.
+         A quote with a real first name, title, and company is worth far
+         more than a longer quote signed "J.M., satisfied customer."
+         =================================================================== -->
+    <section class="section" id="testimonials">
+      <div class="container">
+
+        <div class="section-head">
+          <p class="eyebrow">Testimonials</p>
+          <h2>What our clients say</h2>
+        </div>
+
+        <div class="cards">
+
+          <figure class="quote">
+            <blockquote>
+              <p>We switched because half our staff complained about the smell after every cleaning. That stopped immediately. Two years in and the building has never looked better.</p>
+            </blockquote>
+            <figcaption>
+              <span class="quote-name">Dana Whitfield</span>
+              <span class="quote-role">Facilities Manager, Ridgeline Partners</span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote">
+            <blockquote>
+              <p>They caught a supply-closet leak on a Sunday night and called me before it reached the carpet. That's not in the contract. That's just who they are.</p>
+            </blockquote>
+            <figcaption>
+              <span class="quote-name">Marcus Oyelaran</span>
+              <span class="quote-role">Office Director, Halcyon Dental Group</span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote">
+            <blockquote>
+              <p>Same crew, every week, for three years. They know which doors stick and which alarm codes changed. Onboarding a new vendor would cost us more than we'd ever save.</p>
+            </blockquote>
+            <figcaption>
+              <span class="quote-name">Priya Raghunathan</span>
+              <span class="quote-role">Operations Lead, Corwin Retail Group</span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         FAQ
+         Uses the browser's built-in <details> element — it opens and
+         closes with no JavaScript at all, and screen readers already
+         know how to announce it.
+
+         To add a question, copy one <details> block.
+         Delete the "open" word from the first one if you'd rather the
+         page load with everything collapsed.
+         =================================================================== -->
+    <section class="section section-tint" id="faq">
+      <div class="container container-narrow">
+
+        <div class="section-head">
+          <p class="eyebrow">FAQ</p>
+          <h2>Common questions</h2>
+        </div>
+
+        <div class="faq">
+
+          <details open>
+            <summary>How is pricing determined?</summary>
+            <div class="faq-body">
+              <p>Pricing is based on square footage, the number of restrooms and break rooms, floor types, and how often we visit. We provide a fixed monthly rate after a free on-site walkthrough &mdash; not an hourly estimate that drifts upward.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Are you insured and bonded?</summary>
+            <div class="faq-body">
+              <p>Yes. We carry general liability and workers&rsquo; compensation coverage, and every employee is bonded and background checked. We&rsquo;re happy to provide a certificate of insurance naming your company as an additional insured.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What does &ldquo;green cleaning&rdquo; actually mean?</summary>
+            <div class="faq-body">
+              <p>It means every product we use carries a Green Seal or EPA Safer Choice certification, and that we pair those products with HEPA-filtered vacuums and microfiber systems. Certification matters &mdash; &ldquo;natural&rdquo; and &ldquo;eco-friendly&rdquo; are marketing terms with no legal definition behind them.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Can you clean outside of our business hours?</summary>
+            <div class="faq-body">
+              <p>Most of our accounts are serviced between 6&nbsp;PM and 5&nbsp;AM. We can also schedule early mornings, weekends, or daytime porter service if your space needs attention while occupied.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Do we need to supply anything?</summary>
+            <div class="faq-body">
+              <p>No. We bring all equipment and cleaning products. We can also manage restocking of paper goods, soap, and liners and bill them at cost if you&rsquo;d like to consolidate that line item.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>How long is the contract?</summary>
+            <div class="faq-body">
+              <p>Our standard agreement runs twelve months with a 30-day cancellation clause for either party. We don&rsquo;t use auto-renewing multi-year contracts.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What happens if something is missed?</summary>
+            <div class="faq-body">
+              <p>Call or email us and we&rsquo;ll return within one business day to correct it at no charge. Every visit is logged against a checklist you approve up front, so there&rsquo;s a clear record of what was and wasn&rsquo;t completed.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What areas do you serve?</summary>
+            <div class="faq-body">
+              <!-- EDIT: list your actual cities, counties, or radius.
+                   Being specific here meaningfully improves local search results. -->
+              <p>We serve the greater metro area and surrounding counties. If you&rsquo;re unsure whether your building is in range, call us &mdash; if we can&rsquo;t take it on, we&rsquo;ll usually know someone who can.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         CONTACT
+
+         There is no submit-a-form box here on purpose. GitHub Pages only
+         serves files — it has no server to receive a form submission.
+
+         Instead, the "Email us" button below opens the visitor's mail app
+         with the subject line and a short questionnaire already filled in,
+         so the message that reaches your inbox is already useful.
+
+         IF YOU LATER WANT A REAL FORM: sign up at formspree.io, then
+         replace this block with a normal <form> whose action attribute is
+         the URL Formspree gives you. Nothing else about the site changes.
+         =================================================================== -->
+    <section class="section" id="contact">
+      <div class="container">
+
+        <div class="contact-panel">
+
+          <div class="contact-intro">
+            <p class="eyebrow">Contact</p>
+            <h2>Get a quote in two minutes.</h2>
+            <p class="section-sub">
+              Tell us the type of space, roughly how large it is, and how often you need
+              service. We&rsquo;ll follow up within one business day to schedule a free
+              walkthrough.
+            </p>
+
+            <div class="contact-actions">
+              <!-- Same pre-filled email link as the hero button.
+                   EDIT: change info@commercialgreencleaning.com to your real address.
+                   If you edit the questions, note that %0D%0A means "new line"
+                   and %20 means "space" — a plain space will break the link. -->
+              <a class="btn btn-primary btn-lg" href="mailto:info@commercialgreencleaning.com?subject=Request%20for%20a%20Cleaning%20Quote&amp;body=Hello%2C%0D%0A%0D%0AI%27d%20like%20a%20quote%20for%20commercial%20cleaning.%0D%0A%0D%0AType%20of%20space%3A%20%0D%0AApproximate%20square%20footage%3A%20%0D%0ACleaning%20frequency%20needed%3A%20%0D%0ABuilding%20address%3A%20%0D%0ABest%20time%20to%20reach%20me%3A%20%0D%0A%0D%0AThank%20you.">
+                Email us
+              </a>
+              <a class="btn btn-ghost btn-lg" href="tel:+13109977135">Call (310) 997-7135</a>
+            </div>
+          </div>
+
+          <!-- EDIT: every value in this list. -->
+          <dl class="contact-details">
+
+            <div>
+              <dt>Phone</dt>
+              <dd><a href="tel:+13109977135">(310) 997-7135</a></dd>
+            </div>
+
+            <div>
+              <dt>Email</dt>
+              <dd><a href="mailto:info@commercialgreencleaning.com">info@commercialgreencleaning.com</a></dd>
+            </div>
+
+            <div>
+              <dt>Office hours</dt>
+              <dd>Monday&ndash;Friday, 8&nbsp;AM&ndash;5&nbsp;PM<br>Cleaning crews available 24/7</dd>
+            </div>
+
+            <div>
+              <dt>Service area</dt>
+              <dd>Greater metro area and surrounding counties</dd>
+            </div>
+
+          </dl>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===================================================================
+       FOOTER
+       Social links live here. To remove a network, delete its whole
+       <li> block. To add one, copy a block and swap the href and the
+       SVG path.
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <svg class="logo-svg footer-logo" viewBox="0 0 2560 550" width="233" height="50"
+             role="img" aria-label="Commercial Green Cleaning">
+          <use href="#cgc-logo"></use>
+        </svg>
+        <p class="footer-tagline">Eco-friendly janitorial service for commercial spaces.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <h2 class="footer-heading">Site</h2>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <h2 class="footer-heading">Get in touch</h2>
+        <ul>
+          <li><a href="tel:+13109977135">(310) 997-7135</a></li>
+          <li><a href="mailto:info@commercialgreencleaning.com">info@commercialgreencleaning.com</a></li>
+        </ul>
+
+        <!-- EDIT: replace the two href values with your real page URLs. -->
+        <ul class="social" aria-label="Social media">
+
+          <li>
+            <a href="https://facebook.com/yourpage" aria-label="Commercial Green Cleaning on Facebook" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://linkedin.com/company/yourcompany" aria-label="Commercial Green Cleaning on LinkedIn" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05a4.2 4.2 0 0 1 3.77-2c4.03 0 4.78 2.6 4.78 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <!-- EDIT the year each January, or leave it — a static year is honest
+           and search engines don't care. -->
+      <p>&copy; 2026 Commercial Green Cleaning. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <!-- ===================================================================
+       STRUCTURED DATA
+       Invisible to visitors. Tells Google your hours, phone number, and
+       service area so it can show them directly in search results.
+       EDIT: every value here should match the Contact section above.
+       =================================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Commercial Green Cleaning",
+    "description": "Eco-friendly commercial cleaning and janitorial services for offices, medical suites, and retail spaces.",
+    "url": "https://commercialgreencleaning.com",
+    "telephone": "+1-310-997-7135",
+    "email": "info@commercialgreencleaning.com",
+    "priceRange": "$$",
+    "areaServed": "Greater metro area",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "17:00"
+    },
+    "sameAs": [
+      "https://facebook.com/yourpage",
+      "https://linkedin.com/company/yourcompany"
+    ]
+  }
+  </script>
+
+
+  <!-- ===================================================================
+       THE ONLY JAVASCRIPT ON THIS PAGE
+
+       It does one job: open and close the mobile menu. Everything else on
+       the site — including the FAQ accordion — works without it.
+
+       You should not need to change any of this. If you add a link to the
+       menu panel above, it will close the menu on tap automatically.
+       =================================================================== -->
+  <script>
+    (function () {
+      var toggle = document.querySelector('.menu-toggle');
+      var panel  = document.getElementById('site-menu');
+      var main   = document.querySelector('main');
+      var footer = document.querySelector('.site-footer');
+
+      function setOpen(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        panel.hidden = !open;
+
+        // Stop the page behind the panel from scrolling.
+        document.documentElement.classList.toggle('menu-open', open);
+
+        // Hide the page behind the panel from screen readers and from Tab,
+        // so you cannot land on an invisible link underneath it.
+        if (main)   main.inert = open;
+        if (footer) footer.inert = open;
+      }
+
+      toggle.addEventListener('click', function () {
+        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      // Tapping any link jumps to that section, so close up behind it.
+      panel.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setOpen(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !panel.hidden) {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      // If the window is widened past the hamburger breakpoint while the menu
+      // is open, the menu would be stranded on screen with no way to close it.
+      window.matchMedia('(min-width: 721px)').addEventListener('change', function (e) {
+        if (e.matches) setOpen(false);
+      });
+    })();
+  </script>
+
+</body>
+</html>
