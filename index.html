@@ -60,6 +60,8 @@
      6. Trust strip
      7. About
      8. Services
+     8b. Facility Types
+     8c. Areas We Serve
      9. Testimonials
     10. FAQ
     11. Contact
@@ -692,6 +694,161 @@ img, svg { max-width: 100%; display: block; }
 
 
 /* ==========================================================================
+   8b. FACILITY TYPES
+   --------------------------------------------------------------------------
+   A grid of tab buttons and one detail panel shown at a time. The swap is
+   driven by the small script at the foot of the page.
+
+   The "js" class (added before first paint) is what hides the inactive
+   panels and reveals the tab row. With no JavaScript, none of that applies:
+   the tab row stays hidden and every panel shows, stacked and readable.
+   ========================================================================== */
+
+.facility-tabs {
+  display: none;                 /* revealed only when JS is present */
+  /* 144px lets two buttons sit side by side on a 375px phone (a larger
+     minimum tips it to one full-width column, which wastes vertical space
+     before the panel). Six across on desktop, three on a tablet. */
+  grid-template-columns: repeat(auto-fit, minmax(144px, 1fr));
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.js .facility-tabs { display: grid; }
+
+.facility-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  text-align: left;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease,
+              color 0.15s ease, transform 0.15s ease;
+}
+.facility-tab:hover { border-color: var(--forest); transform: translateY(-2px); }
+.facility-tab .card-icon { margin: 0; }
+
+/* The selected tab reads as "pressed": solid forest, white icon and label. */
+.facility-tab[aria-selected="true"] {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: #fff;
+}
+.facility-tab[aria-selected="true"] .card-icon { color: #fff; }
+
+.facility-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-3), 4vw, var(--space-5));
+}
+/* JS present: show one panel at a time. */
+.js .facility-panel { display: none; }
+.js .facility-panel.is-active { display: block; animation: facFade 0.25s ease; }
+/* No JS: panels stack, so give them separation. */
+.facility-panel + .facility-panel { margin-top: var(--space-3); }
+
+@keyframes facFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.facility-panel h3 { font-size: clamp(1.3rem, 2.4vw, 1.55rem); margin-bottom: 0.3em; }
+.facility-lead {
+  color: var(--emerald-deep);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.facility-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--space-3), 4vw, var(--space-5));
+  margin-bottom: var(--space-4);
+}
+.facility-cols h4,
+.facility-diff-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-2);
+}
+.facility-cols p { font-size: 0.975rem; }
+
+.facility-diff-title { padding-top: var(--space-2); border-top: 1px solid var(--line); }
+
+.facility-checklist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2) var(--space-4);
+}
+.facility-checklist li {
+  position: relative;
+  padding-left: 1.7em;
+  font-size: 0.95rem;
+}
+.facility-checklist li::before {
+  content: "\2713";              /* checkmark */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--emerald);
+  font-weight: 700;
+}
+.facility-checklist strong { color: var(--ink); }
+
+/* One column on phones and small tablets. */
+@media (max-width: 720px) {
+  .facility-cols,
+  .facility-checklist { grid-template-columns: 1fr; }
+}
+
+
+/* ==========================================================================
+   8c. AREAS WE SERVE
+   ========================================================================== */
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.areas-grid li {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.areas-grid li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald);
+  flex-shrink: 0;
+}
+.areas-note { color: var(--muted); font-size: 0.95rem; }
+.areas-note a { color: var(--forest); font-weight: 600; }
+
+
+/* ==========================================================================
    9. TESTIMONIALS
    ========================================================================== */
 
@@ -842,7 +999,9 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
   background: var(--ink);
   color: rgba(255, 255, 255, 0.72);
   padding-top: var(--space-6);
-  margin-top: var(--space-5);
+  /* No margin-top: the section above already ends in its own bottom padding.
+     Adding margin here too stacked a doubled white gap above the dark footer
+     that read as an odd empty bar. */
 }
 
 .footer-inner {
@@ -950,28 +1109,31 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
    ========================================================================== */
 
 /* --- The header specifically ---------------------------------------------
-   The logo (261px), the five nav links (371px), the phone button (177px) and
-   two 32px gaps need 921px of viewport to sit side by side. Below that they
-   collide, so the nav has to go. This is its own breakpoint rather than being
-   folded into the 860px one below, because it is set by the width of the
-   header's contents and nothing else.
+   Six nav links now, two of them long ("Facility Types", "Areas We Serve").
+   At full size the logo (261px), the links (~536px), the phone button (177px)
+   and two 32px gaps need ~1085px of viewport to sit side by side. So the
+   header steps down in two stages, both driven purely by how much room its
+   own contents need — nothing else on the page shares these breakpoints.
 
-   The nav was also the spacer holding the phone button against the right
-   edge, so with it gone the button has to push itself over. */
-/* 721–920px: the links still fit, but only just. Tighten the type and the
-   gaps, and drop the phone number from the button so only its icon remains.
-   That buys enough room to keep the navigation visible on every tablet. */
-@media (max-width: 920px) {
+   The nav is also the spacer holding the phone button against the right edge,
+   so when it goes the button has to push itself over. */
+
+/* 881–1090px: the links still fit, but only just. Tighten the type, the nav
+   gaps, and the header gap, and drop the phone number from the button so only
+   its icon remains. That keeps the navigation visible on laptops and larger
+   tablets instead of hiding it behind a hamburger too early. */
+@media (max-width: 1090px) {
+  .header-inner { gap: var(--space-3); }
   .nav { gap: 0.75rem; }
   .nav a { font-size: 0.875rem; }
   .header-cta span { display: none; }
   .header-cta { padding: 0.7em; }
 }
 
-/* Below 720px even the compact nav collides with the logo. Hand over to the
-   hamburger. The phone button stays — it is the primary action on the page,
-   and burying it in a menu would cost calls. */
-@media (max-width: 720px) {
+/* 880px and below: even the compact nav collides with the logo. Hand over to
+   the hamburger. The phone button stays — it is the primary action on the
+   page, and burying it in a menu would cost calls. */
+@media (max-width: 880px) {
   .nav { display: none; }
   .header-cta { margin-left: auto; }
   .menu-toggle { display: grid; }
@@ -1057,12 +1219,17 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
        four lines to not strand someone with no way to navigate. -->
   <style>
     .menu-toggle { display: none !important; }
-    @media (max-width: 720px) {
+    @media (max-width: 880px) {
       .nav { display: flex; flex-wrap: wrap; justify-content: center; margin: 0; }
       .header-inner { flex-wrap: wrap; padding-block: 0.75rem; }
     }
   </style>
 </noscript>
+
+<!-- Adds a "js" class before the page paints, so the Facility Types tabs can
+     hide their inactive panels without a flash. No JavaScript = no class =
+     every panel simply shows, stacked. -->
+<script>document.documentElement.className += ' js';</script>
 </head>
 
 <body>
@@ -1151,10 +1318,11 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
       <!-- Main navigation. Each link jumps to a section id further down. -->
       <nav class="nav" aria-label="Main">
-        <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#testimonials">Testimonials</a>
+        <a href="#facility-types">Facility Types</a>
+        <a href="#areas">Areas We Serve</a>
         <a href="#faq">FAQ</a>
+        <a href="#about">About Us</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -1191,10 +1359,11 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
   <div class="menu-panel" id="site-menu" hidden>
     <nav class="menu-nav" aria-label="Mobile">
       <ul>
-        <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#facility-types">Facility Types</a></li>
+        <li><a href="#areas">Areas We Serve</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="#about">About Us</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -1294,7 +1463,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
       <div class="container trust-grid">
 
         <div class="stat">
-          <span class="stat-num">15+</span>
+          <span class="stat-num">30+</span>
           <span class="stat-label">Years in business</span>
         </div>
 
@@ -1317,107 +1486,330 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
     </section>
 
 
-    <!-- ===================================================================
-         ABOUT
-         Two columns on desktop, stacked on mobile.
-         =================================================================== -->
-    <section class="section" id="about">
-      <div class="container about-grid">
-
-        <div class="about-text">
-          <p class="eyebrow">About us</p>
-          <h2>Cleaning that doesn't cost you the air in the room.</h2>
-
-          <!-- EDIT: rewrite these two paragraphs in your own words.
-               Mention the city or region you serve — it helps you show up
-               in local search results. -->
-          <p>
-            Commercial Green Cleaning was founded on a straightforward idea: a
-            building can be spotless without filling it with fumes. Conventional
-            janitorial products leave behind residues and volatile compounds that
-            linger in carpet, upholstery, and recirculated air long after the crew
-            has gone home.
-          </p>
-          <p>
-            We use Green Seal and EPA Safer Choice certified products across every
-            account, paired with HEPA filtration and microfiber systems that capture
-            particulates instead of pushing them around. Our crews are background
-            checked, uniformed, and trained on your building&rsquo;s specific protocols
-            before their first shift.
-          </p>
-
-          <a class="link-arrow" href="#contact">
-            Schedule a walkthrough
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-
-        <!-- Three short benefit blocks. Each is a reason a facilities
-             manager would choose green cleaning over the cheapest bid. -->
-        <ul class="benefits">
-
-          <li>
-            <h3>Healthier indoor air</h3>
-            <p>Fewer airborne irritants means fewer sick days and fewer complaints from staff with asthma or chemical sensitivities.</p>
-          </li>
-
-          <li>
-            <h3>One consistent crew</h3>
-            <p>You get the same team every visit. They learn your building, and you always know who is in it after hours.</p>
-          </li>
-
-          <li>
-            <h3>Documented, not assumed</h3>
-            <p>Every visit is logged against a checklist you approve. If something is missed, you'll know before we do.</p>
-          </li>
-
-        </ul>
-
-      </div>
-    </section>
 
 
     <!-- ===================================================================
-         SERVICES
-         Four cards. To add a fifth, copy one <article class="card">
-         block and paste it before the closing </div>.
+         SERVICES  (what we do)
+         >>> FILLER CONTENT — refine before launch <<<
+         These six cards describe the *work* (services). The industries you
+         serve now live in FACILITY TYPES, just below. To add a card, copy one
+         <article class="card"> block. To change an icon, swap the <path> data.
          =================================================================== -->
-    <section class="section section-tint" id="services">
+    <section class="section" id="services">
       <div class="container">
 
         <div class="section-head">
           <p class="eyebrow">Services</p>
-          <h2>What we handle</h2>
-          <p class="section-sub">Recurring contracts and one-time deep cleans, scheduled around your business hours.</p>
+          <h2>What we do</h2>
+          <p class="section-sub">Recurring janitorial contracts and one-time deep cleans, scheduled around your hours and tailored to your space.</p>
         </div>
 
         <div class="cards">
 
           <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Office &amp; corporate</h3>
-            <p>Nightly or weekly service for workstations, conference rooms, break rooms, and restrooms.</p>
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Daily &amp; recurring janitorial</h3>
+            <p>Nightly, weekly, or custom schedules for workstations, common areas, break rooms, and restrooms.</p>
           </article>
 
           <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-            <h3>Medical &amp; dental</h3>
-            <p>Disinfection protocols for exam rooms and waiting areas, with compliant handling of regulated waste.</p>
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v12H3zM3 14h18M9 8v12M15 8v12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Carpet &amp; hard-floor care</h3>
+            <p>Extraction, buffing, stripping, and refinishing for carpet, tile, marble, and hard surfaces.</p>
           </article>
 
           <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7zM8 9V6a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Retail &amp; showroom</h3>
-            <p>Entry glass, floors, and fitting rooms kept presentable through business hours or cleaned overnight.</p>
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Restroom sanitization</h3>
+            <p>Protocol-driven disinfection and restocking of paper, soap, and liners &mdash; billed at cost.</p>
           </article>
 
           <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-5 6 5v11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 20v-6h4v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-            <h3>Floor care &amp; deep cleans</h3>
-            <p>Carpet extraction, hard-surface stripping and refinishing, and post-construction cleanup.</p>
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Window &amp; glass</h3>
+            <p>Interior glass, storefronts, and display windows kept streak-free on a set rotation.</p>
+          </article>
+
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>High-touch disinfection</h3>
+            <p>Targeted decontamination of the surfaces that actually move illness through a building.</p>
+          </article>
+
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Deep &amp; post-event cleaning</h3>
+            <p>One-time deep cleans, turnovers, and post-construction or post-event cleanup on demand.</p>
           </article>
 
         </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         FACILITY TYPES  (who we serve)
+
+         A set of tab buttons (icon + label) and one detail panel that swaps
+         when a button is clicked. This is progressive enhancement: with
+         JavaScript off, the buttons hide and every panel simply shows stacked
+         and fully readable. With JavaScript on, it becomes the tabbed view.
+
+         TO EDIT a facility's copy, find its <div class="facility-panel"> below.
+         TO ADD a facility: copy one <button ...role="tab"> AND its matching
+         <div class="facility-panel">, and keep their id / aria-controls /
+         aria-labelledby values paired (ftab-x <-> fpanel-x).
+         =================================================================== -->
+    <section class="section section-tint" id="facility-types">
+      <div class="container">
+
+        <div class="section-head">
+          <p class="eyebrow">Facility Types</p>
+          <h2>Specialized for your industry</h2>
+          <p class="section-sub">Every kind of space has its own standards. Choose yours to see how we handle it.</p>
+        </div>
+
+        <div class="facilities" data-facilities>
+
+          <div class="facility-tabs" role="tablist" aria-label="Facility types">
+          <button class="facility-tab" type="button" role="tab"
+                  id="ftab-office" aria-controls="fpanel-office"
+                  aria-selected="true" tabindex="0">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Office &amp; Corporate</span>
+          </button>
+          <button class="facility-tab" type="button" role="tab"
+                  id="ftab-healthcare" aria-controls="fpanel-healthcare"
+                  aria-selected="false" tabindex="-1">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v5h5v6h-5v5H9v-5H4V9h5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Healthcare &amp; Medical</span>
+          </button>
+          <button class="facility-tab" type="button" role="tab"
+                  id="ftab-retail" aria-controls="fpanel-retail"
+                  aria-selected="false" tabindex="-1">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18l-1.5 11a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7zM8 9V6a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Retail &amp; Shopping</span>
+          </button>
+          <button class="facility-tab" type="button" role="tab"
+                  id="ftab-hospitality" aria-controls="fpanel-hospitality"
+                  aria-selected="false" tabindex="-1">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17h16M6 17v-1a6 6 0 0 1 12 0v1M12 6V4M10 4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Hospitality &amp; Hotels</span>
+          </button>
+          <button class="facility-tab" type="button" role="tab"
+                  id="ftab-hoa" aria-controls="fpanel-hoa"
+                  aria-selected="false" tabindex="-1">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l5-3 5 3v12M13 21v-8l4-2 4 2v8M3 21h18M6 12h1.5M6 15h1.5M6 18h1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>HOA &amp; Multi-Family</span>
+          </button>
+          <button class="facility-tab" type="button" role="tab"
+                  id="ftab-schools" aria-controls="fpanel-schools"
+                  aria-selected="false" tabindex="-1">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5-10-5zM6 11.5V16c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-4.5M22 9v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Schools &amp; Fitness</span>
+          </button>
+          </div>
+
+        <div class="facility-panel is-active" role="tabpanel"
+             id="fpanel-office" aria-labelledby="ftab-office" tabindex="0">
+          <h3>Clean Office. Focused Teams.</h3>
+          <p class="facility-lead">Professional cleaning that reflects the quality of your business.</p>
+
+          <div class="facility-cols">
+            <div>
+              <h4>The services we provide</h4>
+              <p>Daily and weekly office cleaning including carpet and hard-floor maintenance, restroom sanitization, common-room detailing, kitchen and break-room service, window cleaning, and deep cleaning of high-touch surfaces. We can customize schedules around your team&rsquo;s workflow &mdash; early morning, after-hours, or weekend service &mdash; to minimize disruption. We handle the cleaning schedule, supplies, and quality standards so you can focus on running your business.</p>
+            </div>
+            <div>
+              <h4>Why office cleaning matters</h4>
+              <p>A clean office isn&rsquo;t just about appearance. It impacts health, productivity, employee satisfaction, and client perception. When prospects and partners walk through your door, they&rsquo;re assessing your professionalism in seconds. A meticulously maintained workspace signals that you care about details, respect your team, and take your business seriously. By partnering with us, you create an immaculate environment where your team can thrive and your brand commands client confidence.</p>
+            </div>
+          </div>
+
+          <p class="facility-diff-title">The professional cleaning difference</p>
+          <ul class="facility-checklist">
+              <li><strong>Green Building Wellness:</strong> We utilize advanced, eco-friendly products that protect indoor air quality without harsh chemical residues.</li>
+              <li><strong>Proactive Absenteeism Reduction:</strong> Our targeted high-touch disinfection removes pathogens, actively helping to prevent the spread of office illness and reduce sick days.</li>
+              <li><strong>Corporate-Trained Professionals:</strong> Our teams are specifically trained in corporate etiquette and the meticulous details that matter in premium office environments.</li>
+              <li><strong>Tailored Operational Scheduling:</strong> We build custom cleaning schedules that sync perfectly with your business hours to ensure zero disruption.</li>
+              <li><strong>Friction-Free Management:</strong> We handle every detail of your facility care, freeing you from the hassle of supervisor oversight so you can focus on your team.</li>
+              <li><strong>Uncompromising Brand Alignment:</strong> We deliver a consistently pristine workspace that accurately reflects your high professional standards to clients and partners.</li>
+              <li><strong>A 30-Year Legacy of Trust:</strong> Enjoy the unmatched reliability and accountability that comes with over three decades of family-run expertise.</li>
+          </ul>
+        </div>
+
+        <div class="facility-panel" role="tabpanel"
+             id="fpanel-healthcare" aria-labelledby="ftab-healthcare" tabindex="0">
+          <h3>Clean Facilities. Patient Trust.</h3>
+          <p class="facility-lead">Medical-grade cleaning for healthcare environments that demand the highest standards.</p>
+
+          <div class="facility-cols">
+            <div>
+              <h4>The services we provide</h4>
+              <p>Specialized cleaning and disinfection for medical offices, clinics, urgent care, and healthcare facilities. We handle patient rooms, waiting areas, restrooms, and medical-equipment areas with protocol-driven precision. Our safe, eco-friendly products meet healthcare standards without compromising patient or staff safety. We offer flexible scheduling &mdash; morning prep, midday refreshes, or after-hours deep cleaning.</p>
+            </div>
+            <div>
+              <h4>Why healthcare cleaning matters</h4>
+              <p>In healthcare, cleanliness is a matter of safety, not just appearance. Patients are at their most vulnerable, staff are managing critical care, and hygiene directly impacts medical outcomes. Rigorous disinfection of high-touch surfaces reduces infection risk, protects safety, and gives your staff total confidence in their workplace. Visible cleanliness builds the trust that staff and patients need to feel secure in your care. We understand that for healthcare stakeholders a meticulously maintained facility is a clinical commitment to excellence.</p>
+            </div>
+          </div>
+
+          <p class="facility-diff-title">The professional cleaning difference</p>
+          <ul class="facility-checklist">
+              <li><strong>Healthcare-Grade Disinfection:</strong> We eliminate pathogens using advanced, non-toxic products that protect patient health without harsh fumes.</li>
+              <li><strong>Strict Protocol-Driven Compliance:</strong> Every clean is strictly aligned with the highest medical standards and best practices.</li>
+              <li><strong>Targeted High-Touch Mitigation:</strong> We pay meticulous attention to patient-facing areas and high-touch vectors to actively reduce infection risks.</li>
+              <li><strong>Operational Responsiveness:</strong> We offer total flexibility and rapid response times for urgent or specialized medical cleaning needs.</li>
+              <li><strong>30 Years of Medical Expertise:</strong> Backed by three decades of experience, our specialized teams intimately understand healthcare&rsquo;s unique regulatory demands.</li>
+          </ul>
+        </div>
+
+        <div class="facility-panel" role="tabpanel"
+             id="fpanel-retail" aria-labelledby="ftab-retail" tabindex="0">
+          <h3>Every Detail Counts. Especially the First Impression.</h3>
+          <p class="facility-lead">Luxury-level cleaning for retail spaces where appearance drives sales and brand experience.</p>
+
+          <div class="facility-cols">
+            <div>
+              <h4>The services we provide</h4>
+              <p>High-touch retail and shopping-center cleaning including storefronts, display windows, floors (carpet, tile, and marble), fitting rooms, restrooms, and common areas. We handle post-sale cleanup, window detailing, and high-traffic area maintenance. Our teams work around operating hours &mdash; early morning before doors open, during off-peak times, or after-hours &mdash; to keep your space pristine without disrupting customer experience.</p>
+            </div>
+            <div>
+              <h4>Why retail cleaning matters</h4>
+              <p>In retail, your storefront is your salesperson. Customers decide in seconds whether to walk in, and a clean, gleaming space invites them in. When dust on displays, streaked windows, or scuffed floors undermine your brand, it can actively drive your customers away. Instead, an immaculate space increases dwell time, boosts purchasing decisions, elevates the customer store experience, and reinforces a premium brand. For retailers and shopping centers, cleanliness directly correlates to revenue and customer trust.</p>
+            </div>
+          </div>
+
+          <p class="facility-diff-title">The professional cleaning difference</p>
+          <ul class="facility-checklist">
+              <li><strong>Luxury-Grade Precision:</strong> Attention to detail that perfectly matches your high brand standards.</li>
+              <li><strong>Rodeo Drive Heritage:</strong> Over 30 years of experience catering to premier luxury retail.</li>
+              <li><strong>Zero-Disruption Scheduling:</strong> Flexible cleaning timed perfectly around your operating hours and peak traffic.</li>
+              <li><strong>Surface-Specific Expertise:</strong> Specialized care for high-end flooring, displays, glass, and delicate materials.</li>
+              <li><strong>Flawless Brand Consistency:</strong> Reliable, premium results that protect and elevate your image daily.</li>
+              <li><strong>Pristine, Eco-Friendly Care:</strong> Advanced green methods that protect your space without harsh chemical smells.</li>
+          </ul>
+        </div>
+
+        <div class="facility-panel" role="tabpanel"
+             id="fpanel-hospitality" aria-labelledby="ftab-hospitality" tabindex="0">
+          <h3>Exceptional Guest Experiences. Meticulous Cleaning.</h3>
+          <p class="facility-lead">Hospitality cleaning that turns guests into loyal customers.</p>
+
+          <div class="facility-cols">
+            <div>
+              <h4>The services we provide</h4>
+              <p>Daily, special-event, and turnover cleaning for hotels, resorts, and hospitality venues. Our expertise spans guest suites, pristine bathrooms, high-traffic common areas, corridors, lobby refreshing, and post-event cleaning. We intimately understand the hospitality standard: spaces must be immaculate, restocked, and guest-ready on strict timelines. Operating with precision during tight turnover windows, our teams are equipped to handle high-volume cleaning without compromising quality.</p>
+            </div>
+            <div>
+              <h4>Why hospitality cleaning matters</h4>
+              <p>Guests judge your property within moments of crossing a threshold. A speck of dust, a smudged mirror, or a streaky window becomes their lasting impression and often determines whether they&rsquo;ll return or share their complaint publicly. In hospitality, immaculate environments are the foundation of excellent guest experiences and repeat business. We understand what is at stake, bringing the specialized scale and professional cleaning expertise required to consistently elevate your company&rsquo;s standards.</p>
+            </div>
+          </div>
+
+          <p class="facility-diff-title">The professional cleaning difference</p>
+          <ul class="facility-checklist">
+              <li><strong>Hospitality-Elite Training:</strong> Specialized teams engineered for rapid turnover speed without sacrificing luxury standards.</li>
+              <li><strong>Rigorous Systematic Inspections:</strong> A disciplined, multi-point checklist designed to catch every micro-detail before a guest does.</li>
+              <li><strong>Odor-Free Eco-Luxury Care:</strong> Advanced, sustainable products that ensure flawless cleanliness with zero harsh chemical scents.</li>
+              <li><strong>Precision Timing Assurance:</strong> Guaranteed room readiness backed by a 30+ year legacy of high-volume operational expertise.</li>
+              <li><strong>Scalable Peak-Season Flexibility:</strong> On-demand surge capacity to seamlessly handle major events, conferences, and high-occupancy seasons.</li>
+              <li><strong>A Legacy of Dedicated Service:</strong> A family-run commitment to excellence that respects your property and treats your guests like our own.</li>
+          </ul>
+        </div>
+
+        <div class="facility-panel" role="tabpanel"
+             id="fpanel-hoa" aria-labelledby="ftab-hoa" tabindex="0">
+          <h3>Well-Maintained Properties. Happy Residents.</h3>
+          <p class="facility-lead">Community cleaning that builds property value and resident pride.</p>
+
+          <div class="facility-cols">
+            <div>
+              <h4>The services we provide</h4>
+              <p>We deliver comprehensive community maintenance for HOAs, condominiums, and multi-family properties. Our expertise spans common areas, lobbies, hallways, stairwells, fitness centers, pools, parking structures, and building exteriors. We handle routine maintenance and seasonal deep cleaning. Whether you need weekly service, monthly touch-ups, or specialized cleaning for specific on-demand projects, we customize services and schedules to maintain your property&rsquo;s value and curb appeal.</p>
+            </div>
+            <div>
+              <h4>Why community cleaning matters</h4>
+              <p>Property values and livability are directly tied to proper, routine maintenance. Well-maintained common areas signal that a community is managed professionally, which increases resident satisfaction and property desirability. Clean lobbies, spotless hallways, and maintained exteriors aren&rsquo;t just about appearance &mdash; they also actively reduce liability concerns, prevent premature property deterioration, and foster community and residential pride. For modern HOAs, appearance management is equity management. We understand the complex logistics of community oversight, bringing the reliable scale and professional cleaning expertise required to safeguard your property&rsquo;s value.</p>
+            </div>
+          </div>
+
+          <p class="facility-diff-title">The professional cleaning difference</p>
+          <ul class="facility-checklist">
+              <li><strong>Tailored Community Scheduling:</strong> Dependable, routine upkeep designed strictly around your neighborhood or building&rsquo;s specific traffic patterns.</li>
+              <li><strong>Multi-Unit Amenity Expertise:</strong> Extensive experience managing the unique demands of high-traffic shared spaces and recreational facilities.</li>
+              <li><strong>Resident-Safe Green Care:</strong> Advanced, eco-friendly products that ensure immaculate spaces while protecting children, pets, and the local environment.</li>
+              <li><strong>Proactive Asset Protection:</strong> Detail-driven cleaning methods that identify and prevent wear-and-tear before it turns into costly property damage.</li>
+              <li><strong>A 30-Year Legacy of Trust:</strong> Over three decades of proven reliability, ensuring seamless resident satisfaction and property-manager peace of mind.</li>
+              <li><strong>Board-Aligned Communication:</strong> Professional management teams equipped to communicate transparently and effectively with HOA boards and property managers.</li>
+          </ul>
+        </div>
+
+        <div class="facility-panel" role="tabpanel"
+             id="fpanel-schools" aria-labelledby="ftab-schools" tabindex="0">
+          <h3>Clean Classrooms. Healthy Students. Focused Success.</h3>
+          <p class="facility-lead">Educational-facility cleaning that keeps students striving and staff protected.</p>
+
+          <div class="facility-cols">
+            <div>
+              <h4>The services we provide</h4>
+              <p>We deliver comprehensive cleaning for K&ndash;12 schools, universities, and educational facilities. Our expertise covers classrooms, hallways, cafeterias, bathrooms, gymnasiums, libraries, and administrative areas. We prioritize high-touch surface disinfection, floor maintenance, and deep cleaning designed around school calendars. Our teams work around class schedules &mdash; early morning before school, during lunch periods, after hours, and during breaks &mdash; to minimize disruption.</p>
+            </div>
+            <div>
+              <h4>Why educational cleaning matters</h4>
+              <p>Clean schools directly impact student and staff health, attendance, and academic performance. High-traffic areas and shared surfaces mean rapid pathogen spread; proper disinfection reduces illness outbreaks and absenteeism. Beyond health, a clean, well-maintained facility communicates to students, families, and staff that the school invests in their wellbeing and institutional quality. We understand the unique logistics of academic scheduling and safety compliance, bringing professional cleaning expertise to protect your institution.</p>
+            </div>
+          </div>
+
+          <p class="facility-diff-title">The professional cleaning difference</p>
+          <ul class="facility-checklist">
+              <li><strong>Academic Protocol-Driven Care:</strong> Rigorous disinfection strategies specifically tailored to mitigate cross-contamination in high-traffic school environments.</li>
+              <li><strong>Student-Safe Non-Toxic Products:</strong> Advanced, eco-friendly green cleaning methods perfectly appropriate for young learners and sensitive environments.</li>
+              <li><strong>Adaptive Academic Scheduling:</strong> Flexible operational windows tailored entirely around school calendars, sports seasons, and academic activities.</li>
+              <li><strong>Targeted High-Touch Mitigation:</strong> Meticulous decontamination of desks, shared equipment, common areas, and high-frequency touchpoints.</li>
+              <li><strong>Facility-Specialized Professionals:</strong> Fully vetted, reliable service teams trained specifically in campus protocols and backed by a 30+ year legacy of trust.</li>
+              <li><strong>Sustainable Wellness Practices:</strong> Certified eco-friendly methods that actively protect indoor air quality and promote long-term staff and student health.</li>
+          </ul>
+        </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         AREAS WE SERVE
+         >>> FILLER CONTENT — replace with your real coverage before launch <<<
+         Listing the specific neighborhoods and cities you cover meaningfully
+         improves how you rank in local search. To add or remove an area,
+         edit the <li> items.
+         =================================================================== -->
+    <section class="section" id="areas">
+      <div class="container">
+
+        <div class="section-head">
+          <p class="eyebrow">Areas We Serve</p>
+          <h2>Serving greater Los Angeles</h2>
+          <p class="section-sub">From the Westside to the wider metro, our crews keep commercial properties across the region pristine.</p>
+        </div>
+
+        <ul class="areas-grid">
+          <li>Beverly Hills</li>
+          <li>Santa Monica</li>
+          <li>Century City</li>
+          <li>West Los Angeles</li>
+          <li>Brentwood</li>
+          <li>Westwood</li>
+          <li>Culver City</li>
+          <li>Marina del Rey</li>
+          <li>Downtown LA</li>
+          <li>Pasadena</li>
+          <li>Glendale</li>
+          <li>El Segundo</li>
+        </ul>
+
+        <p class="areas-note">Don&rsquo;t see your area listed? <a href="#contact">Get in touch</a> &mdash; our service area is always expanding.</p>
+
       </div>
     </section>
 
@@ -1430,7 +1822,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
          A quote with a real first name, title, and company is worth far
          more than a longer quote signed "J.M., satisfied customer."
          =================================================================== -->
-    <section class="section" id="testimonials">
+    <section class="section section-tint" id="testimonials">
       <div class="container">
 
         <div class="section-head">
@@ -1485,7 +1877,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
          Delete the "open" word from the first one if you'd rather the
          page load with everything collapsed.
          =================================================================== -->
-    <section class="section section-tint" id="faq">
+    <section class="section" id="faq">
       <div class="container container-narrow">
 
         <div class="section-head">
@@ -1554,6 +1946,68 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
           </details>
 
         </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         ABOUT US
+         Two columns on desktop, stacked on mobile.
+         Relocated near the foot of the page to match the nav order:
+         lead with what we do, close with who we are.
+         =================================================================== -->
+    <section class="section section-tint" id="about">
+      <div class="container about-grid">
+
+        <div class="about-text">
+          <p class="eyebrow">About us</p>
+          <h2>Cleaning that doesn't cost you the air in the room.</h2>
+
+          <!-- EDIT: rewrite these two paragraphs in your own words.
+               Mention the city or region you serve — it helps you show up
+               in local search results. -->
+          <p>
+            Commercial Green Cleaning was founded on a straightforward idea: a
+            building can be spotless without filling it with fumes. Conventional
+            janitorial products leave behind residues and volatile compounds that
+            linger in carpet, upholstery, and recirculated air long after the crew
+            has gone home.
+          </p>
+          <p>
+            We use Green Seal and EPA Safer Choice certified products across every
+            account, paired with HEPA filtration and microfiber systems that capture
+            particulates instead of pushing them around. Our crews are background
+            checked, uniformed, and trained on your building&rsquo;s specific protocols
+            before their first shift.
+          </p>
+
+          <a class="link-arrow" href="#contact">
+            Schedule a walkthrough
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- Three short benefit blocks. Each is a reason a facilities
+             manager would choose green cleaning over the cheapest bid. -->
+        <ul class="benefits">
+
+          <li>
+            <h3>Healthier indoor air</h3>
+            <p>Fewer airborne irritants means fewer sick days and fewer complaints from staff with asthma or chemical sensitivities.</p>
+          </li>
+
+          <li>
+            <h3>One consistent crew</h3>
+            <p>You get the same team every visit. They learn your building, and you always know who is in it after hours.</p>
+          </li>
+
+          <li>
+            <h3>Documented, not assumed</h3>
+            <p>Every visit is logged against a checklist you approve. If something is missed, you'll know before we do.</p>
+          </li>
+
+        </ul>
+
       </div>
     </section>
 
@@ -1661,10 +2115,11 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
       <nav class="footer-nav" aria-label="Footer">
         <h2 class="footer-heading">Site</h2>
         <ul>
-          <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#facility-types">Facility Types</a></li>
+          <li><a href="#areas">Areas We Serve</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="#about">About Us</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -1729,7 +2184,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
     "telephone": "+1-310-997-7135",
     "email": "info@commercialgreencleaning.com",
     "priceRange": "$$",
-    "areaServed": "Greater metro area",
+    "areaServed": "Greater Los Angeles",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -1794,6 +2249,46 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
       window.matchMedia('(min-width: 721px)').addEventListener('change', function (e) {
         if (e.matches) setOpen(false);
       });
+    })();
+
+
+    /* ---- Facility Types tabs -------------------------------------------
+       Progressive enhancement. Without this, every panel is visible and the
+       section reads as stacked write-ups. With it, the panels collapse into
+       a tabbed interface: click a button, or use the arrow / Home / End keys
+       while a tab is focused. */
+    (function () {
+      var root = document.querySelector('[data-facilities]');
+      if (!root) return;
+      var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+      var panels = Array.prototype.slice.call(root.querySelectorAll('[role="tabpanel"]'));
+      if (!tabs.length) return;
+
+      function activate(tab, moveFocus) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-selected', String(on));
+          t.tabIndex = on ? 0 : -1;
+        });
+        panels.forEach(function (p) {
+          p.classList.toggle('is-active', p.id === tab.getAttribute('aria-controls'));
+        });
+        if (moveFocus) tab.focus();
+      }
+
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () { activate(tab); });
+        tab.addEventListener('keydown', function (e) {
+          var n = tabs.length, j = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') j = (i + 1) % n;
+          else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') j = (i - 1 + n) % n;
+          else if (e.key === 'Home') j = 0;
+          else if (e.key === 'End') j = n - 1;
+          if (j !== null) { e.preventDefault(); activate(tabs[j], true); }
+        });
+      });
+
+      activate(tabs[0]);   // start on the first facility
     })();
   </script>
 
