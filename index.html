@@ -11,7 +11,7 @@
        Keep the title under ~60 characters and the description under ~155.
        =================================================================== -->
   <title>Commercial Green Cleaning | Eco-Friendly Janitorial Services</title>
-  <meta name="description" content="Eco-friendly commercial cleaning and janitorial services for offices, medical suites, and retail spaces. Insured, bonded, and green-certified.">
+  <meta name="description" content="Eco-friendly commercial cleaning and janitorial services for offices, medical, retail, hospitality, residential, and school facilities. Insured and bonded.">
 
   <!-- ===================================================================
        LINK PREVIEW CARD
@@ -25,7 +25,7 @@
        =================================================================== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Commercial Green Cleaning">
-  <meta property="og:description" content="Eco-friendly commercial cleaning and janitorial services. Insured, bonded, and green-certified.">
+  <meta property="og:description" content="Eco-friendly commercial cleaning and janitorial services. Insured and bonded.">
   <meta property="og:image" content="assets/og-image.jpg">
   <meta property="og:url" content="https://commercialgreencleaning.com">
   <meta name="theme-color" content="#286734">
@@ -643,18 +643,46 @@ img, svg { max-width: 100%; display: block; }
 
 .about-text h2 { margin-bottom: var(--space-3); }
 
-.benefits { display: grid; gap: var(--space-3); }
-
-.benefits li {
-  padding: var(--space-3);
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  /* The green edge ties the block back to the brand without adding color. */
-  border-left: 3px solid var(--emerald);
+/* The company-story timeline: emerald dots strung along a vertical line. */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  padding-left: var(--space-1);
 }
-.benefits h3 { margin-bottom: 0.35em; }
-.benefits p { font-size: 0.95rem; }
+/* The connecting line, behind the dots. */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--line);
+}
+.milestone {
+  position: relative;
+  padding-left: var(--space-4);
+}
+.milestone::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--emerald);
+}
+.milestone-year {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--emerald-deep);
+}
+.milestone h3 { margin: 0.1em 0 0.3em; font-size: 1.05rem; }
+.milestone p { font-size: 0.95rem; }
 
 
 /* ==========================================================================
@@ -666,7 +694,7 @@ img, svg { max-width: 100%; display: block; }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: var(--space-3);
 }
 
@@ -691,6 +719,69 @@ img, svg { max-width: 100%; display: block; }
 
 .card h3 { margin-bottom: 0.4em; }
 .card p { font-size: 0.95rem; }
+
+
+/* --- Service categories (collapsible) ------------------------------------
+   Three <details> categories separated by rules; each opens to a grid of the
+   service cards defined above. Same +/- affordance as the FAQ. */
+.svc-cats { display: grid; }
+.svc-cat { border-top: 1px solid var(--line); }
+.svc-cat:last-child { border-bottom: 1px solid var(--line); }
+
+.svc-cat > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  color: var(--ink);
+}
+.svc-cat > summary::-webkit-details-marker { display: none; }  /* Safari */
+.svc-cat > summary:hover { background: var(--emerald-soft); }
+
+.svc-cat-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-right: auto;          /* pushes the count + marker to the right */
+}
+.svc-cat-count { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+
+/* The "+" that becomes "-" when open, same technique as the FAQ. */
+.svc-cat > summary::after {
+  content: "";
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  background:
+    linear-gradient(var(--emerald), var(--emerald)) center / 100% 2px no-repeat,
+    linear-gradient(var(--emerald), var(--emerald)) center / 2px 100% no-repeat;
+  transition: transform 0.2s ease;
+}
+.svc-cat[open] > summary::after {
+  background-size: 100% 2px, 0 0;
+  transform: rotate(180deg);
+}
+
+.svc-cat-body { padding: var(--space-2) var(--space-3) var(--space-4); }
+
+/* Custom Work Plans — the closing call-to-action band. */
+.svc-custom {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--emerald);
+  border-radius: var(--radius-lg);
+}
+.svc-custom-text h3 { margin-bottom: 0.25em; }
+.svc-custom-text p { font-size: 0.95rem; max-width: 62ch; }
 
 
 /* ==========================================================================
@@ -814,36 +905,88 @@ img, svg { max-width: 100%; display: block; }
 }
 
 
-/* ==========================================================================
-   8c. AREAS WE SERVE
-   ========================================================================== */
 
-.areas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--space-2);
+/* Facility photo with the title + subhead overlaid on top (a dark gradient
+   scrim keeps the white text legible over any image). */
+.facility-hero {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   margin-bottom: var(--space-4);
 }
-.areas-grid li {
+.facility-hero-img {
+  width: 100%;
+  height: clamp(220px, 30vw, 360px);
+  object-fit: cover;
+  display: block;
+}
+.facility-hero-text {
+  position: absolute;
+  inset: 0;
   display: flex;
-  align-items: center;
-  gap: 0.6em;
-  padding: var(--space-2) var(--space-3);
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(var(--space-3), 3vw, var(--space-5));
+  background: linear-gradient(to top,
+    rgba(11, 22, 15, 0.82) 0%, rgba(11, 22, 15, 0.40) 45%, rgba(11, 22, 15, 0) 78%);
+}
+.facility-hero-text h3 { color: #fff; margin-bottom: 0.25em; }
+.facility-hero-text .facility-lead { color: #fff; opacity: 0.92; margin-bottom: 0; }
+
+
+/* ==========================================================================
+   8c. AREAS WE SERVE
+   --------------------------------------------------------------------------
+   Neighborhoods grouped into region cards. Each card is tinted with the
+   emerald left-edge used elsewhere on the site; the neighborhoods inside are
+   small white pill chips.
+   ========================================================================== */
+
+.area-groups {
+  display: grid;
+  /* min(100%, 300px) lets the card shrink below 300px on very narrow phones
+     instead of forcing a track wider than the screen (which would scroll). */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  align-items: start;                 /* cards keep their own height */
+}
+
+.area-group {
   background: var(--surface-alt);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--ink);
+  border-left: 3px solid var(--emerald);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
 }
-.areas-grid li::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--emerald);
+.area-group h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.05rem;
+  margin-bottom: var(--space-3);
+}
+.area-group h3 svg {
+  width: 18px;
+  height: 18px;
+  color: var(--emerald);
   flex-shrink: 0;
 }
+
+.area-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.area-chips li {
+  font-size: 0.85rem;
+  color: var(--body);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3em 0.75em;
+}
+
 .areas-note { color: var(--muted); font-size: 0.95rem; }
 .areas-note a { color: var(--forest); font-weight: 600; }
 
@@ -1380,7 +1523,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
           </a>
         </li>
         <li>
-          <a href="https://linkedin.com/company/yourcompany" aria-label="Commercial Green Cleaning on LinkedIn" rel="noopener">
+          <a href="https://www.linkedin.com/in/daniel-stone-850532420" aria-label="Commercial Green Cleaning on LinkedIn" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05a4.2 4.2 0 0 1 3.77-2c4.03 0 4.78 2.6 4.78 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>
           </a>
         </li>
@@ -1424,9 +1567,10 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
         </h1>
 
         <p class="hero-sub">
-          We provide dependable janitorial service for offices, medical suites, and
-          retail spaces &mdash; using certified green products that are safe for your
-          staff, your clients, and the building itself.
+          We provide dependable janitorial service for offices, medical and retail
+          spaces, hotels, residential communities, and schools &mdash; using
+          eco-friendly products that are safe for your staff, your clients, and the
+          building itself.
         </p>
 
         <div class="hero-actions">
@@ -1443,7 +1587,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
              they answer the visitor's immediate "are these people real?" -->
         <ul class="hero-badges">
           <li>Licensed, insured &amp; bonded</li>
-          <li>Green Seal certified products</li>
+          <li>Eco-friendly products</li>
           <li>Free on-site walkthrough</li>
         </ul>
 
@@ -1463,7 +1607,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
       <div class="container trust-grid">
 
         <div class="stat">
-          <span class="stat-num">30+</span>
+          <span class="stat-num">35+</span>
           <span class="stat-label">Years in business</span>
         </div>
 
@@ -1474,7 +1618,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="stat">
           <span class="stat-num">100%</span>
-          <span class="stat-label">Green-certified supplies</span>
+          <span class="stat-label">Eco-friendly supplies</span>
         </div>
 
         <div class="stat">
@@ -1489,60 +1633,195 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 
     <!-- ===================================================================
-         SERVICES  (what we do)
-         >>> FILLER CONTENT — refine before launch <<<
-         These six cards describe the *work* (services). The industries you
-         serve now live in FACILITY TYPES, just below. To add a card, copy one
-         <article class="card"> block. To change an icon, swap the <path> data.
+         SERVICES  (what we offer)
+         Twenty service cards. Each is an icon, a title, and a description.
+         To add one, copy an <article class="card"> block; to change an icon,
+         swap the <path> data inside its <svg>.
+         =================================================================== -->
+        <!-- ===================================================================
+         SERVICES  (what we offer)
+         The services are grouped into three collapsible categories, using the
+         browser's native <details> element (the same mechanism as the FAQ).
+         Each service is still an icon card with its full description.
+
+         Custom Work Plans is pulled out as the call-to-action band below.
+
+         To move a service to another category, cut its <article class="card">
+         block and paste it inside a different category's <div class="cards">
+         (and update the "N services" count in each summary).
          =================================================================== -->
     <section class="section" id="services">
       <div class="container">
 
         <div class="section-head">
           <p class="eyebrow">Services</p>
-          <h2>What we do</h2>
-          <p class="section-sub">Recurring janitorial contracts and one-time deep cleans, scheduled around your hours and tailored to your space.</p>
+          <h2>What We Offer</h2>
+          <p class="section-sub">Whether your needs are simple or complex, we offer a range of comprehensive services that can be customized.</p>
         </div>
 
-        <div class="cards">
+        <div class="svc-cats">
 
-          <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Daily &amp; recurring janitorial</h3>
-            <p>Nightly, weekly, or custom schedules for workstations, common areas, break rooms, and restrooms.</p>
+          <details class="svc-cat" open>
+            <summary>
+              <span class="svc-cat-name">Recurring Facility Care</span>
+              <span class="svc-cat-count">8 services</span>
+            </summary>
+            <div class="svc-cat-body">
+              <div class="cards">
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 3h3v3.5h-3zM11 6.5V9.5M13 6.5V9.5M14 4.3h2M14 6.3h2M9 9.5h5a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 8 19V10.5a1 1 0 0 1 1-1zM8.5 14h6"/></svg>
+            <h3>Janitorial Service</h3>
+            <p>Our most popular service. We offer daily, weekly, or customized cleaning schedules tailored to your facility’s needs. We handle everything from routine tidying to deep cleaning across multiple types of facilities.</p>
           </article>
 
-          <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v12H3zM3 14h18M9 8v12M15 8v12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Carpet &amp; hard-floor care</h3>
-            <p>Extraction, buffing, stripping, and refinishing for carpet, tile, marble, and hard surfaces.</p>
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18h16M6 18v-1a6 6 0 0 1 12 0v1M12 7V5M10 5h4"/></svg>
+            <h3>Day Porter Service</h3>
+            <p>Our dedicated day porters provide real-time facility management during business hours. We respond to spills, messes, and maintenance requests immediately to keep your space guest-ready throughout the day while your team stays productive.</p>
           </article>
 
-          <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Restroom sanitization</h3>
-            <p>Protocol-driven disinfection and restocking of paper, soap, and liners &mdash; billed at cost.</p>
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 21V10h4a1 1 0 0 1 1 1v10M3 21h18M7 8h3M7 12h3M7 16h3"/></svg>
+            <h3>Lobby &amp; Common Areas</h3>
+            <p>Lobby and common spaces are where first impressions form. Whether you manage an HOA, multi-tenant building, hospital or any high-traffic facility, our team can be routinely scheduled to create a welcoming environment that reflects your company’s standards. We keep lobbies, reception areas, and common spaces immaculate.</p>
           </article>
 
-          <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Window &amp; glass</h3>
-            <p>Interior glass, storefronts, and display windows kept streak-free on a set rotation.</p>
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
+            <h3>Restroom Restocking &amp; Cleaning</h3>
+            <p>We love clean, well-stocked and organized restrooms. We manage everything from daily sanitizing to restocking soap, towels, and other essentials, ensuring your facilities meet health and cleanliness standards.</p>
           </article>
 
-          <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>High-touch disinfection</h3>
-            <p>Targeted decontamination of the surfaces that actually move illness through a building.</p>
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5 12 12l9-4.5zM3 7.5V16l9 4.5M21 7.5V16l-9 4.5M12 12v9.5"/></svg>
+            <h3>Supplies &amp; Consumables Restocking</h3>
+            <p>We keep your essential supplies stocked. From cleaning products, paper goods, soap, and other consumables, we proactively manage inventory so you never face shortages and your operations run smoothly.</p>
           </article>
 
-          <article class="card">
-            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Deep &amp; post-event cleaning</h3>
-            <p>One-time deep cleans, turnovers, and post-construction or post-event cleanup on demand.</p>
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M10 11v6M14 11v6"/></svg>
+            <h3>Trash &amp; Recycling Management</h3>
+            <p>We handle regular trash removal, recycling coordination, and can customize collection schedules to match your business needs. Let us ensure efficient waste management that keeps your facility organized and environmentally responsible.</p>
           </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <h3>Surface &amp; Touch Sanitization</h3>
+            <p>High-touch surfaces spread germs. We regularly clean and disinfect door handles, light switches, countertops, railings, and more in order to maintain a hygienic workspace for your team and visitors.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3>Security &amp; Facility Oversight</h3>
+            <p>We provide an extra set of eyes on your facility to provide peace of mind. Our porters monitor for maintenance issues, security concerns, and unusual activity while keeping your space clean.</p>
+          </article>
+
+              </div>
+            </div>
+          </details>
+
+          <details class="svc-cat">
+            <summary>
+              <span class="svc-cat-name">Specialized &amp; Surface Care</span>
+              <span class="svc-cat-count">7 services</span>
+            </summary>
+            <div class="svc-cat-body">
+              <div class="cards">
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v10H4zM6 17v2.5M9 17v2.5M12 17v2.5M15 17v2.5M18 17v2.5M8 11h8M8 13.5h8"/></svg>
+            <h3>Carpet Cleaning</h3>
+            <p>Professional carpet cleaning extends the life of your flooring and removes deep-set dirt, allergens, and stains. We use advanced equipment and eco-friendly cleaning solutions to refresh your carpets and improve indoor air quality.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v12H3zM3 14h18M9 8v12M15 8v12"/></svg>
+            <h3>Floor Care &amp; Maintenance</h3>
+            <p>From hardwood and concrete to tile and vinyl, we provide specialized care for every flooring type. Our floor care services keep surfaces looking new and extend floor lifespan through proper cleaning and protective treatments.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9zM3 9h18M9 3 6 9l6 12M15 3l3 6-6 12"/></svg>
+            <h3>Marble &amp; Granite Surface Care</h3>
+            <p>Natural stone requires specialized treatment to maintain its beauty and integrity. We provide expert marble and granite cleaning, polishing, and sealing services for countertops and floors to protect and keep premium surfaces radiant.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM12 4v16M4 12h16M15 7l2 2"/></svg>
+            <h3>Window Cleaning (Interior &amp; Exterior + Doors)</h3>
+            <p>Crystal-clear windows transform how your facility looks and feels. Our professional window cleaning services cover interior and exterior glass plus doors, ensuring optimal visibility and a bright, welcoming appearance throughout your building.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11V8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3M3 11a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v6H3zM6 19v2M18 19v2"/></svg>
+            <h3>Upholstery Cleaning</h3>
+            <p>Office furniture, lobby seating, and conference room upholstery accumulate dust, stains, and odors. Professional upholstery cleaning restores fabric, removes allergens, and extends the life of your furnishings.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11V8a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3M6 11a2 2 0 0 1 0 4v2h12v-2a2 2 0 0 1 0-4M6 15h12M8 19v2M16 19v2"/></svg>
+            <h3>Leather Cleaning &amp; Conditioning</h3>
+            <p>Leather furniture makes a sophisticated statement and requires proper maintenance. We provide specialized leather cleaning and conditioning to keep premium seating looking executive-quality.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v13H3zM8 21h8M12 17v4"/></svg>
+            <h3>Computer Room Cleaning</h3>
+            <p>Tech environments demand pristine conditions. We provide specialized cleaning for computer rooms using static-free equipment and protocols that protect sensitive electronics while eliminating dust and contaminants.</p>
+          </article>
+
+              </div>
+            </div>
+          </details>
+
+          <details class="svc-cat">
+            <summary>
+              <span class="svc-cat-name">Projects &amp; One-Time</span>
+              <span class="svc-cat-count">4 services</span>
+            </summary>
+            <div class="svc-cat-body">
+              <div class="cards">
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg>
+            <h3>Special Events Cleaning</h3>
+            <p>Preparing for a major event or cleaning up after one? We coordinate with your timeline to prepare spaces before events or provide comprehensive post-event cleanup.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h3l3-2h1v6h-1l-3-2H4zM6 15v3M11 9l6-3M11 11h7M11 13l6 3"/></svg>
+            <h3>Power Washing &amp; Pressure Washing</h3>
+            <p>High-powered water cleaning removes years of accumulated dirt, grime, mold, oil and mildew from exterior surfaces from building facades to sidewalks and parking lots. We adjust pressure levels and techniques for different materials to ensure effective cleaning without damage.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h12M8 20 11 6h2l3 14M9.5 13h5M10.5 9.5h3"/></svg>
+            <h3>Construction Cleanup</h3>
+            <p>During construction phases, we provide ongoing cleanup to manage dust, debris, and disruption. Regular cleanups minimize impact on project areas, new or old, and keep your clients happy.</p>
+          </article>
+
+<article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4l1.6 4.4L17 10l-4.4 1.6L11 16l-1.6-4.4L5 10l4.4-1.6z"/><path d="M18 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>
+            <h3>Post-Construction Deep Clean</h3>
+            <p>After your contractors finish, our team delivers complete facility restoration. We remove dust from every surface, clean windows, floors, and fixtures, dispose of construction debris, and ensure your facility is move-in ready.</p>
+          </article>
+
+              </div>
+            </div>
+          </details>
 
         </div>
+
+        <!-- Custom Work Plans, pulled out as a closing call to action. -->
+        <div class="svc-custom">
+          <div class="svc-custom-text">
+            <h3>Custom Work Plans</h3>
+            <p>Every business is different. We specialize in developing customized cleaning plans that address your specific challenges and business priorities. Contact us to discuss custom solutions for your facility.</p>
+          </div>
+          <a class="btn btn-primary" href="#contact">Get a custom plan</a>
+        </div>
+
       </div>
     </section>
 
@@ -1560,7 +1839,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
          <div class="facility-panel">, and keep their id / aria-controls /
          aria-labelledby values paired (ftab-x <-> fpanel-x).
          =================================================================== -->
-    <section class="section section-tint" id="facility-types">
+        <section class="section section-tint" id="facility-types">
       <div class="container">
 
         <div class="section-head">
@@ -1612,17 +1891,24 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="facility-panel is-active" role="tabpanel"
              id="fpanel-office" aria-labelledby="ftab-office" tabindex="0">
-          <h3>Clean Office. Focused Teams.</h3>
-          <p class="facility-lead">Professional cleaning that reflects the quality of your business.</p>
+          <!-- Facility photo with the headline overlaid (Schema 3). -->
+          <div class="facility-hero">
+            <img class="facility-hero-img" src="assets/facilities/office.jpg"
+                 alt="Modern office interior" loading="eager" decoding="async">
+            <div class="facility-hero-text">
+              <h3>Clean Office. Focused Teams.</h3>
+              <p class="facility-lead">Professional cleaning that reflects the quality of your business.</p>
+            </div>
+          </div>
 
           <div class="facility-cols">
             <div>
               <h4>The services we provide</h4>
-              <p>Daily and weekly office cleaning including carpet and hard-floor maintenance, restroom sanitization, common-room detailing, kitchen and break-room service, window cleaning, and deep cleaning of high-touch surfaces. We can customize schedules around your team&rsquo;s workflow &mdash; early morning, after-hours, or weekend service &mdash; to minimize disruption. We handle the cleaning schedule, supplies, and quality standards so you can focus on running your business.</p>
+              <p>Daily and weekly office cleaning including carpet and hard floor maintenance, restroom sanitization, common room detailing, kitchen and break room service, window cleaning, trash removal and deep cleaning of high-touch surfaces. We can customize services and schedules around your team’s workflow — early morning, after-hours, or weekend service — to minimize disruption. We handle the cleaning schedule, supplies, and quality standards so you can focus on running your business.</p>
             </div>
             <div>
               <h4>Why office cleaning matters</h4>
-              <p>A clean office isn&rsquo;t just about appearance. It impacts health, productivity, employee satisfaction, and client perception. When prospects and partners walk through your door, they&rsquo;re assessing your professionalism in seconds. A meticulously maintained workspace signals that you care about details, respect your team, and take your business seriously. By partnering with us, you create an immaculate environment where your team can thrive and your brand commands client confidence.</p>
+              <p>A clean office isn’t just about appearance. It impacts health, productivity, employee satisfaction, and client perception. When prospects and partners walk through your door, they’re assessing your professionalism in seconds. A meticulously maintained workspace signals that you care about details, respect your team, and take your business seriously. By partnering with us, you create an immaculate environment where your team can thrive and your brand commands client confidence.</p>
             </div>
           </div>
 
@@ -1634,19 +1920,26 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
               <li><strong>Tailored Operational Scheduling:</strong> We build custom cleaning schedules that sync perfectly with your business hours to ensure zero disruption.</li>
               <li><strong>Friction-Free Management:</strong> We handle every detail of your facility care, freeing you from the hassle of supervisor oversight so you can focus on your team.</li>
               <li><strong>Uncompromising Brand Alignment:</strong> We deliver a consistently pristine workspace that accurately reflects your high professional standards to clients and partners.</li>
-              <li><strong>A 30-Year Legacy of Trust:</strong> Enjoy the unmatched reliability and accountability that comes with over three decades of family-run expertise.</li>
+              <li><strong>A 35-Year Legacy of Trust:</strong> Enjoy the unmatched reliability and accountability that comes with over three and a half decades of family-run expertise.</li>
           </ul>
         </div>
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-healthcare" aria-labelledby="ftab-healthcare" tabindex="0">
-          <h3>Clean Facilities. Patient Trust.</h3>
-          <p class="facility-lead">Medical-grade cleaning for healthcare environments that demand the highest standards.</p>
+          <!-- Facility photo with the headline overlaid (Schema 3). -->
+          <div class="facility-hero">
+            <img class="facility-hero-img" src="assets/facilities/healthcare.jpg"
+                 alt="Bright medical facility lobby" loading="lazy" decoding="async">
+            <div class="facility-hero-text">
+              <h3>Clean Facilities. Patient Trust.</h3>
+              <p class="facility-lead">Medical-grade cleaning for healthcare environments that demand the highest standards.</p>
+            </div>
+          </div>
 
           <div class="facility-cols">
             <div>
               <h4>The services we provide</h4>
-              <p>Specialized cleaning and disinfection for medical offices, clinics, urgent care, and healthcare facilities. We handle patient rooms, waiting areas, restrooms, and medical-equipment areas with protocol-driven precision. Our safe, eco-friendly products meet healthcare standards without compromising patient or staff safety. We offer flexible scheduling &mdash; morning prep, midday refreshes, or after-hours deep cleaning.</p>
+              <p>Specialized cleaning and disinfection for medical offices, clinics, urgent care, and healthcare facilities. We handle patient rooms, waiting areas, restrooms, and medical equipment areas with protocol-driven precision. Our safe, eco-friendly products meet healthcare standards without compromising patient or staff safety. We offer flexible scheduling — morning prep, midday refreshes, or after-hours deep cleaning.</p>
             </div>
             <div>
               <h4>Why healthcare cleaning matters</h4>
@@ -1659,31 +1952,38 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
               <li><strong>Healthcare-Grade Disinfection:</strong> We eliminate pathogens using advanced, non-toxic products that protect patient health without harsh fumes.</li>
               <li><strong>Strict Protocol-Driven Compliance:</strong> Every clean is strictly aligned with the highest medical standards and best practices.</li>
               <li><strong>Targeted High-Touch Mitigation:</strong> We pay meticulous attention to patient-facing areas and high-touch vectors to actively reduce infection risks.</li>
-              <li><strong>Operational Responsiveness:</strong> We offer total flexibility and rapid response times for urgent or specialized medical cleaning needs.</li>
-              <li><strong>30 Years of Medical Expertise:</strong> Backed by three decades of experience, our specialized teams intimately understand healthcare&rsquo;s unique regulatory demands.</li>
+              <li><strong>Operational Responsiveness:</strong> We offer flexible and rapid response times for urgent or specialized medical cleaning needs.</li>
+              <li><strong>35 Years of Medical Facilities Expertise:</strong> Backed by three and a half decades of experience, our specialized teams understand healthcare’s regulatory demands.</li>
           </ul>
         </div>
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-retail" aria-labelledby="ftab-retail" tabindex="0">
-          <h3>Every Detail Counts. Especially the First Impression.</h3>
-          <p class="facility-lead">Luxury-level cleaning for retail spaces where appearance drives sales and brand experience.</p>
+          <!-- Facility photo with the headline overlaid (Schema 3). -->
+          <div class="facility-hero">
+            <img class="facility-hero-img" src="assets/facilities/retail.jpg"
+                 alt="Upscale retail shopping center" loading="lazy" decoding="async">
+            <div class="facility-hero-text">
+              <h3>Every Detail Counts. Especially the First Impression.</h3>
+              <p class="facility-lead">Luxury-level cleaning for retail spaces where appearance drives sales and brand experience.</p>
+            </div>
+          </div>
 
           <div class="facility-cols">
             <div>
               <h4>The services we provide</h4>
-              <p>High-touch retail and shopping-center cleaning including storefronts, display windows, floors (carpet, tile, and marble), fitting rooms, restrooms, and common areas. We handle post-sale cleanup, window detailing, and high-traffic area maintenance. Our teams work around operating hours &mdash; early morning before doors open, during off-peak times, or after-hours &mdash; to keep your space pristine without disrupting customer experience.</p>
+              <p>High-touch retail and shopping center cleaning including storefronts, display windows, floors (wood, carpet, tile, marble, and concrete), fitting rooms, restrooms, and common areas. We handle post-sale cleanup, window detailing, and high-traffic area maintenance. Our teams work around operating hours — early morning before doors open, during off-peak times, or after-hours — to keep your space pristine without disrupting customer experience.</p>
             </div>
             <div>
               <h4>Why retail cleaning matters</h4>
-              <p>In retail, your storefront is your salesperson. Customers decide in seconds whether to walk in, and a clean, gleaming space invites them in. When dust on displays, streaked windows, or scuffed floors undermine your brand, it can actively drive your customers away. Instead, an immaculate space increases dwell time, boosts purchasing decisions, elevates the customer store experience, and reinforces a premium brand. For retailers and shopping centers, cleanliness directly correlates to revenue and customer trust.</p>
+              <p>In retail, your storefront is your salesperson. Customers decide in seconds whether to walk in and a clean, gleaming space invites them in. When dust on displays, streaked windows, or scuffed floors undermine your brand, it can actively drive your customers away. Instead, an immaculate space increases dwell time, boosts purchasing decisions, elevates the customer store experience, and reinforces a premium brand. For retailers and shopping centers, cleanliness directly correlates to revenue and customer trust.</p>
             </div>
           </div>
 
           <p class="facility-diff-title">The professional cleaning difference</p>
           <ul class="facility-checklist">
               <li><strong>Luxury-Grade Precision:</strong> Attention to detail that perfectly matches your high brand standards.</li>
-              <li><strong>Rodeo Drive Heritage:</strong> Over 30 years of experience catering to premier luxury retail.</li>
+              <li><strong>Rodeo Drive Heritage:</strong> Over 35 years of experience catering exclusively to premier luxury retail.</li>
               <li><strong>Zero-Disruption Scheduling:</strong> Flexible cleaning timed perfectly around your operating hours and peak traffic.</li>
               <li><strong>Surface-Specific Expertise:</strong> Specialized care for high-end flooring, displays, glass, and delicate materials.</li>
               <li><strong>Flawless Brand Consistency:</strong> Reliable, premium results that protect and elevate your image daily.</li>
@@ -1693,17 +1993,24 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-hospitality" aria-labelledby="ftab-hospitality" tabindex="0">
-          <h3>Exceptional Guest Experiences. Meticulous Cleaning.</h3>
-          <p class="facility-lead">Hospitality cleaning that turns guests into loyal customers.</p>
+          <!-- Facility photo with the headline overlaid (Schema 3). -->
+          <div class="facility-hero">
+            <img class="facility-hero-img" src="assets/facilities/hospitality.jpg"
+                 alt="Hotel-style reception lobby" loading="lazy" decoding="async">
+            <div class="facility-hero-text">
+              <h3>Exceptional Guest Experiences. Meticulous Cleaning.</h3>
+              <p class="facility-lead">Hospitality cleaning that turns guests into loyal customers.</p>
+            </div>
+          </div>
 
           <div class="facility-cols">
             <div>
               <h4>The services we provide</h4>
-              <p>Daily, special-event, and turnover cleaning for hotels, resorts, and hospitality venues. Our expertise spans guest suites, pristine bathrooms, high-traffic common areas, corridors, lobby refreshing, and post-event cleaning. We intimately understand the hospitality standard: spaces must be immaculate, restocked, and guest-ready on strict timelines. Operating with precision during tight turnover windows, our teams are equipped to handle high-volume cleaning without compromising quality.</p>
+              <p>Daily or special events cleaning and turnover cleaning for hotels, resorts, and hospitality venues. Our expertise spans guest suites, pristine bathrooms, high-traffic common areas, corridors, lobby refreshing, and post-event cleaning. We intimately understand the hospitality standard: spaces must be immaculate, restocked, and guest-ready on strict timelines. Operating with precision during tight turnover windows, our teams are equipped to handle high-volume cleaning without compromising quality.</p>
             </div>
             <div>
               <h4>Why hospitality cleaning matters</h4>
-              <p>Guests judge your property within moments of crossing a threshold. A speck of dust, a smudged mirror, or a streaky window becomes their lasting impression and often determines whether they&rsquo;ll return or share their complaint publicly. In hospitality, immaculate environments are the foundation of excellent guest experiences and repeat business. We understand what is at stake, bringing the specialized scale and professional cleaning expertise required to consistently elevate your company&rsquo;s standards.</p>
+              <p>Guests judge your property within moments of crossing a threshold. A speck of dust, a smudged mirror, or a streaky window becomes their lasting impression and often determines whether they’ll return or share their complaint publicly. In hospitality, immaculate environments are the foundation of excellent guest experiences and repeat business. We understand what is at stake, bringing the specialized scale and professional cleaning expertise required to consistently elevate your company’s standards.</p>
             </div>
           </div>
 
@@ -1712,7 +2019,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
               <li><strong>Hospitality-Elite Training:</strong> Specialized teams engineered for rapid turnover speed without sacrificing luxury standards.</li>
               <li><strong>Rigorous Systematic Inspections:</strong> A disciplined, multi-point checklist designed to catch every micro-detail before a guest does.</li>
               <li><strong>Odor-Free Eco-Luxury Care:</strong> Advanced, sustainable products that ensure flawless cleanliness with zero harsh chemical scents.</li>
-              <li><strong>Precision Timing Assurance:</strong> Guaranteed room readiness backed by a 30+ year legacy of high-volume operational expertise.</li>
+              <li><strong>Precision Timing Assurance:</strong> Guaranteed room readiness backed by a 35+ year legacy of high-volume operational expertise.</li>
               <li><strong>Scalable Peak-Season Flexibility:</strong> On-demand surge capacity to seamlessly handle major events, conferences, and high-occupancy seasons.</li>
               <li><strong>A Legacy of Dedicated Service:</strong> A family-run commitment to excellence that respects your property and treats your guests like our own.</li>
           </ul>
@@ -1720,44 +2027,58 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-hoa" aria-labelledby="ftab-hoa" tabindex="0">
-          <h3>Well-Maintained Properties. Happy Residents.</h3>
-          <p class="facility-lead">Community cleaning that builds property value and resident pride.</p>
+          <!-- Facility photo with the headline overlaid (Schema 3). -->
+          <div class="facility-hero">
+            <img class="facility-hero-img" src="assets/facilities/hoa.jpg"
+                 alt="Multi-family residential community" loading="lazy" decoding="async">
+            <div class="facility-hero-text">
+              <h3>Well-Maintained Properties. Happy Residents.</h3>
+              <p class="facility-lead">Community cleaning that builds property value and resident pride.</p>
+            </div>
+          </div>
 
           <div class="facility-cols">
             <div>
               <h4>The services we provide</h4>
-              <p>We deliver comprehensive community maintenance for HOAs, condominiums, and multi-family properties. Our expertise spans common areas, lobbies, hallways, stairwells, fitness centers, pools, parking structures, and building exteriors. We handle routine maintenance and seasonal deep cleaning. Whether you need weekly service, monthly touch-ups, or specialized cleaning for specific on-demand projects, we customize services and schedules to maintain your property&rsquo;s value and curb appeal.</p>
+              <p>We deliver comprehensive community maintenance for HOAs, condominiums, and multi-family properties. Our expertise spans common areas, lobbies, hallways, stairwells, fitness centers, pools, parking structures, laundry rooms, garage, and building exteriors. We handle routine maintenance and seasonal deep cleaning. Whether you need weekly service, monthly touch-ups, or specialized cleaning for specific on-demand projects, we customize services and schedules to maintain your property’s value and curb appeal.</p>
             </div>
             <div>
               <h4>Why community cleaning matters</h4>
-              <p>Property values and livability are directly tied to proper, routine maintenance. Well-maintained common areas signal that a community is managed professionally, which increases resident satisfaction and property desirability. Clean lobbies, spotless hallways, and maintained exteriors aren&rsquo;t just about appearance &mdash; they also actively reduce liability concerns, prevent premature property deterioration, and foster community and residential pride. For modern HOAs, appearance management is equity management. We understand the complex logistics of community oversight, bringing the reliable scale and professional cleaning expertise required to safeguard your property&rsquo;s value.</p>
+              <p>Property values and property livability are directly tied to proper and routine maintenance. Well-maintained common areas signal that a community is managed professionally, which increases resident satisfaction and property desirability. Clean lobbies, spotless hallways, and maintained exteriors aren’t just about appearance. They also actively reduce liability concerns, prevent premature property deterioration, and foster community and residential pride. For modern HOAs, appearance management is equity management. We understand the complex logistics of community oversight, bringing the reliable scale and professional cleaning expertise required to safeguard your property’s value.</p>
             </div>
           </div>
 
           <p class="facility-diff-title">The professional cleaning difference</p>
           <ul class="facility-checklist">
-              <li><strong>Tailored Community Scheduling:</strong> Dependable, routine upkeep designed strictly around your neighborhood or building&rsquo;s specific traffic patterns.</li>
+              <li><strong>Tailored Community Scheduling:</strong> Dependable, routine upkeep designed strictly around your neighborhood or building’s specific traffic patterns.</li>
               <li><strong>Multi-Unit Amenity Expertise:</strong> Extensive experience managing the unique demands of high-traffic shared spaces and recreational facilities.</li>
               <li><strong>Resident-Safe Green Care:</strong> Advanced, eco-friendly products that ensure immaculate spaces while protecting children, pets, and the local environment.</li>
               <li><strong>Proactive Asset Protection:</strong> Detail-driven cleaning methods that identify and prevent wear-and-tear before it turns into costly property damage.</li>
-              <li><strong>A 30-Year Legacy of Trust:</strong> Over three decades of proven reliability, ensuring seamless resident satisfaction and property-manager peace of mind.</li>
+              <li><strong>A 35-Year Legacy of Trust:</strong> Over three and a half decades of proven reliability, ensuring seamless resident satisfaction and property manager peace of mind.</li>
               <li><strong>Board-Aligned Communication:</strong> Professional management teams equipped to communicate transparently and effectively with HOA boards and property managers.</li>
           </ul>
         </div>
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-schools" aria-labelledby="ftab-schools" tabindex="0">
-          <h3>Clean Classrooms. Healthy Students. Focused Success.</h3>
-          <p class="facility-lead">Educational-facility cleaning that keeps students striving and staff protected.</p>
+          <!-- Facility photo with the headline overlaid (Schema 3). -->
+          <div class="facility-hero">
+            <img class="facility-hero-img" src="assets/facilities/schools.jpg"
+                 alt="School gymnasium" loading="lazy" decoding="async">
+            <div class="facility-hero-text">
+              <h3>Clean Classrooms. Healthy Students. Focused Success.</h3>
+              <p class="facility-lead">Educational facility cleaning that keeps students striving and staff protected.</p>
+            </div>
+          </div>
 
           <div class="facility-cols">
             <div>
               <h4>The services we provide</h4>
-              <p>We deliver comprehensive cleaning for K&ndash;12 schools, universities, and educational facilities. Our expertise covers classrooms, hallways, cafeterias, bathrooms, gymnasiums, libraries, and administrative areas. We prioritize high-touch surface disinfection, floor maintenance, and deep cleaning designed around school calendars. Our teams work around class schedules &mdash; early morning before school, during lunch periods, after hours, and during breaks &mdash; to minimize disruption.</p>
+              <p>We deliver comprehensive cleaning for K-12 schools, universities, and educational facilities. Our expertise covers classrooms, hallways, cafeterias, bathrooms, gymnasiums, libraries, and administrative areas. We prioritize high-touch surface disinfection, floor maintenance, and deep cleaning designed around school calendars. Our teams work around class schedules — early morning before school, during lunch periods, after hours, and during breaks — to minimize disruption.</p>
             </div>
             <div>
-              <h4>Why educational cleaning matters</h4>
-              <p>Clean schools directly impact student and staff health, attendance, and academic performance. High-traffic areas and shared surfaces mean rapid pathogen spread; proper disinfection reduces illness outbreaks and absenteeism. Beyond health, a clean, well-maintained facility communicates to students, families, and staff that the school invests in their wellbeing and institutional quality. We understand the unique logistics of academic scheduling and safety compliance, bringing professional cleaning expertise to protect your institution.</p>
+              <h4>Why educational facility cleaning matters</h4>
+              <p>Clean schools directly impact student and staff health, attendance, and academic performance. High-traffic areas and shared surfaces mean rapid pathogen spread. Proper disinfection reduces illness outbreaks and absenteeism. Beyond health, a clean, well-maintained facility communicates to students, families, and staff that the school invests in their wellbeing and institutional quality. We understand the unique logistics of academic scheduling and safety compliance, bringing professional cleaning expertise to protect your institution.</p>
             </div>
           </div>
 
@@ -1767,7 +2088,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
               <li><strong>Student-Safe Non-Toxic Products:</strong> Advanced, eco-friendly green cleaning methods perfectly appropriate for young learners and sensitive environments.</li>
               <li><strong>Adaptive Academic Scheduling:</strong> Flexible operational windows tailored entirely around school calendars, sports seasons, and academic activities.</li>
               <li><strong>Targeted High-Touch Mitigation:</strong> Meticulous decontamination of desks, shared equipment, common areas, and high-frequency touchpoints.</li>
-              <li><strong>Facility-Specialized Professionals:</strong> Fully vetted, reliable service teams trained specifically in campus protocols and backed by a 30+ year legacy of trust.</li>
+              <li><strong>Facility-Specialized Professionals:</strong> Fully vetted, reliable service teams willing to train specifically for your campus and facility protocols.</li>
               <li><strong>Sustainable Wellness Practices:</strong> Certified eco-friendly methods that actively protect indoor air quality and promote long-term staff and student health.</li>
           </ul>
         </div>
@@ -1779,36 +2100,129 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
     <!-- ===================================================================
          AREAS WE SERVE
-         >>> FILLER CONTENT — replace with your real coverage before launch <<<
-         Listing the specific neighborhoods and cities you cover meaningfully
-         improves how you rank in local search. To add or remove an area,
-         edit the <li> items.
+         Neighborhoods grouped by region. To add an area, add an <li> to the
+         right region's <ul class="area-chips">. To add a region, copy a whole
+         <div class="area-group"> block.
          =================================================================== -->
     <section class="section" id="areas">
       <div class="container">
 
         <div class="section-head">
           <p class="eyebrow">Areas We Serve</p>
-          <h2>Serving greater Los Angeles</h2>
-          <p class="section-sub">From the Westside to the wider metro, our crews keep commercial properties across the region pristine.</p>
+          <h2>Your best professional cleaner is closer than you think.</h2>
+          <p class="section-sub">Here are the areas that we serve.</p>
         </div>
 
-        <ul class="areas-grid">
-          <li>Beverly Hills</li>
-          <li>Santa Monica</li>
-          <li>Century City</li>
-          <li>West Los Angeles</li>
-          <li>Brentwood</li>
-          <li>Westwood</li>
-          <li>Culver City</li>
-          <li>Marina del Rey</li>
-          <li>Downtown LA</li>
-          <li>Pasadena</li>
-          <li>Glendale</li>
-          <li>El Segundo</li>
-        </ul>
+        <div class="area-groups">
 
-        <p class="areas-note">Don&rsquo;t see your area listed? <a href="#contact">Get in touch</a> &mdash; our service area is always expanding.</p>
+        <div class="area-group">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Westside</h3>
+          <ul class="area-chips">
+            <li>Santa Monica</li>
+            <li>Brentwood</li>
+            <li>Brentwood Park</li>
+            <li>North of Montana</li>
+            <li>Westwood</li>
+            <li>Sawtelle</li>
+            <li>Palms</li>
+            <li>Ocean Park</li>
+            <li>Marina Del Rey</li>
+            <li>Marina Peninsula</li>
+            <li>Venice</li>
+            <li>Mar Vista</li>
+            <li>Playa Vista</li>
+            <li>Oakwood</li>
+            <li>Del Rey</li>
+            <li>Sunset Park</li>
+            <li>Westchester</li>
+            <li>Westdale</li>
+            <li>LAX Area</li>
+          </ul>
+        </div>
+
+        <div class="area-group">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Central LA &amp; Mid-City LA</h3>
+          <ul class="area-chips">
+            <li>Mid City</li>
+            <li>Mid-Wilshire</li>
+            <li>Koreatown</li>
+            <li>Melrose</li>
+            <li>Melrose Hill</li>
+            <li>Miracle Mile</li>
+            <li>Carthay Square</li>
+            <li>Picfair Village</li>
+            <li>Beverly Grove</li>
+            <li>Fairfax</li>
+            <li>Hancock Park</li>
+            <li>Norma Triangle</li>
+            <li>Cienega</li>
+            <li>Sunkist Park</li>
+            <li>Pico-Robertson</li>
+            <li>Park La Brea</li>
+            <li>Crestview</li>
+            <li>Little Ethiopia</li>
+            <li>Beverlywood</li>
+            <li>West Adams</li>
+            <li>Westlake</li>
+          </ul>
+        </div>
+
+        <div class="area-group">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>West LA / Culver City</h3>
+          <ul class="area-chips">
+            <li>Century City</li>
+            <li>Culver City</li>
+            <li>Culver West</li>
+            <li>Culver Junction</li>
+            <li>Fox Hills</li>
+            <li>Blanco - Culver Crest</li>
+            <li>Studio Village</li>
+            <li>West Los Angeles</li>
+            <li>Westside Village</li>
+            <li>Cheviot Hills</li>
+            <li>Castle Heights</li>
+            <li>Park West</li>
+            <li>Clarkdale</li>
+            <li>McLaughlin</li>
+            <li>McManus</li>
+            <li>Culver Garden</li>
+          </ul>
+        </div>
+
+        <div class="area-group">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Hollywood &amp; Beverly Hills</h3>
+          <ul class="area-chips">
+            <li>West Hollywood</li>
+            <li>Century City</li>
+            <li>Beverly Hills</li>
+            <li>Beverlywood</li>
+            <li>Sunset Strip</li>
+            <li>Norma Triangle</li>
+            <li>The Flats</li>
+            <li>East Hollywood</li>
+            <li>Thai Town</li>
+          </ul>
+        </div>
+
+        <div class="area-group">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>South &amp; South-Central LA</h3>
+          <ul class="area-chips">
+            <li>Arlington Heights</li>
+            <li>Baldwin Hills</li>
+            <li>Baldwin Village</li>
+            <li>Jefferson Park</li>
+            <li>West Adams</li>
+            <li>Castle Heights</li>
+            <li>Harvard Heights</li>
+            <li>Mar Vista</li>
+            <li>Monte Mar Vista</li>
+            <li>Reynier Village</li>
+          </ul>
+        </div>
+
+        </div>
+
+        <p class="areas-note">Don&rsquo;t see your neighborhood? <a href="#contact">Get in touch</a> &mdash; our service area is always expanding.</p>
 
       </div>
     </section>
@@ -1877,71 +2291,86 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
          Delete the "open" word from the first one if you'd rather the
          page load with everything collapsed.
          =================================================================== -->
-    <section class="section" id="faq">
+        <section class="section" id="faq">
       <div class="container container-narrow">
 
         <div class="section-head">
           <p class="eyebrow">FAQ</p>
-          <h2>Common questions</h2>
+          <h2>Common Questions</h2>
         </div>
 
         <div class="faq">
 
           <details open>
-            <summary>How is pricing determined?</summary>
+            <summary>What is included in standard commercial cleaning?</summary>
             <div class="faq-body">
-              <p>Pricing is based on square footage, the number of restrooms and break rooms, floor types, and how often we visit. We provide a fixed monthly rate after a free on-site walkthrough &mdash; not an hourly estimate that drifts upward.</p>
+              <p>Our standard cleaning package includes sweeping, vacuuming, mopping, dusting, disinfecting high-touch areas like door handles and light switches, breakroom and kitchen cleaning, trash removal, surface wiping, restocking cleaning inventory, and sanitizing and restocking bathrooms.</p>
             </div>
           </details>
 
           <details>
-            <summary>Are you insured and bonded?</summary>
+            <summary>Do you offer after-hours or business-hours cleaning?</summary>
             <div class="faq-body">
-              <p>Yes. We carry general liability and workers&rsquo; compensation coverage, and every employee is bonded and background checked. We&rsquo;re happy to provide a certificate of insurance naming your company as an additional insured.</p>
+              <p>We offer both — let us know whichever works best for your business. We also provide day porter services for continuous maintenance in high-traffic areas throughout the workday.</p>
             </div>
           </details>
 
           <details>
-            <summary>What does &ldquo;green cleaning&rdquo; actually mean?</summary>
+            <summary>Are your cleaning products safe for employees with allergies?</summary>
             <div class="faq-body">
-              <p>It means every product we use carries a Green Seal or EPA Safer Choice certification, and that we pair those products with HEPA-filtered vacuums and microfiber systems. Certification matters &mdash; &ldquo;natural&rdquo; and &ldquo;eco-friendly&rdquo; are marketing terms with no legal definition behind them.</p>
+              <p>Yes. We use eco-friendly cleaning products and HEPA-filter vacuums to minimize allergens. If your team has specific allergies or sensitivities, we can discuss alternative products and protocols.</p>
             </div>
           </details>
 
           <details>
-            <summary>Can you clean outside of our business hours?</summary>
+            <summary>Do I need to provide cleaning supplies or equipment?</summary>
             <div class="faq-body">
-              <p>Most of our accounts are serviced between 6&nbsp;PM and 5&nbsp;AM. We can also schedule early mornings, weekends, or daytime porter service if your space needs attention while occupied.</p>
+              <p>No. We provide all commercial-grade equipment and eco-friendly cleaning solutions, so you don’t need to supply anything. If you’d prefer we use specific products or equipment of your own, we’re glad to work with what you provide.</p>
             </div>
           </details>
 
           <details>
-            <summary>Do we need to supply anything?</summary>
+            <summary>Do you require long-term contracts?</summary>
             <div class="faq-body">
-              <p>No. We bring all equipment and cleaning products. We can also manage restocking of paper goods, soap, and liners and bill them at cost if you&rsquo;d like to consolidate that line item.</p>
+              <p>No. We offer flexible month-to-month agreements that adapt to your business needs.</p>
             </div>
           </details>
 
           <details>
-            <summary>How long is the contract?</summary>
+            <summary>Do you offer specialized or deep cleaning services?</summary>
             <div class="faq-body">
-              <p>Our standard agreement runs twelve months with a 30-day cancellation clause for either party. We don&rsquo;t use auto-renewing multi-year contracts.</p>
+              <p>Yes. We provide deep sanitization, post-construction cleanup, carpet steam cleaning and extraction, and interior window washing.</p>
             </div>
           </details>
 
           <details>
-            <summary>What happens if something is missed?</summary>
+            <summary>Do I need to be present during cleaning?</summary>
             <div class="faq-body">
-              <p>Call or email us and we&rsquo;ll return within one business day to correct it at no charge. Every visit is logged against a checklist you approve up front, so there&rsquo;s a clear record of what was and wasn&rsquo;t completed.</p>
+              <p>No. Most of our clients provide us with a key, security code, or lockbox access so we can clean before business hours or after your team leaves for the day.</p>
             </div>
           </details>
 
           <details>
-            <summary>What areas do you serve?</summary>
+            <summary>Are your cleaners insured and bonded?</summary>
             <div class="faq-body">
-              <!-- EDIT: list your actual cities, counties, or radius.
-                   Being specific here meaningfully improves local search results. -->
-              <p>We serve the greater metro area and surrounding counties. If you&rsquo;re unsure whether your building is in range, call us &mdash; if we can&rsquo;t take it on, we&rsquo;ll usually know someone who can.</p>
+              <p>Yes. Our team is fully insured and bonded for your protection and peace of mind.</p>
+          <!-- EDIT: add certificate-of-insurance details here if you want, e.g.
+               " We’re happy to provide a certificate of insurance naming your
+               company as an additional insured on request." -->
+            </div>
+          </details>
+
+          <details>
+            <summary>How do I get a quote?</summary>
+            <div class="faq-body">
+              <p>Contact us by phone or email to request a free quote. We’ll schedule a brief walkthrough of your facility to take measurements and understand your specific cleaning needs before providing a formal proposal.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>How do you handle keys and security codes?</summary>
+            <div class="faq-body">
+              <p>We treat security access with the highest priority. Keys and codes are stored securely and handled only by our trusted team members. We’re also happy to accommodate any specific security protocols or access requirements your business has.</p>
             </div>
           </details>
 
@@ -1952,61 +2381,58 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
     <!-- ===================================================================
          ABOUT US
-         Two columns on desktop, stacked on mobile.
-         Relocated near the foot of the page to match the nav order:
-         lead with what we do, close with who we are.
+         The company story, told as a short narrative plus a timeline of the
+         milestones. Relocated near the foot of the page to match the nav
+         order: lead with what we do, close with who we are.
          =================================================================== -->
     <section class="section section-tint" id="about">
       <div class="container about-grid">
 
         <div class="about-text">
-          <p class="eyebrow">About us</p>
-          <h2>Cleaning that doesn't cost you the air in the room.</h2>
+          <p class="eyebrow">About Us</p>
+          <h2>Caring for LA’s most prestigious spaces since 1991.</h2>
 
-          <!-- EDIT: rewrite these two paragraphs in your own words.
-               Mention the city or region you serve — it helps you show up
-               in local search results. -->
           <p>
-            Commercial Green Cleaning was founded on a straightforward idea: a
-            building can be spotless without filling it with fumes. Conventional
-            janitorial products leave behind residues and volatile compounds that
-            linger in carpet, upholstery, and recirculated air long after the crew
-            has gone home.
+            For over 35 years, we’ve been trusted to care for Los Angeles’ most
+            prestigious spaces. What began in 1991 as Avi’s Maid Service evolved into a
+            cornerstone of commercial cleaning excellence. Our work is visible on Rodeo Drive,
+            across the city’s most luxury and coveted retail spaces, all the way to the
+            city’s best hospitals.
           </p>
           <p>
-            We use Green Seal and EPA Safer Choice certified products across every
-            account, paired with HEPA filtration and microfiber systems that capture
-            particulates instead of pushing them around. Our crews are background
-            checked, uniformed, and trained on your building&rsquo;s specific protocols
-            before their first shift.
+            In 2019, we officially evolved into Commercial Green Cleaning to better reflect our
+            modern eco-friendly practices and expanded service offerings. While our name changed,
+            our core team, foundational values, and commitment to pristine spaces remain the same.
           </p>
 
           <a class="link-arrow" href="#contact">
-            Schedule a walkthrough
+            Get in touch
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
 
-        <!-- Three short benefit blocks. Each is a reason a facilities
-             manager would choose green cleaning over the cheapest bid. -->
-        <ul class="benefits">
+        <!-- The milestones. To add one, copy a <li class="milestone"> block. -->
+        <ol class="timeline">
 
-          <li>
-            <h3>Healthier indoor air</h3>
-            <p>Fewer airborne irritants means fewer sick days and fewer complaints from staff with asthma or chemical sensitivities.</p>
+          <li class="milestone">
+            <span class="milestone-year">1991</span>
+            <h3>Founded as Avi’s Maid Service</h3>
+            <p>Our doors open, and the business grows into a cornerstone of commercial cleaning excellence.</p>
           </li>
 
-          <li>
-            <h3>One consistent crew</h3>
-            <p>You get the same team every visit. They learn your building, and you always know who is in it after hours.</p>
+          <li class="milestone">
+            <span class="milestone-year">2019</span>
+            <h3>Renamed Commercial Green Cleaning</h3>
+            <p>We rebrand to reflect our modern, eco-friendly practices and expanded service offerings.</p>
           </li>
 
-          <li>
-            <h3>Documented, not assumed</h3>
-            <p>Every visit is logged against a checklist you approve. If something is missed, you'll know before we do.</p>
+          <li class="milestone">
+            <span class="milestone-year">Today</span>
+            <h3>35+ years of trusted care</h3>
+            <p>The same core team and values — trusted from Rodeo Drive to the city’s best hospitals.</p>
           </li>
 
-        </ul>
+        </ol>
 
       </div>
     </section>
@@ -2068,11 +2494,6 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
             <div>
               <dt>Office hours</dt>
               <dd>Monday&ndash;Friday, 8&nbsp;AM&ndash;5&nbsp;PM<br>Cleaning crews available 24/7</dd>
-            </div>
-
-            <div>
-              <dt>Service area</dt>
-              <dd>Greater metro area and surrounding counties</dd>
             </div>
 
           </dl>
@@ -2141,7 +2562,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
           </li>
 
           <li>
-            <a href="https://linkedin.com/company/yourcompany" aria-label="Commercial Green Cleaning on LinkedIn" rel="noopener">
+            <a href="https://www.linkedin.com/in/daniel-stone-850532420" aria-label="Commercial Green Cleaning on LinkedIn" rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05a4.2 4.2 0 0 1 3.77-2c4.03 0 4.78 2.6 4.78 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>
             </a>
           </li>
@@ -2171,7 +2592,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
     "@type": "ProfessionalService",
     "name": "Commercial Green Cleaning",
     "legalName": "Commercial Green Cleaning, Inc.",
-    "description": "Eco-friendly commercial cleaning and janitorial services for offices, medical suites, and retail spaces.",
+    "description": "Eco-friendly commercial cleaning and janitorial services for offices, medical, retail, hospitality, residential, and school facilities across greater Los Angeles.",
     "url": "https://commercialgreencleaning.com",
     "address": {
       "@type": "PostalAddress",
@@ -2193,7 +2614,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
     },
     "sameAs": [
       "https://facebook.com/yourpage",
-      "https://linkedin.com/company/yourcompany"
+      "https://www.linkedin.com/in/daniel-stone-850532420"
     ]
   }
   </script>
