@@ -649,6 +649,12 @@ img, svg { max-width: 100%; display: block; }
   display: grid;
   gap: var(--space-4);
   padding-left: var(--space-1);
+  /* The narrative column is taller, so center the timeline against it rather
+     than letting it hug the top and leave dead space below. */
+  align-self: center;
+  /* It's an <ol> for semantics; the reset only clears <ul> markers, so the
+     default "1. 2. 3." numbers would otherwise show next to the year labels. */
+  list-style: none;
 }
 /* The connecting line, behind the dots. */
 .timeline::before {
@@ -1245,6 +1251,77 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 
 /* ==========================================================================
+   CAREERS DIALOG
+   A native <dialog> popup opened from the footer / mobile-menu "Careers"
+   links and from the #careers URL hash (so it's shareable). showModal() puts
+   it in the browser's top layer, so it sits above everything regardless of
+   where it lives in the document.
+   ========================================================================== */
+
+.careers-dialog {
+  width: min(92vw, 560px);
+  max-height: 88vh;
+  margin: auto;                 /* centers it in the viewport */
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--body);
+  box-shadow: 0 20px 60px rgba(22, 33, 27, 0.28);
+  overflow: auto;
+}
+.careers-dialog::backdrop { background: rgba(22, 33, 27, 0.55); }
+/* The dialog itself takes focus when it opens; it's a labeled container, so it
+   shouldn't show a focus ring (its buttons and links still do). */
+.careers-dialog:focus,
+.careers-dialog:focus-visible { outline: none; }
+
+.careers-panel {
+  position: relative;
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(var(--space-4), 5vw, var(--space-5));
+}
+.careers-panel .eyebrow { margin-bottom: 0; }   /* grid gap handles spacing */
+
+.careers-email { color: var(--ink); }
+.careers-email a { color: var(--forest); font-weight: 600; }
+
+/* The "Email us" button shouldn't stretch the full width of the grid. */
+.careers-panel .btn { justify-self: start; }
+
+.careers-eoe {
+  margin-top: var(--space-1);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* Close button — mirrors the hamburger's size and hover. */
+.careers-close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius);
+  color: var(--muted);
+  cursor: pointer;
+}
+.careers-close:hover { background: var(--emerald-soft); color: var(--ink); }
+.careers-close svg { width: 20px; height: 20px; }
+
+/* Locks the page behind the open dialog (class set by the script). */
+.modal-open, .modal-open body { overflow: hidden; }
+
+
+/* ==========================================================================
    13. RESPONSIVE
    --------------------------------------------------------------------------
    Most of the layout re-flows on its own. These are the few places that
@@ -1362,6 +1439,9 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
        four lines to not strand someone with no way to navigate. -->
   <style>
     .menu-toggle { display: none !important; }
+    /* Without JS the popup can't be scripted open; reveal it inline when its
+       #careers link is followed, so the info stays reachable. */
+    dialog#careers:target { display: block; margin: var(--space-5) auto; }
     @media (max-width: 880px) {
       .nav { display: flex; flex-wrap: wrap; justify-content: center; margin: 0; }
       .header-inner { flex-wrap: wrap; padding-block: 0.75rem; }
@@ -1508,6 +1588,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="#careers">Careers</a></li>
       </ul>
     </nav>
 
@@ -2542,6 +2623,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="#careers">Careers</a></li>
         </ul>
       </nav>
 
@@ -2578,6 +2660,52 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
       <p>&copy; 2026 Commercial Green Cleaning, Inc. All rights reserved.</p>
     </div>
   </footer>
+
+
+  <!-- ===================================================================
+       CAREERS
+       A popup, opened by any link to #careers (in the footer and the mobile
+       menu) and by the #careers URL hash — so commercialgreencleaning.com/#careers
+       opens it directly and the link is shareable. It uses the browser's
+       native <dialog>; the script at the foot of the page wires it up.
+       To edit the wording, change the text below.
+       =================================================================== -->
+  <dialog id="careers" class="careers-dialog" aria-labelledby="careers-title">
+    <div class="careers-panel">
+
+      <button class="careers-close" type="button" aria-label="Close careers">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+
+      <p class="eyebrow">Careers</p>
+      <h2 id="careers-title">Join our growing team</h2>
+
+      <p>
+        We are always seeking detail-oriented, action-driven, thoughtful, and
+        reliable professionals to join our growing team. If you take pride in
+        creating immaculate spaces and delivering exceptional results, we want
+        to hear from you!
+      </p>
+
+      <p class="careers-email">
+        Email us at <a href="mailto:info@commercialgreencleaning.com?subject=Professional%20Cleaner">info@commercialgreencleaning.com</a>
+        and include in the subject line: <strong>Professional Cleaner</strong>.
+      </p>
+
+      <!-- Opens the visitor's email app with the subject line already filled in. -->
+      <a class="btn btn-primary" href="mailto:info@commercialgreencleaning.com?subject=Professional%20Cleaner">
+        Email us
+      </a>
+
+      <p class="careers-eoe">
+        <strong>Equal Opportunity Employer:</strong> We are committed to building a
+        diverse and inclusive workforce and provide equal opportunity for all
+        applicants regardless of race, color, religion, sex, national origin, age,
+        disability, or veteran status.
+      </p>
+
+    </div>
+  </dialog>
 
 
   <!-- ===================================================================
@@ -2710,6 +2838,61 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
       });
 
       activate(tabs[0]);   // start on the first facility
+    })();
+
+
+    /* ---- Careers popup -------------------------------------------------
+       Opens <dialog id="careers"> from any link to #careers (footer + mobile
+       menu) and from the #careers URL hash, so the popup is shareable. The
+       native <dialog> handles focus trapping and Escape; we add click-outside,
+       a scroll lock, hash sync, and focus return. */
+    (function () {
+      var dlg = document.getElementById('careers');
+      if (!dlg || typeof dlg.showModal !== 'function') return;
+      var panel = dlg.querySelector('.careers-panel');
+      var closeBtn = dlg.querySelector('.careers-close');
+      var lastFocus = null;
+
+      function open() {
+        if (dlg.open) return;
+        lastFocus = document.activeElement;
+        dlg.showModal();
+        document.documentElement.classList.add('modal-open');
+        if (closeBtn) closeBtn.focus();
+        if (location.hash !== '#careers') location.hash = 'careers';
+      }
+      function close() { if (dlg.open) dlg.close(); }
+
+      dlg.addEventListener('close', function () {
+        document.documentElement.classList.remove('modal-open');
+        if (location.hash === '#careers') {
+          history.replaceState(null, '', location.pathname + location.search);
+        }
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', close);
+
+      // A click on the backdrop (outside the panel) closes it.
+      dlg.addEventListener('click', function (e) {
+        if (!panel) return;
+        var r = panel.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right ||
+            e.clientY < r.top  || e.clientY > r.bottom) close();
+      });
+
+      // Any link to #careers opens the popup instead of jumping.
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[href="#careers"]');
+        if (a) { e.preventDefault(); open(); }
+      });
+
+      // Shareable link + Back button: follow the URL hash.
+      function syncFromHash() {
+        if (location.hash === '#careers') open(); else close();
+      }
+      window.addEventListener('hashchange', syncFromHash);
+      syncFromHash();   // open on load if the URL already ends in #careers
     })();
   </script>
 
