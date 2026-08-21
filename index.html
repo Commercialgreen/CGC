@@ -102,7 +102,7 @@
 
   --ink:          #16211B;   /* headings */
   --body:         #4C5A53;   /* paragraph text */
-  --muted:        #7A867F;   /* captions, labels */
+  --muted:        #68746D;   /* captions, labels — 4.88:1 on white, 4.63:1 on the tint */
   /* Stepped up from #E2E8E4 (1.24:1 on white) to 1.47:1. With small corner
      radii a box is defined by its edge rather than its shape, so a border
      that barely registers leaves panels looking undefined. */
@@ -130,7 +130,7 @@
   /* Deliberately tight. A small radius reads clinical and precise — the
      register medical and institutional sites work in — without going fully
      square, which would flatten the layering between a photo and the panel
-     holding it. True circles (social icons, timeline dots, the pause button)
+     holding it. True circles (the social icons and the hero pause button)
      stay round on purpose: they're icon shapes, not content boxes, and they
      leave the round logo some company. */
   --radius:    4px;
@@ -140,6 +140,7 @@
      and 19.5px, five of them within 1.8px of each other — differences no
      one can read as intentional. Base body copy is 1.0625rem (17px), set
      on <body>; these two are the steps below it. */
+  --text-xs:   0.78rem;    /* 12.5px — all-caps labels only, never body copy */
   --text-sm:   0.875rem;   /* 14px   — dense reference lists */
   --text-md:   0.95rem;    /* 15.2px — supporting copy */
   --shadow:    0 1px 2px rgba(22, 33, 27, 0.06),
@@ -416,7 +417,7 @@ img, svg { max-width: 100%; display: block; }
   color: var(--body);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.9375rem;
+  font-size: var(--text-md);
   padding-block: 0.35em;
   border-bottom: 2px solid transparent;
 }
@@ -425,7 +426,7 @@ img, svg { max-width: 100%; display: block; }
   border-bottom-color: var(--emerald);
 }
 
-.header-cta { font-size: 0.9375rem; }
+.header-cta { font-size: var(--text-md); }
 
 
 /* --- The hamburger button ------------------------------------------------
@@ -622,7 +623,7 @@ img, svg { max-width: 100%; display: block; }
   flex-wrap: wrap;
   gap: var(--space-1) var(--space-4);
   margin-top: var(--space-5);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   color: var(--muted);
 }
 /* Small green checkmark before each badge, drawn in CSS — no image needed. */
@@ -661,7 +662,7 @@ img, svg { max-width: 100%; display: block; }
 }
 
 .stat-label {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   color: rgba(255, 255, 255, 0.78);
 }
 
@@ -669,21 +670,26 @@ img, svg { max-width: 100%; display: block; }
 /* ==========================================================================
    7. ABOUT
    --------------------------------------------------------------------------
-   Two rows, each a portrait beside its content. The photo column is capped so
-   the portraits stay a supporting element rather than dominating the copy.
+   One row: the two portraits side by side on the left, the story to the right.
+   The photo column is capped so the portraits stay a supporting element rather
+   than dominating the copy.
    ========================================================================== */
 
 .about-row {
   display: grid;
-  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
   gap: clamp(var(--space-4), 5vw, var(--space-6));
   align-items: center;
 }
-.about-row + .about-row { margin-top: clamp(var(--space-5), 6vw, var(--space-7)); }
 
-/* Mirrored row: content on the left, portrait on the right. The column widths
-   swap with it, so the photo column stays the narrow one. */
-.about-row--reverse { grid-template-columns: minmax(0, 1fr) minmax(0, 360px); }
+/* The founder and his son, shown as a pair. */
+.about-portraits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.about-figure { margin: 0; }
 
 .about-photo {
   width: 100%;
@@ -696,53 +702,18 @@ img, svg { max-width: 100%; display: block; }
   border-radius: var(--radius);
 }
 
-
-/* The company-story timeline: emerald dots strung along a vertical line. */
-.timeline {
-  position: relative;
-  display: grid;
-  gap: var(--space-4);
-  padding-left: var(--space-1);
-  /* The narrative column is taller, so center the timeline against it rather
-     than letting it hug the top and leave dead space below. */
-  align-self: center;
-  /* It's an <ol> for semantics; the reset only clears <ul> markers, so the
-     default "1. 2. 3." numbers would otherwise show next to the year labels. */
-  list-style: none;
+.about-caption {
+  margin-top: 0.65em;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  color: var(--muted);
 }
-/* The connecting line, behind the dots. */
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 8px;
-  bottom: 8px;
-  width: 2px;
-  background: var(--line);
+/* The name carries the weight; the role sits under it as quieter text. */
+.about-caption-name {
+  display: block;
+  font-weight: 600;
+  color: var(--ink);
 }
-.milestone {
-  position: relative;
-  padding-left: var(--space-4);
-}
-.milestone::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 4px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 3px solid var(--emerald);
-}
-.milestone-year {
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--emerald-deep);
-}
-.milestone h3 { margin: 0.1em 0 0.3em; font-size: 1.05rem; }
-.milestone p { font-size: var(--text-md); }
 
 
 /* ==========================================================================
@@ -808,7 +779,7 @@ img, svg { max-width: 100%; display: block; }
   min-height: 88px;          /* keeps the row substantial without the icons */
   text-align: center;
   font: inherit;
-  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+  font-size: clamp(var(--text-md), 1.35vw, 1.0625rem);
   font-weight: 600;
   line-height: 1.3;
   color: var(--ink);
@@ -858,7 +829,7 @@ img, svg { max-width: 100%; display: block; }
 }
 .facility-cols h4,
 .facility-diff-title {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -899,72 +870,113 @@ img, svg { max-width: 100%; display: block; }
 
 /* Facility photo with the title + subhead overlaid on top (a dark gradient
    scrim keeps the white text legible over any image). */
-.facility-hero {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: var(--space-4);
-}
 .facility-hero-img {
   width: 100%;
   height: clamp(220px, 30vw, 360px);
   object-fit: cover;
   display: block;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-3);
 }
-.facility-hero-text {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(var(--space-3), 3vw, var(--space-5));
-}
-/* No overlay across the photo — the type carries its own legibility instead.
-   Three layers: a tight edge that separates the glyphs from whatever is behind
-   them, then two progressively softer halos. That's what keeps the headline
-   readable even on the near-white healthcare and gym shots, while the image
-   itself reads as ungraded. */
-.facility-hero-text h3,
-.facility-hero-text .facility-lead {
-  color: #fff;
-  text-shadow:
-    0 1px 2px  rgba(11, 22, 15, 0.95),
-    0 2px 10px rgba(11, 22, 15, 0.85),
-    0 0   28px rgba(11, 22, 15, 0.65);
-}
-.facility-hero-text h3 { margin-bottom: 0.25em; }
-.facility-hero-text .facility-lead { margin-bottom: 0; }
 
 
 /* ==========================================================================
    8c. AREAS WE SERVE
    --------------------------------------------------------------------------
-   Plain columns rather than boxed chips. Someone reading this section is
-   hunting for their own neighbourhood, so the priority is scanning: one name
-   per line with nothing competing with it. Boxing all 75 names put 80 borders
-   into a single section, which made the list harder to read, not easier.
+   Regions on the left (1/3), the selected region's neighbourhoods on the right
+   (2/3). Buttons and panels are interleaved in the markup, which is what lets
+   the same HTML collapse into an accordion on a phone.
+
+   The neighbourhoods run in several columns so the right-hand panel stays
+   shorter than the region list — otherwise it would stretch the rows the
+   buttons sit in.
    ========================================================================== */
 
-.area-groups {
+.areas-master {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-  gap: var(--space-4) var(--space-5);
+  grid-template-columns: 1fr 2fr;
+  column-gap: clamp(var(--space-3), 3vw, var(--space-5));
+  align-items: start;
   margin-bottom: var(--space-4);
-  align-items: start;              /* each column keeps its own height */
 }
 
-.area-group h3 {
-  font-size: 0.95rem;
-  margin-bottom: var(--space-2);
-  padding-bottom: 0.4em;
+.areas-item {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: var(--text-md);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--body);
+  background: transparent;
+  border: 0;
   border-bottom: 1px solid var(--line);
+  padding: 0.85em 0.75em;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
 }
+.areas-item:hover { background: var(--emerald-soft); color: var(--ink); }
+.areas-item[aria-expanded="true"] {
+  background: var(--forest);
+  color: #fff;
+  font-weight: 600;
+  border-bottom-color: var(--forest);
+}
+/* Spans past the end of the list so it never stretches a single row. */
+.areas-panel {
+  grid-column: 2;
+  grid-row: 1 / span 50;
+  align-self: start;
+  display: none;
+}
+.areas-panel.is-active { display: block; }
 
-.area-names { display: grid; gap: 0.3em; }
+/* Multi-column rather than grid: CSS columns fill top-to-bottom, so an
+   alphabetical list reads *down* each column the way people expect. A grid
+   would flow left-to-right and run the alphabet sideways across rows. */
+.area-names {
+  columns: 150px;
+  column-gap: var(--space-3);
+}
+.area-names li { break-inside: avoid; margin-bottom: 0.3em; }
 .area-names li { font-size: var(--text-sm); color: var(--body); }
 
 .areas-note { color: var(--muted); font-size: var(--text-md); }
 .areas-note a { color: var(--forest); font-weight: 600; }
+
+/* --- Phones: one column, so source order turns it into an accordion --- */
+@media (max-width: 720px) {
+  .areas-master { grid-template-columns: 1fr; }
+  .areas-item,
+  .areas-panel { grid-column: 1; grid-row: auto; }
+
+  .areas-item::after {
+    content: "";
+    /* Pushed to the far edge of the row — it's the only thing after the name. */
+    margin-left: auto;
+    flex-shrink: 0;
+    width: 9px; height: 9px;
+    border-right: 2px solid var(--emerald);
+    border-bottom: 2px solid var(--emerald);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.2s ease;
+  }
+  .areas-item[aria-expanded="true"]::after {
+    transform: rotate(-135deg) translate(-3px, -3px);
+    border-color: #fff;
+  }
+  .areas-panel { padding: var(--space-3) 0.75em; }
+
+  /* Two columns of neighbourhoods, which roughly halves how far the section
+     scrolls. 140px is the threshold that keeps the longest name ("Blanco -
+     Culver Crest", 138px) on one line: phones 375px and wider get two
+     columns, anything narrower falls back to one rather than wrapping. */
+  .area-names { column-width: 140px; column-gap: var(--space-2); }
+}
 
 
 /* ==========================================================================
@@ -995,8 +1007,8 @@ img, svg { max-width: 100%; display: block; }
   border-top: 1px solid var(--line);
 }
 
-.quote-name { font-weight: 600; color: var(--ink); font-size: 0.95rem; }
-.quote-role { font-size: 0.85rem; color: var(--muted); }
+.quote-name { font-weight: 600; color: var(--ink); font-size: var(--text-md); }
+.quote-role { font-size: var(--text-sm); color: var(--muted); }
 
 
 /* ==========================================================================
@@ -1081,7 +1093,7 @@ img, svg { max-width: 100%; display: block; }
 .contact-details { display: grid; gap: var(--space-3); }
 
 .contact-details dt {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1091,8 +1103,13 @@ img, svg { max-width: 100%; display: block; }
 .contact-details dd { color: var(--ink); font-weight: 500; }
 
 /* An email address is one long word with no spaces, so on a narrow phone it
-   refuses to wrap and pushes the whole page sideways. This lets it break. */
-a[href^="mailto:"] { overflow-wrap: anywhere; }
+   refuses to wrap and pushes the whole page sideways. This lets it break —
+   but only on narrow screens. "anywhere" also shrinks the element's
+   min-content width, which makes grid columns collapse under it and breaks
+   the address mid-word on a desktop, where there is plenty of room. */
+@media (max-width: 720px) {
+  a[href^="mailto:"] { overflow-wrap: anywhere; }
+}
 .contact-details a { color: var(--forest); text-decoration: none; }
 .contact-details a:hover { text-decoration: underline; }
 
@@ -1134,7 +1151,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 .footer-tagline {
   margin-top: var(--space-2);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   max-width: 34ch;
 }
 
@@ -1143,13 +1160,13 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 .footer-address {
   margin-top: var(--space-3);
   font-style: normal;
-  font-size: 0.8125rem;
+  font-size: var(--text-sm);
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.55);
 }
 .footer-address-label {
   display: block;
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1160,7 +1177,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 }
 
 .footer-heading {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1173,7 +1190,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 .site-footer a {
   color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
-  font-size: 0.9375rem;
+  font-size: var(--text-md);
 }
 .site-footer a:hover { color: #fff; }
 
@@ -1202,7 +1219,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding-block: var(--space-3);
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   color: rgba(255, 255, 255, 0.55);
 }
 
@@ -1253,7 +1270,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
   margin-top: var(--space-1);
   padding-top: var(--space-3);
   border-top: 1px solid var(--line);
-  font-size: 0.8125rem;
+  font-size: var(--text-sm);
   color: var(--muted);
 }
 
@@ -1304,9 +1321,11 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 @media (max-width: 1090px) {
   .header-inner { gap: var(--space-3); }
   .nav { gap: 0.75rem; }
-  .nav a { font-size: 0.875rem; }
+  .nav a { font-size: var(--text-sm); }
   .header-cta span { display: none; }
-  .header-cta { padding: 0.7em; }
+  /* Icon-only now, so the text no longer sets the button's size. Pin it to the
+     44px minimum touch target — it's the primary action on a phone. */
+  .header-cta { padding: 0; min-width: 44px; min-height: 44px; }
 }
 
 /* 880px and below: even the compact nav collides with the logo. Hand over to
@@ -1330,12 +1349,10 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 }
 
 @media (max-width: 720px) {
-  /* Portrait above its content, rather than a cramped side-by-side. */
-  .about-row,
-  .about-row--reverse { grid-template-columns: 1fr; gap: var(--space-3); }
-  .about-photo { max-width: 320px; }
-  /* Stacked, both rows should open with their portrait, like the first one. */
-  .about-row--reverse .about-photo { order: -1; }
+  /* Portraits above the story, rather than a cramped side-by-side. They stay
+     paired with each other — stacking them would push the copy off-screen. */
+  .about-row { grid-template-columns: 1fr; gap: var(--space-4); }
+  .about-portraits { max-width: 420px; gap: var(--space-2); }
 }
 
 /* --- Phone --- */
@@ -1404,17 +1421,6 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
    Appended last so these rules win over the older .hero rules further up.
    ========================================================================== */
 
-/* Read by screen readers and search engines; invisible on screen. */
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
 .hero {
   padding: 0;
   background: none;
@@ -1445,17 +1451,23 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 }
 .hero-slide.is-active { opacity: 1; }
 
+
+/* A light wash over the photos. Without it the white logo washes out badly on
+   the brighter shots: the healthcare slide measured 1.4:1 against white, with
+   88% of the logo area under the 3:1 minimum for large graphics. 0.25 is the
+   lightest setting that still clears 3:1 on that worst case — a little over
+   half the 0.45 this started at, so the photos read far closer to untouched. */
 .hero-veil {
   position: absolute;
   inset: 0;
-  background: rgba(11, 22, 15, 0.45);
+  background: rgba(11, 22, 15, 0.25);
 }
 
 .hero-brand {
   position: relative;
   margin: 0;
   padding: var(--space-4);
-  line-height: 0;            /* the <h1> holds only a graphic */
+  line-height: 0;            /* it holds only a graphic */
 }
 .hero-brand-logo {
   width: min(62vw, 500px);
@@ -1494,11 +1506,25 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 /* Sits directly under the image and leads into the buttons, so it's sized
    as intro copy — a step down from the old headline, a step up from a caption. */
-.hero-summary {
+.hero-headline {
   margin: 0 auto var(--space-4);
-  max-width: 54ch;
+  max-width: 46ch;
+  display: grid;
+  gap: 0.35em;
+}
+/* The hero is the one place that earns a display size of its own, sitting
+   between .section-lead (~20px) and .eyebrow.is-heading (~38px). */
+.hero-headline-main {
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.hero-headline-sub {
   font-size: clamp(1.1rem, 1.6vw, 1.25rem);   /* same step as .section-lead */
-  line-height: 1.6;
+  font-weight: 500;
+  line-height: 1.45;
   color: var(--body);
 }
 
@@ -1509,7 +1535,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
   /* 44px is the minimum comfortable touch target. */
   .hero-pause { width: 44px; height: 44px; }
   .hero-cta { padding-top: var(--space-4); padding-bottom: var(--space-4); }
-  .hero-summary { margin-bottom: var(--space-3); }
+  .hero-headline { margin-bottom: var(--space-3); }
 }
 
 
@@ -1520,119 +1546,96 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 
 /* ==========================================================================
-   SERVICES — list + detail
-   The buttons and their write-ups are interleaved in the markup, which is
-   what lets the same HTML be two different things:
+   SERVICES — cards, and an accordion on phones
+   --------------------------------------------------------------------------
+   One set of markup, two presentations. On a desktop every card shows its
+   write-up. Below 720px the cards collapse to tappable rows: eight stacked
+   cards measured ~3,400px on a 375px screen — about four phone screens for a
+   single section — against ~1,100px as an accordion.
 
-     Desktop  — a 50/50 split: every button in column one, the open write-up
-                held in column two, sticky while you scan the list.
-     Phone    — a plain accordion: each write-up sits directly under the
-                button that opens it, because that's the source order.
-
-   Only one is open at a time, so the right-hand column is never empty.
+   The title is always a <button>, but above 720px it's taken out of the tab
+   order and stripped of aria-expanded, so it behaves as a plain heading.
    ========================================================================== */
 
-.svc-master {
+.svc-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;      /* 50 / 50 */
-  column-gap: clamp(var(--space-3), 3vw, var(--space-5));
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
-.svc-item {
-  grid-column: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.7em;
-  width: 100%;
-  text-align: left;
-  font: inherit;
-  font-size: var(--text-md);
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--body);
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  padding: 0.85em 0.75em;
-  cursor: pointer;
-  transition: background-color 0.12s ease, color 0.12s ease;
-}
-.svc-item:hover { background: var(--emerald-soft); color: var(--ink); }
-.svc-item[aria-expanded="true"] {
-  background: var(--forest);
-  color: #fff;
-  font-weight: 600;
-  border-bottom-color: var(--forest);
-}
-.svc-item-icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--emerald); }
-.svc-item[aria-expanded="true"] .svc-item-icon { color: #fff; }
-
-/* The open write-up occupies the whole of column two, and sticks to the top
-   of the viewport while the long list scrolls past it. */
-.svc-panel {
-  grid-column: 2;
-  /* Spans past the end of the list so it never stretches a single row. `-1`
-     can't be used here: the rows are implicit, so it would resolve back to
-     row 1 and blow that row up to the height of the whole write-up. There is
-     no row-gap, so the surplus empty rows cost nothing. */
-  grid-row: 1 / span 100;
-  /* Stretch to the full height of the list column. The surplus rows above are
-     zero-height, so the panel ends up exactly as tall as the list. */
-  align-self: stretch;
-  padding: clamp(var(--space-3), 3vw, var(--space-5));
-  background: var(--surface-alt);
+.svc-card {
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  display: none;
+  padding: var(--space-4) var(--space-3);
 }
-.svc-panel.is-active { display: block; animation: svcFade 0.18s ease; }
-@keyframes svcFade { from { opacity: 0 } to { opacity: 1 } }
-
-.svc-panel-icon {
-  width: 40px; height: 40px;
+.svc-card-icon {
+  width: 34px; height: 34px;
   color: var(--emerald);
   margin-bottom: var(--space-2);
 }
-.svc-panel h3 { font-size: clamp(1.2rem, 2.2vw, 1.45rem); margin-bottom: var(--space-2); }
-.svc-panel p { max-width: 58ch; }
+.svc-card h3 { margin-bottom: 0.4em; }
+.svc-card p { font-size: var(--text-md); }
 
-/* --- Phone: one column, so the source order takes over and it becomes a
-   plain accordion. The chevron only makes sense in this layout. --- */
+/* The heading is a button so phones can open it; inert at desktop widths. */
+.svc-card-toggle {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: default;
+}
+
+/* --- Phones: rows that open --- */
 @media (max-width: 720px) {
-  .svc-master { grid-template-columns: 1fr; }
+  .svc-cards { gap: 0; border-top: 1px solid var(--line); }
 
-  .svc-item,
-  .svc-panel {
-    grid-column: 1;
-    grid-row: auto;
-    align-self: auto;
+  .svc-card {
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    padding: 0;
+    background: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
   }
-
-  .svc-item::after {
-    content: "";
+  .svc-card > .svc-card-icon {
+    width: 18px; height: 18px;
+    margin: 0 0.7em 0 0.25em;
     flex-shrink: 0;
+  }
+  .svc-card h3 { flex: 1; margin: 0; font-size: var(--text-md); }
+
+  .svc-card-toggle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.95em 0.25em 0.95em 0;
+    cursor: pointer;
+  }
+  .svc-card-toggle::after {
+    content: "";
     margin-left: auto;
     width: 9px; height: 9px;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
+    border-right: 2px solid var(--emerald);
+    border-bottom: 2px solid var(--emerald);
     transform: rotate(45deg) translate(-2px, -2px);
     transition: transform 0.2s ease;
-    opacity: 0.7;
   }
-  .svc-item[aria-expanded="true"]::after {
+  .svc-card.is-open .svc-card-toggle::after {
     transform: rotate(-135deg) translate(-3px, -3px);
   }
 
-  .svc-panel {
-    border-radius: 0 0 var(--radius) var(--radius);
-    border-top: 0;
-    margin-bottom: var(--space-2);
+  .svc-card > p {
+    display: none;
+    flex-basis: 100%;
+    padding: 0 0.25em 1em;
   }
-  /* In accordion form the button directly above already names the service and
-     shows its icon, so repeating both inside the panel is just noise. */
-  .svc-panel-icon,
-  .svc-panel h3 { display: none; }
+  .svc-card.is-open > p { display: block; }
 }
 
 </style>
@@ -1851,17 +1854,17 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
           <img class="hero-slide" src="assets/facilities/schools.jpg" alt="" loading="eager" decoding="async">
         </div>
 
-        <!-- Darkens the photos so the white logo stays legible on all six. -->
+        <!-- Keeps the white logo legible across all six photos. -->
         <div class="hero-veil" aria-hidden="true"></div>
 
-        <!-- The page's <h1>. The logo is what you see; the text inside is
-             what Google and screen readers read. -->
-        <h1 class="hero-brand">
-          <svg class="hero-brand-logo" viewBox="0 0 2630 1433" aria-hidden="true">
+        <!-- The logo. It's labelled for screen readers; the headline below
+             is the page's actual <h1>. -->
+        <p class="hero-brand">
+          <svg class="hero-brand-logo" viewBox="0 0 2630 1433"
+               role="img" aria-label="Commercial Green Cleaning">
             <use href="#cgc-stacked"></use>
           </svg>
-          <span class="sr-only">Commercial Green Cleaning, eco-friendly commercial cleaning and janitorial services in Los Angeles</span>
-        </h1>
+        </p>
 
         <!-- Lets anyone stop the motion. Required for auto-advancing
              content that runs longer than five seconds. -->
@@ -1876,12 +1879,12 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
            the slideshow. -->
       <div class="container hero-cta">
 
-        <!-- The lead-in line. It sets up the buttons and carries the search
-             keywords that used to live in the old headline. -->
-        <p class="hero-summary">
-          Eco-friendly janitorial service for offices, medical and retail spaces,
-          hotels, residential communities, and schools across greater Los Angeles.
-        </p>
+        <!-- The page's <h1>, and visible rather than hidden — search engines
+             weight on-screen text more than screen-reader-only text. -->
+        <h1 class="hero-headline">
+          <span class="hero-headline-main">Caring for LA’s most prestigious spaces since 1991</span>
+          <span class="hero-headline-sub">We offer janitorial services across greater Los Angeles</span>
+        </h1>
 
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="mailto:info@commercialgreencleaning.com?subject=Request%20for%20a%20Cleaning%20Quote&amp;body=Hello%2C%0D%0A%0D%0AI%27d%20like%20a%20quote%20for%20commercial%20cleaning.%0D%0A%0D%0AType%20of%20space%3A%20%0D%0AApproximate%20square%20footage%3A%20%0D%0ACleaning%20frequency%20needed%3A%20%0D%0ABuilding%20address%3A%20%0D%0ABest%20time%20to%20reach%20me%3A%20%0D%0A%0D%0AThank%20you.">
@@ -1932,15 +1935,14 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 
 
-<!-- ===================================================================
-         SERVICES  (what we offer)
-         A list of every service on the left; clicking one shows its write-up
-         on the right. Below 720px the two stack and the write-up appears
-         under the list.
+    <!-- ===================================================================
+         SERVICES
+         Eight service cards. On a desktop each card shows its full write-up;
+         below 720px the same markup collapses into an accordion, because eight
+         stacked cards run to roughly four phone screens.
 
-         To add a service, add a <button role="tab"> to the list AND a
-         matching <div role="tabpanel">, keeping their ids paired
-         (stab-x <-> spanel-x). The script wires up whatever it finds.
+         To add a service, copy an <article class="svc-card"> block and give its
+         <p> a unique id that the button's aria-controls points at.
          =================================================================== -->
     <section class="section" id="services">
       <div class="container">
@@ -1950,241 +1952,59 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
           <p class="section-sub">Whether your needs are simple or complex, we offer a range of comprehensive services that can be customized.</p>
         </div>
 
-        <div class="svc-master" data-services>
+        <div class="svc-cards" data-svc-cards>
 
+          <article class="svc-card">
+            <svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 3h3v3.5h-3zM11 6.5V9.5M13 6.5V9.5M14 4.3h2M14 6.3h2M9 9.5h5a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 8 19V10.5a1 1 0 0 1 1-1zM8.5 14h6"/></svg>
+            <h3><button class="svc-card-toggle" type="button" aria-controls="svc-p-0">Janitorial Service</button></h3>
+            <p id="svc-p-0">Our most popular service. We offer daily, weekly, or customized cleaning schedules tailored to your facility’s needs. We handle everything from routine tidying to deep cleaning across multiple types of facilities.</p>
+          </article>
 
-          <button class="svc-item" type="button"
-                  id="stab-janitorial-service" aria-controls="spanel-janitorial-service"
-                  aria-expanded="true">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 3h3v3.5h-3zM11 6.5V9.5M13 6.5V9.5M14 4.3h2M14 6.3h2M9 9.5h5a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 8 19V10.5a1 1 0 0 1 1-1zM8.5 14h6"/></svg>
-            <span>Janitorial Service</span>
-          </button>
+          <article class="svc-card">
+            <svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18h16M6 18v-1a6 6 0 0 1 12 0v1M12 7V5M10 5h4"/></svg>
+            <h3><button class="svc-card-toggle" type="button" aria-controls="svc-p-1">Day Porter Service</button></h3>
+            <p id="svc-p-1">Our dedicated day porters provide real-time facility management during business hours. We respond to spills, messes, and maintenance requests immediately to keep your space guest-ready throughout the day while your team stays productive.</p>
+          </article>
 
-          <div class="svc-panel is-active" id="spanel-janitorial-service">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 3h3v3.5h-3zM11 6.5V9.5M13 6.5V9.5M14 4.3h2M14 6.3h2M9 9.5h5a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 8 19V10.5a1 1 0 0 1 1-1zM8.5 14h6"/></svg>
-            <h3>Janitorial Service</h3>
-            <p>Our most popular service. We offer daily, weekly, or customized cleaning schedules tailored to your facility’s needs. We handle everything from routine tidying to deep cleaning across multiple types of facilities.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-day-porter-service" aria-controls="spanel-day-porter-service"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18h16M6 18v-1a6 6 0 0 1 12 0v1M12 7V5M10 5h4"/></svg>
-            <span>Day Porter Service</span>
-          </button>
+          <article class="svc-card">
+            <svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 21V10h4a1 1 0 0 1 1 1v10M3 21h18M7 8h3M7 12h3M7 16h3"/></svg>
+            <h3><button class="svc-card-toggle" type="button" aria-controls="svc-p-2">Lobby &amp; Common Areas</button></h3>
+            <p id="svc-p-2">Lobby and common spaces are where first impressions form. Whether you manage an HOA, multi-tenant building, hospital or any high-traffic facility, our team can be routinely scheduled to create a welcoming environment that reflects your company’s standards. We keep lobbies, reception areas, and common spaces immaculate.</p>
+          </article>
 
-          <div class="svc-panel" id="spanel-day-porter-service">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18h16M6 18v-1a6 6 0 0 1 12 0v1M12 7V5M10 5h4"/></svg>
-            <h3>Day Porter Service</h3>
-            <p>Our dedicated day porters provide real-time facility management during business hours. We respond to spills, messes, and maintenance requests immediately to keep your space guest-ready throughout the day while your team stays productive.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-lobby-and-common-areas" aria-controls="spanel-lobby-and-common-areas"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 21V10h4a1 1 0 0 1 1 1v10M3 21h18M7 8h3M7 12h3M7 16h3"/></svg>
-            <span>Lobby &amp; Common Areas</span>
-          </button>
+          <article class="svc-card">
+            <svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
+            <h3><button class="svc-card-toggle" type="button" aria-controls="svc-p-3">Restroom Restocking &amp; Cleaning</button></h3>
+            <p id="svc-p-3">We love clean, well-stocked and organized restrooms. We manage everything from daily sanitizing to restocking soap, towels, and other essentials, ensuring your facilities meet health and cleanliness standards.</p>
+          </article>
 
-          <div class="svc-panel" id="spanel-lobby-and-common-areas">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 21V10h4a1 1 0 0 1 1 1v10M3 21h18M7 8h3M7 12h3M7 16h3"/></svg>
-            <h3>Lobby &amp; Common Areas</h3>
-            <p>Lobby and common spaces are where first impressions form. Whether you manage an HOA, multi-tenant building, hospital or any high-traffic facility, our team can be routinely scheduled to create a welcoming environment that reflects your company’s standards. We keep lobbies, reception areas, and common spaces immaculate.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-restroom-restocking-and-cleaning" aria-controls="spanel-restroom-restocking-and-cleaning"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
-            <span>Restroom Restocking &amp; Cleaning</span>
-          </button>
+          <article class="svc-card">
+            <svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5 12 12l9-4.5zM3 7.5V16l9 4.5M21 7.5V16l-9 4.5M12 12v9.5"/></svg>
+            <h3><button class="svc-card-toggle" type="button" aria-controls="svc-p-4">Supplies &amp; Consumables Restocking</button></h3>
+            <p id="svc-p-4">We keep your essential supplies stocked. From cleaning products, paper goods, soap, and other consumables, we proactively manage inventory so you never face shortages and your operations run smoothly.</p>
+          </article>
 
-          <div class="svc-panel" id="spanel-restroom-restocking-and-cleaning">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
-            <h3>Restroom Restocking &amp; Cleaning</h3>
-            <p>We love clean, well-stocked and organized restrooms. We manage everything from daily sanitizing to restocking soap, towels, and other essentials, ensuring your facilities meet health and cleanliness standards.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-supplies-and-consumables-restockin" aria-controls="spanel-supplies-and-consumables-restockin"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5 12 12l9-4.5zM3 7.5V16l9 4.5M21 7.5V16l-9 4.5M12 12v9.5"/></svg>
-            <span>Supplies &amp; Consumables Restocking</span>
-          </button>
+          <article class="svc-card">
+            <svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M10 11v6M14 11v6"/></svg>
+            <h3><button class="svc-card-toggle" type="button" aria-controls="svc-p-5">Trash &amp; Recycling Management</button></h3>
+            <p id="svc-p-5">We handle regular trash removal, recycling coordination, and can customize collection schedules to match your business needs. Let us ensure efficient waste management that keeps your facility organized and environmentally responsible.</p>
+          </article>
 
-          <div class="svc-panel" id="spanel-supplies-and-consumables-restockin">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5 12 12l9-4.5zM3 7.5V16l9 4.5M21 7.5V16l-9 4.5M12 12v9.5"/></svg>
-            <h3>Supplies &amp; Consumables Restocking</h3>
-            <p>We keep your essential supplies stocked. From cleaning products, paper goods, soap, and other consumables, we proactively manage inventory so you never face shortages and your operations run smoothly.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-trash-and-recycling-management" aria-controls="spanel-trash-and-recycling-management"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M10 11v6M14 11v6"/></svg>
-            <span>Trash &amp; Recycling Management</span>
-          </button>
+          <article class="svc-card">
+            <svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <h3><button class="svc-card-toggle" type="button" aria-controls="svc-p-6">Surface &amp; Touch Sanitization</button></h3>
+            <p id="svc-p-6">High-touch surfaces spread germs. We regularly clean and disinfect door handles, light switches, countertops, railings, and more in order to maintain a hygienic workspace for your team and visitors.</p>
+          </article>
 
-          <div class="svc-panel" id="spanel-trash-and-recycling-management">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M10 11v6M14 11v6"/></svg>
-            <h3>Trash &amp; Recycling Management</h3>
-            <p>We handle regular trash removal, recycling coordination, and can customize collection schedules to match your business needs. Let us ensure efficient waste management that keeps your facility organized and environmentally responsible.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-surface-and-touch-sanitization" aria-controls="spanel-surface-and-touch-sanitization"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
-            <span>Surface &amp; Touch Sanitization</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-surface-and-touch-sanitization">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
-            <h3>Surface &amp; Touch Sanitization</h3>
-            <p>High-touch surfaces spread germs. We regularly clean and disinfect door handles, light switches, countertops, railings, and more in order to maintain a hygienic workspace for your team and visitors.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-security-and-facility-oversight" aria-controls="spanel-security-and-facility-oversight"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span>Security &amp; Facility Oversight</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-security-and-facility-oversight">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            <h3>Security &amp; Facility Oversight</h3>
-            <p>We provide an extra set of eyes on your facility to provide peace of mind. Our porters monitor for maintenance issues, security concerns, and unusual activity while keeping your space clean.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-carpet-cleaning" aria-controls="spanel-carpet-cleaning"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v10H4zM6 17v2.5M9 17v2.5M12 17v2.5M15 17v2.5M18 17v2.5M8 11h8M8 13.5h8"/></svg>
-            <span>Carpet Cleaning</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-carpet-cleaning">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v10H4zM6 17v2.5M9 17v2.5M12 17v2.5M15 17v2.5M18 17v2.5M8 11h8M8 13.5h8"/></svg>
-            <h3>Carpet Cleaning</h3>
-            <p>Professional carpet cleaning extends the life of your flooring and removes deep-set dirt, allergens, and stains. We use advanced equipment and eco-friendly cleaning solutions to refresh your carpets and improve indoor air quality.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-floor-care-and-maintenance" aria-controls="spanel-floor-care-and-maintenance"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v12H3zM3 14h18M9 8v12M15 8v12"/></svg>
-            <span>Floor Care &amp; Maintenance</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-floor-care-and-maintenance">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v12H3zM3 14h18M9 8v12M15 8v12"/></svg>
-            <h3>Floor Care &amp; Maintenance</h3>
-            <p>From hardwood and concrete to tile and vinyl, we provide specialized care for every flooring type. Our floor care services keep surfaces looking new and extend floor lifespan through proper cleaning and protective treatments.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-marble-and-granite-surface-care" aria-controls="spanel-marble-and-granite-surface-care"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9zM3 9h18M9 3 6 9l6 12M15 3l3 6-6 12"/></svg>
-            <span>Marble &amp; Granite Surface Care</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-marble-and-granite-surface-care">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9zM3 9h18M9 3 6 9l6 12M15 3l3 6-6 12"/></svg>
-            <h3>Marble &amp; Granite Surface Care</h3>
-            <p>Natural stone requires specialized treatment to maintain its beauty and integrity. We provide expert marble and granite cleaning, polishing, and sealing services for countertops and floors to protect and keep premium surfaces radiant.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-window-cleaning-interior-and-exter" aria-controls="spanel-window-cleaning-interior-and-exter"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM12 4v16M4 12h16M15 7l2 2"/></svg>
-            <span>Window Cleaning (Interior &amp; Exterior + Doors)</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-window-cleaning-interior-and-exter">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM12 4v16M4 12h16M15 7l2 2"/></svg>
-            <h3>Window Cleaning (Interior &amp; Exterior + Doors)</h3>
-            <p>Crystal-clear windows transform how your facility looks and feels. Our professional window cleaning services cover interior and exterior glass plus doors, ensuring optimal visibility and a bright, welcoming appearance throughout your building.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-upholstery-cleaning" aria-controls="spanel-upholstery-cleaning"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11V8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3M3 11a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v6H3zM6 19v2M18 19v2"/></svg>
-            <span>Upholstery Cleaning</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-upholstery-cleaning">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11V8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3M3 11a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v6H3zM6 19v2M18 19v2"/></svg>
-            <h3>Upholstery Cleaning</h3>
-            <p>Office furniture, lobby seating, and conference room upholstery accumulate dust, stains, and odors. Professional upholstery cleaning restores fabric, removes allergens, and extends the life of your furnishings.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-leather-cleaning-and-conditioning" aria-controls="spanel-leather-cleaning-and-conditioning"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11V8a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3M6 11a2 2 0 0 1 0 4v2h12v-2a2 2 0 0 1 0-4M6 15h12M8 19v2M16 19v2"/></svg>
-            <span>Leather Cleaning &amp; Conditioning</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-leather-cleaning-and-conditioning">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11V8a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3M6 11a2 2 0 0 1 0 4v2h12v-2a2 2 0 0 1 0-4M6 15h12M8 19v2M16 19v2"/></svg>
-            <h3>Leather Cleaning &amp; Conditioning</h3>
-            <p>Leather furniture makes a sophisticated statement and requires proper maintenance. We provide specialized leather cleaning and conditioning to keep premium seating looking executive-quality.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-computer-room-cleaning" aria-controls="spanel-computer-room-cleaning"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v13H3zM8 21h8M12 17v4"/></svg>
-            <span>Computer Room Cleaning</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-computer-room-cleaning">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v13H3zM8 21h8M12 17v4"/></svg>
-            <h3>Computer Room Cleaning</h3>
-            <p>Tech environments demand pristine conditions. We provide specialized cleaning for computer rooms using static-free equipment and protocols that protect sensitive electronics while eliminating dust and contaminants.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-special-events-cleaning" aria-controls="spanel-special-events-cleaning"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg>
-            <span>Special Events Cleaning</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-special-events-cleaning">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg>
-            <h3>Special Events Cleaning</h3>
-            <p>Preparing for a major event or cleaning up after one? We coordinate with your timeline to prepare spaces before events or provide comprehensive post-event cleanup.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-power-washing-and-pressure-washing" aria-controls="spanel-power-washing-and-pressure-washing"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h3l3-2h1v6h-1l-3-2H4zM6 15v3M11 9l6-3M11 11h7M11 13l6 3"/></svg>
-            <span>Power Washing &amp; Pressure Washing</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-power-washing-and-pressure-washing">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h3l3-2h1v6h-1l-3-2H4zM6 15v3M11 9l6-3M11 11h7M11 13l6 3"/></svg>
-            <h3>Power Washing &amp; Pressure Washing</h3>
-            <p>High-powered water cleaning removes years of accumulated dirt, grime, mold, oil and mildew from exterior surfaces from building facades to sidewalks and parking lots. We adjust pressure levels and techniques for different materials to ensure effective cleaning without damage.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-construction-cleanup" aria-controls="spanel-construction-cleanup"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h12M8 20 11 6h2l3 14M9.5 13h5M10.5 9.5h3"/></svg>
-            <span>Construction Cleanup</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-construction-cleanup">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h12M8 20 11 6h2l3 14M9.5 13h5M10.5 9.5h3"/></svg>
-            <h3>Construction Cleanup</h3>
-            <p>During construction phases, we provide ongoing cleanup to manage dust, debris, and disruption. Regular cleanups minimize impact on project areas, new or old, and keep your clients happy.</p>
-          </div>
-          <button class="svc-item" type="button"
-                  id="stab-post-construction-deep-clean" aria-controls="spanel-post-construction-deep-clean"
-                  aria-expanded="false">
-            <svg class="svc-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4l1.6 4.4L17 10l-4.4 1.6L11 16l-1.6-4.4L5 10l4.4-1.6z"/><path d="M18 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>
-            <span>Post-Construction Deep Clean</span>
-          </button>
-
-          <div class="svc-panel" id="spanel-post-construction-deep-clean">
-            <svg class="svc-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4l1.6 4.4L17 10l-4.4 1.6L11 16l-1.6-4.4L5 10l4.4-1.6z"/><path d="M18 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>
-            <h3>Post-Construction Deep Clean</h3>
-            <p>After your contractors finish, our team delivers complete facility restoration. We remove dust from every surface, clean windows, floors, and fixtures, dispose of construction debris, and ensure your facility is move-in ready.</p>
-          </div>
+          <article class="svc-card">
+            <svg class="svc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3><button class="svc-card-toggle" type="button" aria-controls="svc-p-7">Security &amp; Facility Oversight</button></h3>
+            <p id="svc-p-7">We provide an extra set of eyes on your facility to provide peace of mind. Our porters monitor for maintenance issues, security concerns, and unusual activity while keeping your space clean.</p>
+          </article>
 
         </div>
 
-<!-- Custom Work Plans, pulled out as a closing call to action. -->
+        <!-- Custom Work Plans, pulled out as a closing call to action. -->
         <div class="svc-custom">
           <div class="svc-custom-text">
             <h3>Custom Work Plans</h3>
@@ -2215,7 +2035,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="section-head">
           <h2 class="eyebrow is-heading">Facility Types</h2>
-          <p class="section-sub">Find your facility. We provide services for a range of industries.</p>
+          <p class="section-sub">We provide services for a range of industries.</p>
         </div>
 
         <div class="facilities" data-facilities>
@@ -2255,15 +2075,12 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="facility-panel is-active" role="tabpanel"
              id="fpanel-office" aria-labelledby="ftab-office" tabindex="0">
-          <!-- Facility photo with the headline overlaid (Schema 3). -->
-          <div class="facility-hero">
-            <img class="facility-hero-img" src="assets/facilities/office.jpg"
+          <!-- Photo, then the headline beneath it. -->
+          <img class="facility-hero-img" src="assets/facilities/office.jpg"
                  alt="Modern office interior" loading="eager" decoding="async">
-            <div class="facility-hero-text">
-              <h3>Clean Office. Focused Teams.</h3>
-              <p class="facility-lead">Professional cleaning that reflects the quality of your business.</p>
-            </div>
-          </div>
+
+          <h3>Clean Office. Focused Teams.</h3>
+          <p class="facility-lead">Professional cleaning that reflects the quality of your business.</p>
 
           <div class="facility-cols">
             <div>
@@ -2284,21 +2101,17 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
               <li><strong>Tailored Operational Scheduling:</strong> We build custom cleaning schedules that sync perfectly with your business hours to ensure zero disruption.</li>
               <li><strong>Friction-Free Management:</strong> We handle every detail of your facility care, freeing you from the hassle of supervisor oversight so you can focus on your team.</li>
               <li><strong>Uncompromising Brand Alignment:</strong> We deliver a consistently pristine workspace that accurately reflects your high professional standards to clients and partners.</li>
-              <li><strong>A 35-Year Legacy of Trust:</strong> Enjoy the unmatched reliability and accountability that comes with over three and a half decades of family-run expertise.</li>
           </ul>
         </div>
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-healthcare" aria-labelledby="ftab-healthcare" tabindex="0">
-          <!-- Facility photo with the headline overlaid (Schema 3). -->
-          <div class="facility-hero">
-            <img class="facility-hero-img" src="assets/facilities/healthcare.jpg"
+          <!-- Photo, then the headline beneath it. -->
+          <img class="facility-hero-img" src="assets/facilities/healthcare.jpg"
                  alt="Bright medical facility lobby" loading="lazy" decoding="async">
-            <div class="facility-hero-text">
-              <h3>Clean Facilities. Patient Trust.</h3>
-              <p class="facility-lead">Medical-grade cleaning for healthcare environments that demand the highest standards.</p>
-            </div>
-          </div>
+
+          <h3>Clean Facilities. Patient Trust.</h3>
+          <p class="facility-lead">Medical-grade cleaning for healthcare environments that demand the highest standards.</p>
 
           <div class="facility-cols">
             <div>
@@ -2323,15 +2136,12 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-retail" aria-labelledby="ftab-retail" tabindex="0">
-          <!-- Facility photo with the headline overlaid (Schema 3). -->
-          <div class="facility-hero">
-            <img class="facility-hero-img" src="assets/facilities/retail.jpg"
+          <!-- Photo, then the headline beneath it. -->
+          <img class="facility-hero-img" src="assets/facilities/retail.jpg"
                  alt="Upscale retail shopping center" loading="lazy" decoding="async">
-            <div class="facility-hero-text">
-              <h3>Every Detail Counts. Especially the First Impression.</h3>
-              <p class="facility-lead">Luxury-level cleaning for retail spaces where appearance drives sales and brand experience.</p>
-            </div>
-          </div>
+
+          <h3>Every Detail Counts. Especially the First Impression.</h3>
+          <p class="facility-lead">Luxury-level cleaning for retail spaces where appearance drives sales and brand experience.</p>
 
           <div class="facility-cols">
             <div>
@@ -2357,15 +2167,12 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-hospitality" aria-labelledby="ftab-hospitality" tabindex="0">
-          <!-- Facility photo with the headline overlaid (Schema 3). -->
-          <div class="facility-hero">
-            <img class="facility-hero-img" src="assets/facilities/hospitality.jpg"
+          <!-- Photo, then the headline beneath it. -->
+          <img class="facility-hero-img" src="assets/facilities/hospitality.jpg"
                  alt="Hotel-style reception lobby" loading="lazy" decoding="async">
-            <div class="facility-hero-text">
-              <h3>Exceptional Guest Experiences. Meticulous Cleaning.</h3>
-              <p class="facility-lead">Hospitality cleaning that turns guests into loyal customers.</p>
-            </div>
-          </div>
+
+          <h3>Exceptional Guest Experiences. Meticulous Cleaning.</h3>
+          <p class="facility-lead">Hospitality cleaning that turns guests into loyal customers.</p>
 
           <div class="facility-cols">
             <div>
@@ -2391,15 +2198,12 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-hoa" aria-labelledby="ftab-hoa" tabindex="0">
-          <!-- Facility photo with the headline overlaid (Schema 3). -->
-          <div class="facility-hero">
-            <img class="facility-hero-img" src="assets/facilities/hoa.jpg"
+          <!-- Photo, then the headline beneath it. -->
+          <img class="facility-hero-img" src="assets/facilities/hoa.jpg"
                  alt="Multi-family residential community" loading="lazy" decoding="async">
-            <div class="facility-hero-text">
-              <h3>Well-Maintained Properties. Happy Residents.</h3>
-              <p class="facility-lead">Community cleaning that builds property value and resident pride.</p>
-            </div>
-          </div>
+
+          <h3>Well-Maintained Properties. Happy Residents.</h3>
+          <p class="facility-lead">Community cleaning that builds property value and resident pride.</p>
 
           <div class="facility-cols">
             <div>
@@ -2425,15 +2229,12 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="facility-panel" role="tabpanel"
              id="fpanel-schools" aria-labelledby="ftab-schools" tabindex="0">
-          <!-- Facility photo with the headline overlaid (Schema 3). -->
-          <div class="facility-hero">
-            <img class="facility-hero-img" src="assets/facilities/schools.jpg"
+          <!-- Photo, then the headline beneath it. -->
+          <img class="facility-hero-img" src="assets/facilities/schools.jpg"
                  alt="School gymnasium" loading="lazy" decoding="async">
-            <div class="facility-hero-text">
-              <h3>Clean Classrooms. Healthy Students. Focused Success.</h3>
-              <p class="facility-lead">Educational facility cleaning that keeps students striving and staff protected.</p>
-            </div>
-          </div>
+
+          <h3>Clean Classrooms. Healthy Students. Focused Success.</h3>
+          <p class="facility-lead">Educational facility cleaning that keeps students striving and staff protected.</p>
 
           <div class="facility-cols">
             <div>
@@ -2470,9 +2271,13 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
     <!-- ===================================================================
          AREAS WE SERVE
-         Neighborhoods grouped by region, listed one per line. To add an area,
-         add an <li> to the right region's <ul class="area-names">. To add a
-         region, copy a whole <div class="area-group"> block.
+         Regions on the left, their neighbourhoods on the right. Below 720px
+         the same markup becomes an accordion, because the button and its
+         panel sit next to each other in source order — and there it starts
+         fully collapsed.
+
+         Regions and neighbourhoods are both listed alphabetically. To add an
+         area, drop an <li> into the right region's list and keep it in order.
          =================================================================== -->
     <section class="section" id="areas">
       <div class="container">
@@ -2482,112 +2287,133 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
           <p class="section-sub">Your best professional cleaner is closer than you think.</p>
         </div>
 
-        <div class="area-groups">
+        <div class="areas-master" data-areas>
 
-        <div class="area-group">
-          <h3>Westside</h3>
-          <ul class="area-names">
-            <li>Santa Monica</li>
-            <li>Brentwood</li>
-            <li>Brentwood Park</li>
-            <li>North of Montana</li>
-            <li>Westwood</li>
-            <li>Sawtelle</li>
-            <li>Palms</li>
-            <li>Ocean Park</li>
-            <li>Marina Del Rey</li>
-            <li>Marina Peninsula</li>
-            <li>Venice</li>
-            <li>Mar Vista</li>
-            <li>Playa Vista</li>
-            <li>Oakwood</li>
-            <li>Del Rey</li>
-            <li>Sunset Park</li>
-            <li>Westchester</li>
-            <li>Westdale</li>
-            <li>LAX Area</li>
-          </ul>
-        </div>
+          <button class="areas-item" type="button"
+                  id="atab-central-la-and-mid-city-la" aria-controls="apanel-central-la-and-mid-city-la"
+                  aria-expanded="true">
+            <span>Central LA &amp; Mid-City LA</span>
+          </button>
 
-        <div class="area-group">
-          <h3>Central LA &amp; Mid-City LA</h3>
-          <ul class="area-names">
-            <li>Mid City</li>
-            <li>Mid-Wilshire</li>
-            <li>Koreatown</li>
-            <li>Melrose</li>
-            <li>Melrose Hill</li>
-            <li>Miracle Mile</li>
-            <li>Carthay Square</li>
-            <li>Picfair Village</li>
-            <li>Beverly Grove</li>
-            <li>Fairfax</li>
-            <li>Hancock Park</li>
-            <li>Norma Triangle</li>
-            <li>Cienega</li>
-            <li>Sunkist Park</li>
-            <li>Pico-Robertson</li>
-            <li>Park La Brea</li>
-            <li>Crestview</li>
-            <li>Little Ethiopia</li>
-            <li>Beverlywood</li>
-            <li>West Adams</li>
-            <li>Westlake</li>
-          </ul>
-        </div>
+          <div class="areas-panel is-active" id="apanel-central-la-and-mid-city-la">
+            <ul class="area-names">
+              <li>Beverly Grove</li>
+              <li>Beverlywood</li>
+              <li>Carthay Square</li>
+              <li>Cienega</li>
+              <li>Crestview</li>
+              <li>Fairfax</li>
+              <li>Hancock Park</li>
+              <li>Koreatown</li>
+              <li>Little Ethiopia</li>
+              <li>Melrose</li>
+              <li>Melrose Hill</li>
+              <li>Mid City</li>
+              <li>Mid-Wilshire</li>
+              <li>Miracle Mile</li>
+              <li>Norma Triangle</li>
+              <li>Park La Brea</li>
+              <li>Picfair Village</li>
+              <li>Pico-Robertson</li>
+              <li>Sunkist Park</li>
+              <li>West Adams</li>
+              <li>Westlake</li>
+            </ul>
+          </div>
+          <button class="areas-item" type="button"
+                  id="atab-hollywood-and-beverly-hills" aria-controls="apanel-hollywood-and-beverly-hills"
+                  aria-expanded="false">
+            <span>Hollywood &amp; Beverly Hills</span>
+          </button>
 
-        <div class="area-group">
-          <h3>West LA / Culver City</h3>
-          <ul class="area-names">
-            <li>Century City</li>
-            <li>Culver City</li>
-            <li>Culver West</li>
-            <li>Culver Junction</li>
-            <li>Fox Hills</li>
-            <li>Blanco - Culver Crest</li>
-            <li>Studio Village</li>
-            <li>West Los Angeles</li>
-            <li>Westside Village</li>
-            <li>Cheviot Hills</li>
-            <li>Castle Heights</li>
-            <li>Park West</li>
-            <li>Clarkdale</li>
-            <li>McLaughlin</li>
-            <li>McManus</li>
-            <li>Culver Garden</li>
-          </ul>
-        </div>
+          <div class="areas-panel" id="apanel-hollywood-and-beverly-hills">
+            <ul class="area-names">
+              <li>Beverly Hills</li>
+              <li>Beverlywood</li>
+              <li>Century City</li>
+              <li>East Hollywood</li>
+              <li>Norma Triangle</li>
+              <li>Sunset Strip</li>
+              <li>Thai Town</li>
+              <li>The Flats</li>
+              <li>West Hollywood</li>
+            </ul>
+          </div>
+          <button class="areas-item" type="button"
+                  id="atab-south-and-south-central-la" aria-controls="apanel-south-and-south-central-la"
+                  aria-expanded="false">
+            <span>South &amp; South-Central LA</span>
+          </button>
 
-        <div class="area-group">
-          <h3>Hollywood &amp; Beverly Hills</h3>
-          <ul class="area-names">
-            <li>West Hollywood</li>
-            <li>Century City</li>
-            <li>Beverly Hills</li>
-            <li>Beverlywood</li>
-            <li>Sunset Strip</li>
-            <li>Norma Triangle</li>
-            <li>The Flats</li>
-            <li>East Hollywood</li>
-            <li>Thai Town</li>
-          </ul>
-        </div>
+          <div class="areas-panel" id="apanel-south-and-south-central-la">
+            <ul class="area-names">
+              <li>Arlington Heights</li>
+              <li>Baldwin Hills</li>
+              <li>Baldwin Village</li>
+              <li>Castle Heights</li>
+              <li>Harvard Heights</li>
+              <li>Jefferson Park</li>
+              <li>Mar Vista</li>
+              <li>Monte Mar Vista</li>
+              <li>Reynier Village</li>
+              <li>West Adams</li>
+            </ul>
+          </div>
+          <button class="areas-item" type="button"
+                  id="atab-west-la-culver-city" aria-controls="apanel-west-la-culver-city"
+                  aria-expanded="false">
+            <span>West LA / Culver City</span>
+          </button>
 
-        <div class="area-group">
-          <h3>South &amp; South-Central LA</h3>
-          <ul class="area-names">
-            <li>Arlington Heights</li>
-            <li>Baldwin Hills</li>
-            <li>Baldwin Village</li>
-            <li>Jefferson Park</li>
-            <li>West Adams</li>
-            <li>Castle Heights</li>
-            <li>Harvard Heights</li>
-            <li>Mar Vista</li>
-            <li>Monte Mar Vista</li>
-            <li>Reynier Village</li>
-          </ul>
-        </div>
+          <div class="areas-panel" id="apanel-west-la-culver-city">
+            <ul class="area-names">
+              <li>Blanco - Culver Crest</li>
+              <li>Castle Heights</li>
+              <li>Century City</li>
+              <li>Cheviot Hills</li>
+              <li>Clarkdale</li>
+              <li>Culver City</li>
+              <li>Culver Garden</li>
+              <li>Culver Junction</li>
+              <li>Culver West</li>
+              <li>Fox Hills</li>
+              <li>McLaughlin</li>
+              <li>McManus</li>
+              <li>Park West</li>
+              <li>Studio Village</li>
+              <li>West Los Angeles</li>
+              <li>Westside Village</li>
+            </ul>
+          </div>
+          <button class="areas-item" type="button"
+                  id="atab-westside" aria-controls="apanel-westside"
+                  aria-expanded="false">
+            <span>Westside</span>
+          </button>
+
+          <div class="areas-panel" id="apanel-westside">
+            <ul class="area-names">
+              <li>Brentwood</li>
+              <li>Brentwood Park</li>
+              <li>Del Rey</li>
+              <li>LAX Area</li>
+              <li>Mar Vista</li>
+              <li>Marina Del Rey</li>
+              <li>Marina Peninsula</li>
+              <li>North of Montana</li>
+              <li>Oakwood</li>
+              <li>Ocean Park</li>
+              <li>Palms</li>
+              <li>Playa Vista</li>
+              <li>Santa Monica</li>
+              <li>Sawtelle</li>
+              <li>Sunset Park</li>
+              <li>Venice</li>
+              <li>Westchester</li>
+              <li>Westdale</li>
+              <li>Westwood</li>
+            </ul>
+          </div>
 
         </div>
 
@@ -2655,11 +2481,13 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
          closes with no JavaScript at all, and screen readers already
          know how to announce it.
 
-         To add a question, copy one <details> block.
-         Delete the "open" word from the first one if you'd rather the
-         page load with everything collapsed.
+         Every question starts collapsed, so the section reads as a short
+         scannable list rather than one long open answer.
+
+         To add a question, copy one <details> block. Adding the word "open"
+         to a <details> tag makes that one start expanded.
          =================================================================== -->
-        <section class="section" id="faq">
+    <section class="section" id="faq">
       <div class="container container-narrow">
 
         <div class="section-head">
@@ -2668,7 +2496,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="faq">
 
-          <details open>
+          <details>
             <summary>What is included in standard commercial cleaning?</summary>
             <div class="faq-body">
               <p>Our standard cleaning package includes sweeping, vacuuming, mopping, dusting, disinfecting high-touch areas like door handles and light switches, breakroom and kitchen cleaning, trash removal, surface wiping, restocking cleaning inventory, and sanitizing and restocking bathrooms.</p>
@@ -2679,13 +2507,6 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
             <summary>Do you offer after-hours or business-hours cleaning?</summary>
             <div class="faq-body">
               <p>We offer both! Let us know whichever works best for your business. We also provide day porter services for continuous maintenance in high-traffic areas throughout the workday.</p>
-            </div>
-          </details>
-
-          <details>
-            <summary>Are your cleaning products safe for employees with allergies?</summary>
-            <div class="faq-body">
-              <p>Yes. We use eco-friendly cleaning products and HEPA-filter vacuums to minimize allergens. If your team has specific allergies or sensitivities, we can discuss alternative products and protocols.</p>
             </div>
           </details>
 
@@ -2748,14 +2569,10 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
     <!-- ===================================================================
          ABOUT US
-         The company story, told as a short narrative plus a timeline of the
-         milestones. Relocated near the foot of the page to match the nav
-         order: lead with what we do, close with who we are.
-         =================================================================== -->
-    <!-- ===================================================================
-         ABOUT US
-         Two rows, each a portrait beside its content: the present-day story
-         first, then the founder alongside the timeline. Both stack on phones.
+         The company story: the two portraits side by side on the left, the
+         narrative to their right. Stacks on phones. Sits near the foot of the
+         page to match the nav order — lead with what we do, close with who
+         we are.
          =================================================================== -->
     <section class="section section-tint" id="about">
       <div class="container">
@@ -2766,20 +2583,42 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
         <div class="about-row">
 
-          <!-- EDIT: confirm the name and title in this alt text. -->
-          <img class="about-photo" src="assets/photos/daniel.jpg"
-               alt="Daniel Stone of Commercial Green Cleaning" loading="lazy" decoding="async"
-               width="900" height="1350">
+          <!-- The two portraits, side by side: the founder, then his son.
+               To swap one, drop a new file in at the same path and filename.
+               EDIT: keep each <figcaption> in step with the photo above it. -->
+          <div class="about-portraits">
+
+            <figure class="about-figure">
+              <img class="about-photo" src="assets/photos/avi.jpg"
+                   alt="Avi Stone, who founded the business as Avi&rsquo;s Maid Service in 1991"
+                   loading="lazy" decoding="async" width="900" height="1145">
+              <figcaption class="about-caption">
+                <span class="about-caption-name">Avi Stone</span>
+                Founder
+              </figcaption>
+            </figure>
+
+            <figure class="about-figure">
+              <img class="about-photo" src="assets/photos/daniel.jpg"
+                   alt="Daniel Stone, owner and operator of Commercial Green Cleaning"
+                   loading="lazy" decoding="async" width="900" height="1350">
+              <figcaption class="about-caption">
+                <span class="about-caption-name">Daniel Stone</span>
+                Owner + Operator
+              </figcaption>
+            </figure>
+
+          </div>
 
           <div class="about-text">
-            <h3 class="section-lead">Caring for LA’s most prestigious spaces since 1991.</h3>
+            <h3 class="section-lead">Same Values. Next Generation.</h3>
 
             <p>
-              For over 35 years, we’ve been trusted to care for Los Angeles’ most
-              prestigious spaces. What began in 1991 as Avi’s Maid Service evolved into a
+              For over 35 years, we&rsquo;ve been trusted to care for Los Angeles&rsquo; most
+              prestigious spaces. What began in 1991 as Avi&rsquo;s Maid Service evolved into a
               cornerstone of commercial cleaning excellence. Our work is visible on Rodeo Drive,
-              across the city’s most luxury and coveted retail spaces, all the way to the
-              city’s best hospitals.
+              across the city&rsquo;s most luxury and coveted retail spaces, all the way to the
+              city&rsquo;s best hospitals.
             </p>
             <p>
               In 2019, we officially evolved into Commercial Green Cleaning to better reflect our
@@ -2792,39 +2631,6 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
-        </div>
-
-        <!-- Mirrored: the timeline runs down the left, under Daniel's photo,
-             with the founder's portrait on the right. -->
-        <div class="about-row about-row--reverse">
-
-        <!-- The milestones. To add one, copy a <li class="milestone"> block. -->
-        <ol class="timeline">
-
-          <li class="milestone">
-            <span class="milestone-year">1991</span>
-            <h3>Founded as Avi’s Maid Service</h3>
-            <p>Our doors open, and the business grows into a cornerstone of commercial cleaning excellence.</p>
-          </li>
-
-          <li class="milestone">
-            <span class="milestone-year">2019</span>
-            <h3>Renamed Commercial Green Cleaning</h3>
-            <p>We rebrand to reflect our modern, eco-friendly practices and expanded service offerings.</p>
-          </li>
-
-          <li class="milestone">
-            <span class="milestone-year">Today</span>
-            <h3>35+ years of trusted care</h3>
-            <p>The same core team and values, trusted from Rodeo Drive to the city’s best hospitals.</p>
-          </li>
-
-        </ol>
-
-          <!-- EDIT: confirm the name in this alt text. -->
-          <img class="about-photo" src="assets/photos/avi.jpg"
-               alt="Avi, who founded the business as Avi’s Maid Service in 1991"
-               loading="lazy" decoding="async" width="900" height="1145">
         </div>
 
       </div>
@@ -3209,7 +3015,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 
     /* ---- Hero slideshow -------------------------------------------------
-       Hard-cuts between the facility photos once a second — no fade, no
+       Hard-cuts between the facility photos every three seconds. No fade, no
        slide. The pause button stops and restarts it. Anyone who has asked
        their system for reduced motion gets it paused from the start, and can
        press play if they want it. */
@@ -3227,7 +3033,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
       }
       function play() {
         if (timer) return;
-        timer = setInterval(step, 1000);
+        timer = setInterval(step, 3000);   // 3s per photo
         if (btn) {
           btn.classList.remove('is-paused');
           btn.setAttribute('aria-label', 'Pause the slideshow');
@@ -3251,32 +3057,94 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
     })();
 
 
-    /* ---- Services list + detail ----------------------------------------
-       Disclosure buttons rather than tabs, because the same markup is a
-       two-column list on a desktop and an accordion on a phone — and
-       "expanded / collapsed" is the honest description in both. Exactly one
-       is open at a time, so the desktop's right-hand column is never blank. */
-    (function () {
-      var root = document.querySelector('[data-services]');
-      if (!root) return;
-      var items = Array.prototype.slice.call(root.querySelectorAll('.svc-item'));
-      if (!items.length) return;
+    /* ---- Areas We Serve: regions + neighbourhoods -----------------------
+       Same disclosure pattern as the Services cards, but the two layouts want
+       different behaviour:
 
-      function open(btn) {
-        items.forEach(function (b) {
-          var on = b === btn;
-          b.setAttribute('aria-expanded', String(on));
-          var panel = document.getElementById(b.getAttribute('aria-controls'));
-          if (panel) panel.classList.toggle('is-active', on);
-        });
+         Desktop — exactly one region open at all times, because the panel
+         beside the list would otherwise be an empty two-thirds of the row.
+         Clicking the open region does nothing.
+
+         Phone — a plain accordion that starts fully collapsed, so the visitor
+         sees all five regions at once and opens the one they care about.
+         Tapping an open region closes it again.
+
+       With JavaScript off, the first region stays open and every panel is
+       reachable, so nothing is lost. */
+    (function () {
+      var root = document.querySelector('[data-areas]');
+      if (!root) return;
+      var items = Array.prototype.slice.call(root.querySelectorAll('.areas-item'));
+      if (!items.length) return;
+      var mq = window.matchMedia('(max-width: 720px)');
+      var last = items[0];      // remembered, so widening the window refills the panel
+
+      function set(btn, on) {
+        btn.setAttribute('aria-expanded', String(on));
+        var panel = document.getElementById(btn.getAttribute('aria-controls'));
+        if (panel) panel.classList.toggle('is-active', on);
+      }
+
+      function openOnly(btn) {
+        items.forEach(function (b) { set(b, b === btn); });
+        last = btn;
       }
 
       items.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          if (btn.getAttribute('aria-expanded') === 'true') return;  // keep one open
-          open(btn);
+          var isOpen = btn.getAttribute('aria-expanded') === 'true';
+          if (!isOpen) { openOnly(btn); return; }
+          if (mq.matches) { set(btn, false); last = btn; }   // phone: close it again
+          // desktop: leave it open, or the panel goes blank
         });
       });
+
+      function apply() {
+        if (mq.matches) items.forEach(function (b) { set(b, false); });
+        else openOnly(last);
+      }
+      mq.addEventListener('change', apply);
+      apply();
+    })();
+
+
+    /* ---- Services cards / accordion ------------------------------------
+       Above 720px the cards show everything and the title buttons are inert —
+       out of the tab order, no aria-expanded — so they read as plain headings.
+       Below 720px they become real disclosure buttons. With JavaScript off,
+       every card simply stays open. */
+    (function () {
+      var wrap = document.querySelector('[data-svc-cards]');
+      if (!wrap) return;
+      var cards = Array.prototype.slice.call(wrap.querySelectorAll('.svc-card'));
+      var mq = window.matchMedia('(max-width: 720px)');
+
+      cards.forEach(function (card) {
+        var btn = card.querySelector('.svc-card-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          if (!mq.matches) return;                  // does nothing on desktop
+          var open = card.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', String(open));
+        });
+      });
+
+      function apply() {
+        cards.forEach(function (card) {
+          var btn = card.querySelector('.svc-card-toggle');
+          if (!btn) return;
+          if (mq.matches) {
+            btn.tabIndex = 0;
+            btn.setAttribute('aria-expanded', String(card.classList.contains('is-open')));
+          } else {
+            btn.tabIndex = -1;
+            btn.removeAttribute('aria-expanded');
+            card.classList.remove('is-open');       // everything visible again
+          }
+        });
+      }
+      mq.addEventListener('change', apply);
+      apply();
     })();
   </script>
 
